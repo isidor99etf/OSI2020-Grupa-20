@@ -1,4 +1,4 @@
 # OSI
 
 This is repository for project task.
-Ja sam Nemanja.
+In folder `Documentation` you can find all documentation for this project.
