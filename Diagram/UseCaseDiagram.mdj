@@ -1,0 +1,495 @@
+{
+	"_type": "Project",
+	"_id": "AAAAAAFF+h6SjaM2Hec=",
+	"name": "OSI",
+	"ownedElements": [
+		{
+			"_type": "UMLModel",
+			"_id": "AAAAAAF2fMeprC4u+o0=",
+			"_parent": {
+				"$ref": "AAAAAAFF+h6SjaM2Hec="
+			},
+			"name": "Vodjenje evidencije o zaposlenim",
+			"ownedElements": [
+				{
+					"_type": "UMLUseCaseDiagram",
+					"_id": "AAAAAAF2fMeprS4voiM=",
+					"_parent": {
+						"$ref": "AAAAAAF2fMeprC4u+o0="
+					},
+					"name": "Evidencija o ",
+					"ownedViews": [
+						{
+							"_type": "UMLActorView",
+							"_id": "AAAAAAF2fM/xPS42Opg=",
+							"_parent": {
+								"$ref": "AAAAAAF2fMeprS4voiM="
+							},
+							"model": {
+								"$ref": "AAAAAAF2fM/xOy40zt8="
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "AAAAAAF2fM/xPi43l0Y=",
+									"_parent": {
+										"$ref": "AAAAAAF2fM/xPS42Opg="
+									},
+									"model": {
+										"$ref": "AAAAAAF2fM/xOy40zt8="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF2fM/xPi44jGQ=",
+											"_parent": {
+												"$ref": "AAAAAAF2fM/xPi43l0Y="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"height": 13
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF2fM/xPi45oN0=",
+											"_parent": {
+												"$ref": "AAAAAAF2fM/xPi43l0Y="
+											},
+											"font": "Arial;13;1",
+											"left": 157,
+											"top": 629,
+											"width": 52.0126953125,
+											"height": 13,
+											"text": "Korisnik"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF2fM/xPi46acw=",
+											"_parent": {
+												"$ref": "AAAAAAF2fM/xPi43l0Y="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"width": 229.78515625,
+											"height": 13,
+											"text": "(from Vodjenje evidencije o zaposlenim)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF2fM/xPy47TK4=",
+											"_parent": {
+												"$ref": "AAAAAAF2fM/xPi43l0Y="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"height": 13,
+											"horizontalAlignment": 1
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 152,
+									"top": 622,
+									"width": 62.0126953125,
+									"height": 25,
+									"stereotypeLabel": {
+										"$ref": "AAAAAAF2fM/xPi44jGQ="
+									},
+									"nameLabel": {
+										"$ref": "AAAAAAF2fM/xPi45oN0="
+									},
+									"namespaceLabel": {
+										"$ref": "AAAAAAF2fM/xPi46acw="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAF2fM/xPy47TK4="
+									}
+								},
+								{
+									"_type": "UMLAttributeCompartmentView",
+									"_id": "AAAAAAF2fM/xPy48Jws=",
+									"_parent": {
+										"$ref": "AAAAAAF2fM/xPS42Opg="
+									},
+									"model": {
+										"$ref": "AAAAAAF2fM/xOy40zt8="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"width": 10,
+									"height": 10
+								},
+								{
+									"_type": "UMLOperationCompartmentView",
+									"_id": "AAAAAAF2fM/xPy49EPo=",
+									"_parent": {
+										"$ref": "AAAAAAF2fM/xPS42Opg="
+									},
+									"model": {
+										"$ref": "AAAAAAF2fM/xOy40zt8="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"width": 10,
+									"height": 10
+								},
+								{
+									"_type": "UMLReceptionCompartmentView",
+									"_id": "AAAAAAF2fM/xQC4+aio=",
+									"_parent": {
+										"$ref": "AAAAAAF2fM/xPS42Opg="
+									},
+									"model": {
+										"$ref": "AAAAAAF2fM/xOy40zt8="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"width": 10,
+									"height": 10
+								},
+								{
+									"_type": "UMLTemplateParameterCompartmentView",
+									"_id": "AAAAAAF2fM/xQC4/n3k=",
+									"_parent": {
+										"$ref": "AAAAAAF2fM/xPS42Opg="
+									},
+									"model": {
+										"$ref": "AAAAAAF2fM/xOy40zt8="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"width": 10,
+									"height": 10
+								}
+							],
+							"font": "Arial;13;0",
+							"containerChangeable": true,
+							"left": 152,
+							"top": 568,
+							"width": 62.0126953125,
+							"height": 80,
+							"nameCompartment": {
+								"$ref": "AAAAAAF2fM/xPi43l0Y="
+							},
+							"suppressAttributes": true,
+							"suppressOperations": true,
+							"attributeCompartment": {
+								"$ref": "AAAAAAF2fM/xPy48Jws="
+							},
+							"operationCompartment": {
+								"$ref": "AAAAAAF2fM/xPy49EPo="
+							},
+							"receptionCompartment": {
+								"$ref": "AAAAAAF2fM/xQC4+aio="
+							},
+							"templateParameterCompartment": {
+								"$ref": "AAAAAAF2fM/xQC4/n3k="
+							}
+						},
+						{
+							"_type": "UMLUseCaseSubjectView",
+							"_id": "AAAAAAF2fNMdVy5xBaM=",
+							"_parent": {
+								"$ref": "AAAAAAF2fMeprS4voiM="
+							},
+							"model": {
+								"$ref": "AAAAAAF2fNMdVi5vmy0="
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "AAAAAAF2fNMdVy5ydAU=",
+									"_parent": {
+										"$ref": "AAAAAAF2fNMdVy5xBaM="
+									},
+									"model": {
+										"$ref": "AAAAAAF2fNMdVi5vmy0="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF2fNMdVy5zZnM=",
+											"_parent": {
+												"$ref": "AAAAAAF2fNMdVy5ydAU="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"height": 13
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF2fNMdVy50PYE=",
+											"_parent": {
+												"$ref": "AAAAAAF2fNMdVy5ydAU="
+											},
+											"font": "Arial;13;1",
+											"left": 253,
+											"top": 263,
+											"width": 582,
+											"height": 13,
+											"text": "Sistem za vodjenje evidencija o zaposlenim"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF2fNMdVy51STI=",
+											"_parent": {
+												"$ref": "AAAAAAF2fNMdVy5ydAU="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"width": 229.78515625,
+											"height": 13,
+											"text": "(from Vodjenje evidencije o zaposlenim)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF2fNMdVy52SFs=",
+											"_parent": {
+												"$ref": "AAAAAAF2fNMdVy5ydAU="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"height": 13,
+											"horizontalAlignment": 1
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 248,
+									"top": 256,
+									"width": 592,
+									"height": 25,
+									"stereotypeLabel": {
+										"$ref": "AAAAAAF2fNMdVy5zZnM="
+									},
+									"nameLabel": {
+										"$ref": "AAAAAAF2fNMdVy50PYE="
+									},
+									"namespaceLabel": {
+										"$ref": "AAAAAAF2fNMdVy51STI="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAF2fNMdVy52SFs="
+									}
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 248,
+							"top": 256,
+							"width": 592,
+							"height": 504,
+							"nameCompartment": {
+								"$ref": "AAAAAAF2fNMdVy5ydAU="
+							}
+						},
+						{
+							"_type": "UMLUseCaseView",
+							"_id": "AAAAAAF2fNN5iC6LW2k=",
+							"_parent": {
+								"$ref": "AAAAAAF2fMeprS4voiM="
+							},
+							"model": {
+								"$ref": "AAAAAAF2fNN5iC6JNlc="
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "AAAAAAF2fNN5iC6MKj0=",
+									"_parent": {
+										"$ref": "AAAAAAF2fNN5iC6LW2k="
+									},
+									"model": {
+										"$ref": "AAAAAAF2fNN5iC6JNlc="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF2fNN5iS6NEts=",
+											"_parent": {
+												"$ref": "AAAAAAF2fNN5iC6MKj0="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"height": 13
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF2fNN5iS6ORhs=",
+											"_parent": {
+												"$ref": "AAAAAAF2fNN5iC6MKj0="
+											},
+											"font": "Arial;13;1",
+											"left": 318,
+											"top": 362,
+											"width": 110,
+											"height": 13,
+											"text": "Unos Id-ja licence"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF2fNN5iS6PS14=",
+											"_parent": {
+												"$ref": "AAAAAAF2fNN5iC6MKj0="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"width": 229.78515625,
+											"height": 13,
+											"text": "(from Vodjenje evidencije o zaposlenim)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF2fNN5iS6QYCY=",
+											"_parent": {
+												"$ref": "AAAAAAF2fNN5iC6MKj0="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"height": 13,
+											"horizontalAlignment": 1
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 313,
+									"top": 355,
+									"width": 120.53173828125,
+									"height": 25,
+									"stereotypeLabel": {
+										"$ref": "AAAAAAF2fNN5iS6NEts="
+									},
+									"nameLabel": {
+										"$ref": "AAAAAAF2fNN5iS6ORhs="
+									},
+									"namespaceLabel": {
+										"$ref": "AAAAAAF2fNN5iS6PS14="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAF2fNN5iS6QYCY="
+									}
+								},
+								{
+									"_type": "UMLAttributeCompartmentView",
+									"_id": "AAAAAAF2fNN5iS6RFK0=",
+									"_parent": {
+										"$ref": "AAAAAAF2fNN5iC6LW2k="
+									},
+									"model": {
+										"$ref": "AAAAAAF2fNN5iC6JNlc="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"width": 10,
+									"height": 10
+								},
+								{
+									"_type": "UMLOperationCompartmentView",
+									"_id": "AAAAAAF2fNN5iS6Slvs=",
+									"_parent": {
+										"$ref": "AAAAAAF2fNN5iC6LW2k="
+									},
+									"model": {
+										"$ref": "AAAAAAF2fNN5iC6JNlc="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"width": 10,
+									"height": 10
+								},
+								{
+									"_type": "UMLReceptionCompartmentView",
+									"_id": "AAAAAAF2fNN5iS6TGl0=",
+									"_parent": {
+										"$ref": "AAAAAAF2fNN5iC6LW2k="
+									},
+									"model": {
+										"$ref": "AAAAAAF2fNN5iC6JNlc="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"width": 10,
+									"height": 10
+								},
+								{
+									"_type": "UMLTemplateParameterCompartmentView",
+									"_id": "AAAAAAF2fNN5iS6U8Ac=",
+									"_parent": {
+										"$ref": "AAAAAAF2fNN5iC6LW2k="
+									},
+									"model": {
+										"$ref": "AAAAAAF2fNN5iC6JNlc="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"width": 10,
+									"height": 10
+								},
+								{
+									"_type": "UMLExtensionPointCompartmentView",
+									"_id": "AAAAAAF2fNN5iS6Vwwk=",
+									"_parent": {
+										"$ref": "AAAAAAF2fNN5iC6LW2k="
+									},
+									"model": {
+										"$ref": "AAAAAAF2fNN5iC6JNlc="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"width": 10,
+									"height": 10
+								}
+							],
+							"font": "Arial;13;0",
+							"containerChangeable": true,
+							"left": 288,
+							"top": 328,
+							"width": 170,
+							"height": 80,
+							"nameCompartment": {
+								"$ref": "AAAAAAF2fNN5iC6MKj0="
+							},
+							"suppressAttributes": true,
+							"suppressOperations": true,
+							"attributeCompartment": {
+								"$ref": "AAAAAAF2fNN5iS6RFK0="
+							},
+							"operationCompartment": {
+								"$ref": "AAAAAAF2fNN5iS6Slvs="
+							},
+							"receptionCompartment": {
+								"$ref": "AAAAAAF2fNN5iS6TGl0="
+							},
+							"templateParameterCompartment": {
+								"$ref": "AAAAAAF2fNN5iS6U8Ac="
+							},
+							"extensionPointCompartment": {
+								"$ref": "AAAAAAF2fNN5iS6Vwwk="
+							}
+						}
+					]
+				},
+				{
+					"_type": "UMLActor",
+					"_id": "AAAAAAF2fM/xOy40zt8=",
+					"_parent": {
+						"$ref": "AAAAAAF2fMeprC4u+o0="
+					},
+					"name": "Korisnik"
+				},
+				{
+					"_type": "UMLUseCaseSubject",
+					"_id": "AAAAAAF2fNMdVi5vmy0=",
+					"_parent": {
+						"$ref": "AAAAAAF2fMeprC4u+o0="
+					},
+					"name": "Sistem za vodjenje evidencija o zaposlenim"
+				},
+				{
+					"_type": "UMLUseCase",
+					"_id": "AAAAAAF2fNN5iC6JNlc=",
+					"_parent": {
+						"$ref": "AAAAAAF2fMeprC4u+o0="
+					},
+					"name": "Unos Id-ja licence"
+				}
+			]
+		}
+	]
+}
