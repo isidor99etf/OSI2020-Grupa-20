@@ -13,481 +13,1247 @@
 			"ownedElements": [
 				{
 					"_type": "UMLUseCaseDiagram",
-					"_id": "AAAAAAF2fMeprS4voiM=",
+					"_id": "AAAAAAF2lbG37N5zN5g=",
 					"_parent": {
 						"$ref": "AAAAAAF2fMeprC4u+o0="
 					},
-					"name": "Evidencija o ",
+					"name": "UseCase",
 					"ownedViews": [
 						{
-							"_type": "UMLActorView",
-							"_id": "AAAAAAF2fM/xPS42Opg=",
+							"_type": "UMLUseCaseSubjectView",
+							"_id": "AAAAAAF2lbwY5t+IsGA=",
 							"_parent": {
-								"$ref": "AAAAAAF2fMeprS4voiM="
+								"$ref": "AAAAAAF2lbG37N5zN5g="
 							},
 							"model": {
-								"$ref": "AAAAAAF2fM/xOy40zt8="
+								"$ref": "AAAAAAF2lbMX7d6RquQ="
 							},
 							"subViews": [
 								{
 									"_type": "UMLNameCompartmentView",
-									"_id": "AAAAAAF2fM/xPi43l0Y=",
+									"_id": "AAAAAAF2lbwY5t+J1f4=",
 									"_parent": {
-										"$ref": "AAAAAAF2fM/xPS42Opg="
+										"$ref": "AAAAAAF2lbwY5t+IsGA="
 									},
 									"model": {
-										"$ref": "AAAAAAF2fM/xOy40zt8="
+										"$ref": "AAAAAAF2lbMX7d6RquQ="
 									},
 									"subViews": [
 										{
 											"_type": "LabelView",
-											"_id": "AAAAAAF2fM/xPi44jGQ=",
+											"_id": "AAAAAAF2lbwY5t+KQsI=",
 											"_parent": {
-												"$ref": "AAAAAAF2fM/xPi43l0Y="
+												"$ref": "AAAAAAF2lbwY5t+J1f4="
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+											"left": 1969,
+											"top": -426,
 											"height": 13
 										},
 										{
 											"_type": "LabelView",
-											"_id": "AAAAAAF2fM/xPi45oN0=",
+											"_id": "AAAAAAF2lbwY5t+Ldio=",
 											"_parent": {
-												"$ref": "AAAAAAF2fM/xPi43l0Y="
+												"$ref": "AAAAAAF2lbwY5t+J1f4="
 											},
 											"font": "Arial;13;1",
-											"left": 157,
-											"top": 629,
-											"width": 52.0126953125,
+											"left": 1045,
+											"top": 143,
+											"width": 231,
 											"height": 13,
-											"text": "Korisnik"
+											"text": "Korisnicka aplikacija",
+											"wordWrap": true
 										},
 										{
 											"_type": "LabelView",
-											"_id": "AAAAAAF2fM/xPi46acw=",
+											"_id": "AAAAAAF2lbwY5t+MwkU=",
 											"_parent": {
-												"$ref": "AAAAAAF2fM/xPi43l0Y="
+												"$ref": "AAAAAAF2lbwY5t+J1f4="
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"width": 229.78515625,
+											"left": 1969,
+											"top": -426,
+											"width": 289.01513671875,
 											"height": 13,
-											"text": "(from Vodjenje evidencije o zaposlenim)"
+											"text": "(from Sistem za vodjenje evidencije o zaposlenim)"
 										},
 										{
 											"_type": "LabelView",
-											"_id": "AAAAAAF2fM/xPy47TK4=",
+											"_id": "AAAAAAF2lbwY5t+NFu8=",
 											"_parent": {
-												"$ref": "AAAAAAF2fM/xPi43l0Y="
+												"$ref": "AAAAAAF2lbwY5t+J1f4="
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+											"left": 1969,
+											"top": -426,
+											"horizontalAlignment": 1,
+											"wordWrap": true
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 1040,
+									"top": 136,
+									"width": 241,
+									"height": 25,
+									"stereotypeLabel": {
+										"$ref": "AAAAAAF2lbwY5t+KQsI="
+									},
+									"nameLabel": {
+										"$ref": "AAAAAAF2lbwY5t+Ldio="
+									},
+									"namespaceLabel": {
+										"$ref": "AAAAAAF2lbwY5t+MwkU="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAF2lbwY5t+NFu8="
+									}
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 1040,
+							"top": 136,
+							"width": 241,
+							"height": 241,
+							"nameCompartment": {
+								"$ref": "AAAAAAF2lbwY5t+J1f4="
+							},
+							"wordWrap": true
+						},
+						{
+							"_type": "UMLUseCaseSubjectView",
+							"_id": "AAAAAAF2lbw1B9++jdk=",
+							"_parent": {
+								"$ref": "AAAAAAF2lbG37N5zN5g="
+							},
+							"model": {
+								"$ref": "AAAAAAF2lbUyt97WRPs="
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "AAAAAAF2lbw1B9+/tdM=",
+									"_parent": {
+										"$ref": "AAAAAAF2lbw1B9++jdk="
+									},
+									"model": {
+										"$ref": "AAAAAAF2lbUyt97WRPs="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF2lbw1B9/A638=",
+											"_parent": {
+												"$ref": "AAAAAAF2lbw1B9+/tdM="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 897,
+											"top": 446,
+											"height": 13
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF2lbw1B9/B9+A=",
+											"_parent": {
+												"$ref": "AAAAAAF2lbw1B9+/tdM="
+											},
+											"font": "Arial;13;1",
+											"left": 725,
+											"top": 463,
+											"width": 231,
+											"height": 13,
+											"text": "Administratorska aplikacija",
+											"wordWrap": true
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF2lbw1B9/C8Zg=",
+											"_parent": {
+												"$ref": "AAAAAAF2lbw1B9+/tdM="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 897,
+											"top": 446,
+											"width": 289.01513671875,
+											"height": 13,
+											"text": "(from Sistem za vodjenje evidencije o zaposlenim)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF2lbw1B9/D4+c=",
+											"_parent": {
+												"$ref": "AAAAAAF2lbw1B9+/tdM="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 897,
+											"top": 446,
+											"horizontalAlignment": 1,
+											"wordWrap": true
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 720,
+									"top": 456,
+									"width": 241,
+									"height": 25,
+									"stereotypeLabel": {
+										"$ref": "AAAAAAF2lbw1B9/A638="
+									},
+									"nameLabel": {
+										"$ref": "AAAAAAF2lbw1B9/B9+A="
+									},
+									"namespaceLabel": {
+										"$ref": "AAAAAAF2lbw1B9/C8Zg="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAF2lbw1B9/D4+c="
+									}
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 720,
+							"top": 456,
+							"width": 241,
+							"height": 241,
+							"nameCompartment": {
+								"$ref": "AAAAAAF2lbw1B9+/tdM="
+							},
+							"wordWrap": true
+						},
+						{
+							"_type": "UMLUseCaseSubjectView",
+							"_id": "AAAAAAF2lbxLJt/zfOA=",
+							"_parent": {
+								"$ref": "AAAAAAF2lbG37N5zN5g="
+							},
+							"model": {
+								"$ref": "AAAAAAF2lbSEHt63TJA="
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "AAAAAAF2lbxLJt/0R+g=",
+									"_parent": {
+										"$ref": "AAAAAAF2lbxLJt/zfOA="
+									},
+									"model": {
+										"$ref": "AAAAAAF2lbSEHt63TJA="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF2lbxLJt/18Gk=",
+											"_parent": {
+												"$ref": "AAAAAAF2lbxLJt/0R+g="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 2169,
+											"top": 614,
+											"height": 13
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF2lbxLJt/2TjQ=",
+											"_parent": {
+												"$ref": "AAAAAAF2lbxLJt/0R+g="
+											},
+											"font": "Arial;13;1",
+											"left": 1045,
+											"top": 463,
+											"width": 231,
+											"height": 13,
+											"text": "HR aplikacija"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF2lbxLJt/3SQ0=",
+											"_parent": {
+												"$ref": "AAAAAAF2lbxLJt/0R+g="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 2169,
+											"top": 614,
+											"width": 289.01513671875,
+											"height": 13,
+											"text": "(from Sistem za vodjenje evidencije o zaposlenim)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF2lbxLJt/4evg=",
+											"_parent": {
+												"$ref": "AAAAAAF2lbxLJt/0R+g="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 2169,
+											"top": 614,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 152,
-									"top": 622,
-									"width": 62.0126953125,
+									"left": 1040,
+									"top": 456,
+									"width": 241,
 									"height": 25,
 									"stereotypeLabel": {
-										"$ref": "AAAAAAF2fM/xPi44jGQ="
+										"$ref": "AAAAAAF2lbxLJt/18Gk="
 									},
 									"nameLabel": {
-										"$ref": "AAAAAAF2fM/xPi45oN0="
+										"$ref": "AAAAAAF2lbxLJt/2TjQ="
 									},
 									"namespaceLabel": {
-										"$ref": "AAAAAAF2fM/xPi46acw="
+										"$ref": "AAAAAAF2lbxLJt/3SQ0="
 									},
 									"propertyLabel": {
-										"$ref": "AAAAAAF2fM/xPy47TK4="
+										"$ref": "AAAAAAF2lbxLJt/4evg="
 									}
-								},
-								{
-									"_type": "UMLAttributeCompartmentView",
-									"_id": "AAAAAAF2fM/xPy48Jws=",
-									"_parent": {
-										"$ref": "AAAAAAF2fM/xPS42Opg="
-									},
-									"model": {
-										"$ref": "AAAAAAF2fM/xOy40zt8="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"width": 10,
-									"height": 10
-								},
-								{
-									"_type": "UMLOperationCompartmentView",
-									"_id": "AAAAAAF2fM/xPy49EPo=",
-									"_parent": {
-										"$ref": "AAAAAAF2fM/xPS42Opg="
-									},
-									"model": {
-										"$ref": "AAAAAAF2fM/xOy40zt8="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"width": 10,
-									"height": 10
-								},
-								{
-									"_type": "UMLReceptionCompartmentView",
-									"_id": "AAAAAAF2fM/xQC4+aio=",
-									"_parent": {
-										"$ref": "AAAAAAF2fM/xPS42Opg="
-									},
-									"model": {
-										"$ref": "AAAAAAF2fM/xOy40zt8="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"width": 10,
-									"height": 10
-								},
-								{
-									"_type": "UMLTemplateParameterCompartmentView",
-									"_id": "AAAAAAF2fM/xQC4/n3k=",
-									"_parent": {
-										"$ref": "AAAAAAF2fM/xPS42Opg="
-									},
-									"model": {
-										"$ref": "AAAAAAF2fM/xOy40zt8="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
-									"width": 10,
-									"height": 10
 								}
 							],
 							"font": "Arial;13;0",
-							"containerChangeable": true,
-							"left": 152,
-							"top": 568,
-							"width": 62.0126953125,
-							"height": 80,
+							"left": 1040,
+							"top": 456,
+							"width": 241,
+							"height": 241,
 							"nameCompartment": {
-								"$ref": "AAAAAAF2fM/xPi43l0Y="
-							},
-							"suppressAttributes": true,
-							"suppressOperations": true,
-							"attributeCompartment": {
-								"$ref": "AAAAAAF2fM/xPy48Jws="
-							},
-							"operationCompartment": {
-								"$ref": "AAAAAAF2fM/xPy49EPo="
-							},
-							"receptionCompartment": {
-								"$ref": "AAAAAAF2fM/xQC4+aio="
-							},
-							"templateParameterCompartment": {
-								"$ref": "AAAAAAF2fM/xQC4/n3k="
+								"$ref": "AAAAAAF2lbxLJt/0R+g="
 							}
 						},
 						{
 							"_type": "UMLUseCaseSubjectView",
-							"_id": "AAAAAAF2fNMdVy5xBaM=",
+							"_id": "AAAAAAF2lbx0zOAqhkg=",
 							"_parent": {
-								"$ref": "AAAAAAF2fMeprS4voiM="
+								"$ref": "AAAAAAF2lbG37N5zN5g="
 							},
 							"model": {
-								"$ref": "AAAAAAF2fNMdVi5vmy0="
+								"$ref": "AAAAAAF2lbHs2t53zvs="
 							},
 							"subViews": [
 								{
 									"_type": "UMLNameCompartmentView",
-									"_id": "AAAAAAF2fNMdVy5ydAU=",
+									"_id": "AAAAAAF2lbx0zOArCbA=",
 									"_parent": {
-										"$ref": "AAAAAAF2fNMdVy5xBaM="
+										"$ref": "AAAAAAF2lbx0zOAqhkg="
 									},
 									"model": {
-										"$ref": "AAAAAAF2fNMdVi5vmy0="
+										"$ref": "AAAAAAF2lbHs2t53zvs="
 									},
 									"subViews": [
 										{
 											"_type": "LabelView",
-											"_id": "AAAAAAF2fNMdVy5zZnM=",
+											"_id": "AAAAAAF2lbx0zOAs/gI=",
 											"_parent": {
-												"$ref": "AAAAAAF2fNMdVy5ydAU="
+												"$ref": "AAAAAAF2lbx0zOArCbA="
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+											"left": 1369,
+											"top": 470,
 											"height": 13
 										},
 										{
 											"_type": "LabelView",
-											"_id": "AAAAAAF2fNMdVy50PYE=",
+											"_id": "AAAAAAF2lbx0zeAtHhc=",
 											"_parent": {
-												"$ref": "AAAAAAF2fNMdVy5ydAU="
+												"$ref": "AAAAAAF2lbx0zOArCbA="
 											},
 											"font": "Arial;13;1",
-											"left": 253,
-											"top": 263,
-											"width": 582,
-											"height": 13,
-											"text": "Sistem za vodjenje evidencija o zaposlenim"
+											"left": 725,
+											"top": 143,
+											"width": 231,
+											"height": 26,
+											"text": "Aplikacija za evidentiranje radnog vremena",
+											"wordWrap": true
 										},
 										{
 											"_type": "LabelView",
-											"_id": "AAAAAAF2fNMdVy51STI=",
+											"_id": "AAAAAAF2lbx0zeAuYCc=",
 											"_parent": {
-												"$ref": "AAAAAAF2fNMdVy5ydAU="
+												"$ref": "AAAAAAF2lbx0zOArCbA="
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"width": 229.78515625,
+											"left": 1369,
+											"top": 470,
+											"width": 289.01513671875,
 											"height": 13,
-											"text": "(from Vodjenje evidencije o zaposlenim)"
+											"text": "(from Sistem za vodjenje evidencije o zaposlenim)"
 										},
 										{
 											"_type": "LabelView",
-											"_id": "AAAAAAF2fNMdVy52SFs=",
+											"_id": "AAAAAAF2lbx0zeAvvPQ=",
 											"_parent": {
-												"$ref": "AAAAAAF2fNMdVy5ydAU="
+												"$ref": "AAAAAAF2lbx0zOArCbA="
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"height": 13,
-											"horizontalAlignment": 1
+											"left": 1369,
+											"top": 470,
+											"horizontalAlignment": 1,
+											"wordWrap": true
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 248,
-									"top": 256,
-									"width": 592,
-									"height": 25,
+									"left": 720,
+									"top": 136,
+									"width": 241,
+									"height": 38,
 									"stereotypeLabel": {
-										"$ref": "AAAAAAF2fNMdVy5zZnM="
+										"$ref": "AAAAAAF2lbx0zOAs/gI="
 									},
 									"nameLabel": {
-										"$ref": "AAAAAAF2fNMdVy50PYE="
+										"$ref": "AAAAAAF2lbx0zeAtHhc="
 									},
 									"namespaceLabel": {
-										"$ref": "AAAAAAF2fNMdVy51STI="
+										"$ref": "AAAAAAF2lbx0zeAuYCc="
 									},
 									"propertyLabel": {
-										"$ref": "AAAAAAF2fNMdVy52SFs="
+										"$ref": "AAAAAAF2lbx0zeAvvPQ="
 									}
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 248,
-							"top": 256,
-							"width": 592,
-							"height": 504,
+							"left": 720,
+							"top": 136,
+							"width": 241,
+							"height": 241,
 							"nameCompartment": {
-								"$ref": "AAAAAAF2fNMdVy5ydAU="
-							}
+								"$ref": "AAAAAAF2lbx0zOArCbA="
+							},
+							"wordWrap": true
 						},
 						{
-							"_type": "UMLUseCaseView",
-							"_id": "AAAAAAF2fNN5iC6LW2k=",
+							"_type": "UMLActorView",
+							"_id": "AAAAAAF2lcRF/OD+jVY=",
 							"_parent": {
-								"$ref": "AAAAAAF2fMeprS4voiM="
+								"$ref": "AAAAAAF2lbG37N5zN5g="
 							},
 							"model": {
-								"$ref": "AAAAAAF2fNN5iC6JNlc="
+								"$ref": "AAAAAAF2lcRF+OD8xMU="
 							},
 							"subViews": [
 								{
 									"_type": "UMLNameCompartmentView",
-									"_id": "AAAAAAF2fNN5iC6MKj0=",
+									"_id": "AAAAAAF2lcRF/OD/Qwo=",
 									"_parent": {
-										"$ref": "AAAAAAF2fNN5iC6LW2k="
+										"$ref": "AAAAAAF2lcRF/OD+jVY="
 									},
 									"model": {
-										"$ref": "AAAAAAF2fNN5iC6JNlc="
+										"$ref": "AAAAAAF2lcRF+OD8xMU="
 									},
 									"subViews": [
 										{
 											"_type": "LabelView",
-											"_id": "AAAAAAF2fNN5iS6NEts=",
+											"_id": "AAAAAAF2lcRF/eEAb/E=",
 											"_parent": {
-												"$ref": "AAAAAAF2fNN5iC6MKj0="
+												"$ref": "AAAAAAF2lcRF/OD/Qwo="
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+											"left": -32,
+											"top": 944,
 											"height": 13
 										},
 										{
 											"_type": "LabelView",
-											"_id": "AAAAAAF2fNN5iS6ORhs=",
+											"_id": "AAAAAAF2lcRF/eEB04w=",
 											"_parent": {
-												"$ref": "AAAAAAF2fNN5iC6MKj0="
+												"$ref": "AAAAAAF2lcRF/OD/Qwo="
 											},
 											"font": "Arial;13;1",
-											"left": 318,
-											"top": 362,
-											"width": 110,
+											"left": 77,
+											"top": 629,
+											"width": 60.67724609375,
 											"height": 13,
-											"text": "Unos Id-ja licence"
+											"text": "Radnik"
 										},
 										{
 											"_type": "LabelView",
-											"_id": "AAAAAAF2fNN5iS6PS14=",
+											"_id": "AAAAAAF2lcRF/eECZFQ=",
 											"_parent": {
-												"$ref": "AAAAAAF2fNN5iC6MKj0="
+												"$ref": "AAAAAAF2lcRF/OD/Qwo="
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+											"left": -32,
+											"top": 944,
 											"width": 229.78515625,
 											"height": 13,
 											"text": "(from Vodjenje evidencije o zaposlenim)"
 										},
 										{
 											"_type": "LabelView",
-											"_id": "AAAAAAF2fNN5iS6QYCY=",
+											"_id": "AAAAAAF2lcRF/eEDMpI=",
 											"_parent": {
-												"$ref": "AAAAAAF2fNN5iC6MKj0="
+												"$ref": "AAAAAAF2lcRF/OD/Qwo="
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+											"left": -32,
+											"top": 944,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 313,
-									"top": 355,
-									"width": 120.53173828125,
+									"left": 72,
+									"top": 622,
+									"width": 70.67724609375,
 									"height": 25,
 									"stereotypeLabel": {
-										"$ref": "AAAAAAF2fNN5iS6NEts="
+										"$ref": "AAAAAAF2lcRF/eEAb/E="
 									},
 									"nameLabel": {
-										"$ref": "AAAAAAF2fNN5iS6ORhs="
+										"$ref": "AAAAAAF2lcRF/eEB04w="
 									},
 									"namespaceLabel": {
-										"$ref": "AAAAAAF2fNN5iS6PS14="
+										"$ref": "AAAAAAF2lcRF/eECZFQ="
 									},
 									"propertyLabel": {
-										"$ref": "AAAAAAF2fNN5iS6QYCY="
+										"$ref": "AAAAAAF2lcRF/eEDMpI="
 									}
 								},
 								{
 									"_type": "UMLAttributeCompartmentView",
-									"_id": "AAAAAAF2fNN5iS6RFK0=",
+									"_id": "AAAAAAF2lcRF/eEEUWQ=",
 									"_parent": {
-										"$ref": "AAAAAAF2fNN5iC6LW2k="
+										"$ref": "AAAAAAF2lcRF/OD+jVY="
 									},
 									"model": {
-										"$ref": "AAAAAAF2fNN5iC6JNlc="
+										"$ref": "AAAAAAF2lcRF+OD8xMU="
 									},
 									"visible": false,
 									"font": "Arial;13;0",
+									"left": -16,
+									"top": 472,
 									"width": 10,
 									"height": 10
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
-									"_id": "AAAAAAF2fNN5iS6Slvs=",
+									"_id": "AAAAAAF2lcRF/eEF9Go=",
 									"_parent": {
-										"$ref": "AAAAAAF2fNN5iC6LW2k="
+										"$ref": "AAAAAAF2lcRF/OD+jVY="
 									},
 									"model": {
-										"$ref": "AAAAAAF2fNN5iC6JNlc="
+										"$ref": "AAAAAAF2lcRF+OD8xMU="
 									},
 									"visible": false,
 									"font": "Arial;13;0",
+									"left": -16,
+									"top": 472,
 									"width": 10,
 									"height": 10
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
-									"_id": "AAAAAAF2fNN5iS6TGl0=",
+									"_id": "AAAAAAF2lcRF/eEGH9o=",
 									"_parent": {
-										"$ref": "AAAAAAF2fNN5iC6LW2k="
+										"$ref": "AAAAAAF2lcRF/OD+jVY="
 									},
 									"model": {
-										"$ref": "AAAAAAF2fNN5iC6JNlc="
+										"$ref": "AAAAAAF2lcRF+OD8xMU="
 									},
 									"visible": false,
 									"font": "Arial;13;0",
+									"left": -16,
+									"top": 472,
 									"width": 10,
 									"height": 10
 								},
 								{
 									"_type": "UMLTemplateParameterCompartmentView",
-									"_id": "AAAAAAF2fNN5iS6U8Ac=",
+									"_id": "AAAAAAF2lcRF/uEH5zI=",
 									"_parent": {
-										"$ref": "AAAAAAF2fNN5iC6LW2k="
+										"$ref": "AAAAAAF2lcRF/OD+jVY="
 									},
 									"model": {
-										"$ref": "AAAAAAF2fNN5iC6JNlc="
+										"$ref": "AAAAAAF2lcRF+OD8xMU="
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"width": 10,
-									"height": 10
-								},
-								{
-									"_type": "UMLExtensionPointCompartmentView",
-									"_id": "AAAAAAF2fNN5iS6Vwwk=",
-									"_parent": {
-										"$ref": "AAAAAAF2fNN5iC6LW2k="
-									},
-									"model": {
-										"$ref": "AAAAAAF2fNN5iC6JNlc="
-									},
-									"visible": false,
-									"font": "Arial;13;0",
+									"left": -16,
+									"top": 472,
 									"width": 10,
 									"height": 10
 								}
 							],
 							"font": "Arial;13;0",
 							"containerChangeable": true,
-							"left": 288,
-							"top": 328,
-							"width": 170,
-							"height": 80,
+							"left": 72,
+							"top": 552,
+							"width": 70.67724609375,
+							"height": 96,
 							"nameCompartment": {
-								"$ref": "AAAAAAF2fNN5iC6MKj0="
+								"$ref": "AAAAAAF2lcRF/OD/Qwo="
 							},
 							"suppressAttributes": true,
 							"suppressOperations": true,
 							"attributeCompartment": {
-								"$ref": "AAAAAAF2fNN5iS6RFK0="
+								"$ref": "AAAAAAF2lcRF/eEEUWQ="
 							},
 							"operationCompartment": {
-								"$ref": "AAAAAAF2fNN5iS6Slvs="
+								"$ref": "AAAAAAF2lcRF/eEF9Go="
 							},
 							"receptionCompartment": {
-								"$ref": "AAAAAAF2fNN5iS6TGl0="
+								"$ref": "AAAAAAF2lcRF/eEGH9o="
 							},
 							"templateParameterCompartment": {
-								"$ref": "AAAAAAF2fNN5iS6U8Ac="
+								"$ref": "AAAAAAF2lcRF/uEH5zI="
+							}
+						},
+						{
+							"_type": "UMLActorView",
+							"_id": "AAAAAAF2lcTb9eEo3C0=",
+							"_parent": {
+								"$ref": "AAAAAAF2lbG37N5zN5g="
 							},
-							"extensionPointCompartment": {
-								"$ref": "AAAAAAF2fNN5iS6Vwwk="
+							"model": {
+								"$ref": "AAAAAAF2lcTb9eEmqa8="
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "AAAAAAF2lcTb9eEpFuE=",
+									"_parent": {
+										"$ref": "AAAAAAF2lcTb9eEo3C0="
+									},
+									"model": {
+										"$ref": "AAAAAAF2lcTb9eEmqa8="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF2lcTb9eEqc7o=",
+											"_parent": {
+												"$ref": "AAAAAAF2lcTb9eEpFuE="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 1888,
+											"top": 1376,
+											"height": 13
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF2lcTb9eErZZw=",
+											"_parent": {
+												"$ref": "AAAAAAF2lcTb9eEpFuE="
+											},
+											"font": "Arial;13;1",
+											"left": 1053,
+											"top": 1013,
+											"width": 61.40087890625,
+											"height": 13,
+											"text": "HR radnik"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF2lcTb9eEsVDE=",
+											"_parent": {
+												"$ref": "AAAAAAF2lcTb9eEpFuE="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 1888,
+											"top": 1376,
+											"width": 229.78515625,
+											"height": 13,
+											"text": "(from Vodjenje evidencije o zaposlenim)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF2lcTb9eEtyC4=",
+											"_parent": {
+												"$ref": "AAAAAAF2lcTb9eEpFuE="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 1888,
+											"top": 1376,
+											"height": 13,
+											"horizontalAlignment": 1
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 1048,
+									"top": 1006,
+									"width": 71.40087890625,
+									"height": 25,
+									"stereotypeLabel": {
+										"$ref": "AAAAAAF2lcTb9eEqc7o="
+									},
+									"nameLabel": {
+										"$ref": "AAAAAAF2lcTb9eErZZw="
+									},
+									"namespaceLabel": {
+										"$ref": "AAAAAAF2lcTb9eEsVDE="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAF2lcTb9eEtyC4="
+									}
+								},
+								{
+									"_type": "UMLAttributeCompartmentView",
+									"_id": "AAAAAAF2lcTb9eEuuAg=",
+									"_parent": {
+										"$ref": "AAAAAAF2lcTb9eEo3C0="
+									},
+									"model": {
+										"$ref": "AAAAAAF2lcTb9eEmqa8="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 944,
+									"top": 688,
+									"width": 10,
+									"height": 10
+								},
+								{
+									"_type": "UMLOperationCompartmentView",
+									"_id": "AAAAAAF2lcTb9eEviHQ=",
+									"_parent": {
+										"$ref": "AAAAAAF2lcTb9eEo3C0="
+									},
+									"model": {
+										"$ref": "AAAAAAF2lcTb9eEmqa8="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 944,
+									"top": 688,
+									"width": 10,
+									"height": 10
+								},
+								{
+									"_type": "UMLReceptionCompartmentView",
+									"_id": "AAAAAAF2lcTb9eEwdkE=",
+									"_parent": {
+										"$ref": "AAAAAAF2lcTb9eEo3C0="
+									},
+									"model": {
+										"$ref": "AAAAAAF2lcTb9eEmqa8="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 944,
+									"top": 688,
+									"width": 10,
+									"height": 10
+								},
+								{
+									"_type": "UMLTemplateParameterCompartmentView",
+									"_id": "AAAAAAF2lcTb9uExPZY=",
+									"_parent": {
+										"$ref": "AAAAAAF2lcTb9eEo3C0="
+									},
+									"model": {
+										"$ref": "AAAAAAF2lcTb9eEmqa8="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 944,
+									"top": 688,
+									"width": 10,
+									"height": 10
+								}
+							],
+							"font": "Arial;13;0",
+							"containerChangeable": true,
+							"left": 1048,
+							"top": 920,
+							"width": 71.40087890625,
+							"height": 112,
+							"nameCompartment": {
+								"$ref": "AAAAAAF2lcTb9eEpFuE="
+							},
+							"suppressAttributes": true,
+							"suppressOperations": true,
+							"attributeCompartment": {
+								"$ref": "AAAAAAF2lcTb9eEuuAg="
+							},
+							"operationCompartment": {
+								"$ref": "AAAAAAF2lcTb9eEviHQ="
+							},
+							"receptionCompartment": {
+								"$ref": "AAAAAAF2lcTb9eEwdkE="
+							},
+							"templateParameterCompartment": {
+								"$ref": "AAAAAAF2lcTb9uExPZY="
+							}
+						},
+						{
+							"_type": "UMLGeneralizationView",
+							"_id": "AAAAAAF2lcXLTeH8dKI=",
+							"_parent": {
+								"$ref": "AAAAAAF2lbG37N5zN5g="
+							},
+							"model": {
+								"$ref": "AAAAAAF2lcXLTeH6D78="
+							},
+							"subViews": [
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF2lcXLTeH9AzQ=",
+									"_parent": {
+										"$ref": "AAAAAAF2lcXLTeH8dKI="
+									},
+									"model": {
+										"$ref": "AAAAAAF2lcXLTeH6D78="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 610,
+									"top": 815,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF2lcXLTeH8dKI="
+									},
+									"edgePosition": 1
+								},
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF2lcXLTeH+Q1s=",
+									"_parent": {
+										"$ref": "AAAAAAF2lcXLTeH8dKI="
+									},
+									"model": {
+										"$ref": "AAAAAAF2lcXLTeH6D78="
+									},
+									"visible": null,
+									"font": "Arial;13;0",
+									"left": 604,
+									"top": 829,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 30,
+									"hostEdge": {
+										"$ref": "AAAAAAF2lcXLTeH8dKI="
+									},
+									"edgePosition": 1
+								},
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF2lcXLTeH/R4I=",
+									"_parent": {
+										"$ref": "AAAAAAF2lcXLTeH8dKI="
+									},
+									"model": {
+										"$ref": "AAAAAAF2lcXLTeH6D78="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 621,
+									"top": 788,
+									"height": 13,
+									"alpha": -1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF2lcXLTeH8dKI="
+									},
+									"edgePosition": 1
+								}
+							],
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF2lcRF/OD+jVY="
+							},
+							"tail": {
+								"$ref": "AAAAAAF2lcTb9eEo3C0="
+							},
+							"lineStyle": 1,
+							"points": "1047:962;616:808;143:614",
+							"showVisibility": true,
+							"nameLabel": {
+								"$ref": "AAAAAAF2lcXLTeH9AzQ="
+							},
+							"stereotypeLabel": {
+								"$ref": "AAAAAAF2lcXLTeH+Q1s="
+							},
+							"propertyLabel": {
+								"$ref": "AAAAAAF2lcXLTeH/R4I="
+							}
+						},
+						{
+							"_type": "UMLActorView",
+							"_id": "AAAAAAF2lcc49eIdz1Q=",
+							"_parent": {
+								"$ref": "AAAAAAF2lbG37N5zN5g="
+							},
+							"model": {
+								"$ref": "AAAAAAF2lcc49eIbnaw="
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "AAAAAAF2lcc49eIetLg=",
+									"_parent": {
+										"$ref": "AAAAAAF2lcc49eIdz1Q="
+									},
+									"model": {
+										"$ref": "AAAAAAF2lcc49eIbnaw="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF2lcc49eIfpb4=",
+											"_parent": {
+												"$ref": "AAAAAAF2lcc49eIetLg="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 1264,
+											"top": 944,
+											"height": 13
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF2lcc49eIgktM=",
+											"_parent": {
+												"$ref": "AAAAAAF2lcc49eIetLg="
+											},
+											"font": "Arial;13;1",
+											"left": 797,
+											"top": 1021,
+											"width": 85.22998046875,
+											"height": 13,
+											"text": "Administrator"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF2lcc49eIhcHs=",
+											"_parent": {
+												"$ref": "AAAAAAF2lcc49eIetLg="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 1264,
+											"top": 944,
+											"width": 229.78515625,
+											"height": 13,
+											"text": "(from Vodjenje evidencije o zaposlenim)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF2lcc49uIiVe0=",
+											"_parent": {
+												"$ref": "AAAAAAF2lcc49eIetLg="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 1264,
+											"top": 944,
+											"height": 13,
+											"horizontalAlignment": 1
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 792,
+									"top": 1014,
+									"width": 95.22998046875,
+									"height": 25,
+									"stereotypeLabel": {
+										"$ref": "AAAAAAF2lcc49eIfpb4="
+									},
+									"nameLabel": {
+										"$ref": "AAAAAAF2lcc49eIgktM="
+									},
+									"namespaceLabel": {
+										"$ref": "AAAAAAF2lcc49eIhcHs="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAF2lcc49uIiVe0="
+									}
+								},
+								{
+									"_type": "UMLAttributeCompartmentView",
+									"_id": "AAAAAAF2lcc49uIjuis=",
+									"_parent": {
+										"$ref": "AAAAAAF2lcc49eIdz1Q="
+									},
+									"model": {
+										"$ref": "AAAAAAF2lcc49eIbnaw="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 632,
+									"top": 472,
+									"width": 10,
+									"height": 10
+								},
+								{
+									"_type": "UMLOperationCompartmentView",
+									"_id": "AAAAAAF2lcc49uIkqm8=",
+									"_parent": {
+										"$ref": "AAAAAAF2lcc49eIdz1Q="
+									},
+									"model": {
+										"$ref": "AAAAAAF2lcc49eIbnaw="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 632,
+									"top": 472,
+									"width": 10,
+									"height": 10
+								},
+								{
+									"_type": "UMLReceptionCompartmentView",
+									"_id": "AAAAAAF2lcc49uIl8e4=",
+									"_parent": {
+										"$ref": "AAAAAAF2lcc49eIdz1Q="
+									},
+									"model": {
+										"$ref": "AAAAAAF2lcc49eIbnaw="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 632,
+									"top": 472,
+									"width": 10,
+									"height": 10
+								},
+								{
+									"_type": "UMLTemplateParameterCompartmentView",
+									"_id": "AAAAAAF2lcc49uImkF8=",
+									"_parent": {
+										"$ref": "AAAAAAF2lcc49eIdz1Q="
+									},
+									"model": {
+										"$ref": "AAAAAAF2lcc49eIbnaw="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 632,
+									"top": 472,
+									"width": 10,
+									"height": 10
+								}
+							],
+							"font": "Arial;13;0",
+							"containerChangeable": true,
+							"left": 792,
+							"top": 944,
+							"width": 95.22998046875,
+							"height": 96,
+							"nameCompartment": {
+								"$ref": "AAAAAAF2lcc49eIetLg="
+							},
+							"suppressAttributes": true,
+							"suppressOperations": true,
+							"attributeCompartment": {
+								"$ref": "AAAAAAF2lcc49uIjuis="
+							},
+							"operationCompartment": {
+								"$ref": "AAAAAAF2lcc49uIkqm8="
+							},
+							"receptionCompartment": {
+								"$ref": "AAAAAAF2lcc49uIl8e4="
+							},
+							"templateParameterCompartment": {
+								"$ref": "AAAAAAF2lcc49uImkF8="
+							}
+						},
+						{
+							"_type": "UMLGeneralizationView",
+							"_id": "AAAAAAF2lcdnZOJHZJY=",
+							"_parent": {
+								"$ref": "AAAAAAF2lbG37N5zN5g="
+							},
+							"model": {
+								"$ref": "AAAAAAF2lcdnZOJFeu8="
+							},
+							"subViews": [
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF2lcdnZOJIvwo=",
+									"_parent": {
+										"$ref": "AAAAAAF2lcdnZOJHZJY="
+									},
+									"model": {
+										"$ref": "AAAAAAF2lcdnZOJFeu8="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 315,
+									"top": 946,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF2lcdnZOJHZJY="
+									},
+									"edgePosition": 1
+								},
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF2lcdnZOJJpwA=",
+									"_parent": {
+										"$ref": "AAAAAAF2lcdnZOJHZJY="
+									},
+									"model": {
+										"$ref": "AAAAAAF2lcdnZOJFeu8="
+									},
+									"visible": null,
+									"font": "Arial;13;0",
+									"left": 302,
+									"top": 954,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 30,
+									"hostEdge": {
+										"$ref": "AAAAAAF2lcdnZOJHZJY="
+									},
+									"edgePosition": 1
+								},
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF2lcdnZOJKOhk=",
+									"_parent": {
+										"$ref": "AAAAAAF2lcdnZOJHZJY="
+									},
+									"model": {
+										"$ref": "AAAAAAF2lcdnZOJFeu8="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 340,
+									"top": 929,
+									"height": 13,
+									"alpha": -1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF2lcdnZOJHZJY="
+									},
+									"edgePosition": 1
+								}
+							],
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF2lcRF/OD+jVY="
+							},
+							"tail": {
+								"$ref": "AAAAAAF2lcc49eIdz1Q="
+							},
+							"lineStyle": 1,
+							"points": "791:987;328:944;138:648",
+							"showVisibility": true,
+							"nameLabel": {
+								"$ref": "AAAAAAF2lcdnZOJIvwo="
+							},
+							"stereotypeLabel": {
+								"$ref": "AAAAAAF2lcdnZOJJpwA="
+							},
+							"propertyLabel": {
+								"$ref": "AAAAAAF2lcdnZOJKOhk="
+							}
+						}
+					]
+				},
+				{
+					"_type": "UMLUseCaseSubject",
+					"_id": "AAAAAAF2lbkrS971+yM=",
+					"_parent": {
+						"$ref": "AAAAAAF2fMeprC4u+o0="
+					},
+					"name": "Sistem za vodjenje evidencije o zaposlenim",
+					"ownedElements": [
+						{
+							"_type": "UMLUseCaseSubject",
+							"_id": "AAAAAAF2lbUyt97WRPs=",
+							"_parent": {
+								"$ref": "AAAAAAF2lbkrS971+yM="
+							},
+							"name": "Administratorska aplikacija"
+						},
+						{
+							"_type": "UMLUseCaseSubject",
+							"_id": "AAAAAAF2lbSEHt63TJA=",
+							"_parent": {
+								"$ref": "AAAAAAF2lbkrS971+yM="
+							},
+							"name": "HR aplikacija"
+						},
+						{
+							"_type": "UMLUseCaseSubject",
+							"_id": "AAAAAAF2lbMX7d6RquQ=",
+							"_parent": {
+								"$ref": "AAAAAAF2lbkrS971+yM="
+							},
+							"name": "Korisnicka aplikacija"
+						},
+						{
+							"_type": "UMLUseCaseSubject",
+							"_id": "AAAAAAF2lbHs2t53zvs=",
+							"_parent": {
+								"$ref": "AAAAAAF2lbkrS971+yM="
+							},
+							"name": "Aplikacija za evidentiranje radnog vremena"
+						}
+					]
+				},
+				{
+					"_type": "UMLActor",
+					"_id": "AAAAAAF2lcRF+OD8xMU=",
+					"_parent": {
+						"$ref": "AAAAAAF2fMeprC4u+o0="
+					},
+					"name": "Radnik"
+				},
+				{
+					"_type": "UMLActor",
+					"_id": "AAAAAAF2lcTb9eEmqa8=",
+					"_parent": {
+						"$ref": "AAAAAAF2fMeprC4u+o0="
+					},
+					"name": "HR radnik",
+					"ownedElements": [
+						{
+							"_type": "UMLGeneralization",
+							"_id": "AAAAAAF2lcXLTeH6D78=",
+							"_parent": {
+								"$ref": "AAAAAAF2lcTb9eEmqa8="
+							},
+							"source": {
+								"$ref": "AAAAAAF2lcTb9eEmqa8="
+							},
+							"target": {
+								"$ref": "AAAAAAF2lcRF+OD8xMU="
 							}
 						}
 					]
 				},
 				{
 					"_type": "UMLActor",
-					"_id": "AAAAAAF2fM/xOy40zt8=",
+					"_id": "AAAAAAF2lcc49eIbnaw=",
 					"_parent": {
 						"$ref": "AAAAAAF2fMeprC4u+o0="
 					},
-					"name": "Korisnik"
-				},
-				{
-					"_type": "UMLUseCaseSubject",
-					"_id": "AAAAAAF2fNMdVi5vmy0=",
-					"_parent": {
-						"$ref": "AAAAAAF2fMeprC4u+o0="
-					},
-					"name": "Sistem za vodjenje evidencija o zaposlenim"
-				},
-				{
-					"_type": "UMLUseCase",
-					"_id": "AAAAAAF2fNN5iC6JNlc=",
-					"_parent": {
-						"$ref": "AAAAAAF2fMeprC4u+o0="
-					},
-					"name": "Unos Id-ja licence"
+					"name": "Administrator",
+					"ownedElements": [
+						{
+							"_type": "UMLGeneralization",
+							"_id": "AAAAAAF2lcdnZOJFeu8=",
+							"_parent": {
+								"$ref": "AAAAAAF2lcc49eIbnaw="
+							},
+							"source": {
+								"$ref": "AAAAAAF2lcc49eIbnaw="
+							},
+							"target": {
+								"$ref": "AAAAAAF2lcRF+OD8xMU="
+							}
+						}
+					]
 				}
 			]
 		}
