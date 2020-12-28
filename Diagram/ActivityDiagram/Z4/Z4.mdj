@@ -247,7 +247,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 273,
+									"left": 272,
 									"top": 299,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -268,7 +268,7 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 274,
+									"left": 273,
 									"top": 284,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -289,7 +289,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 270,
+									"left": 271,
 									"top": 328,
 									"height": 13,
 									"alpha": -1.5707963267948966,
@@ -308,7 +308,7 @@
 								"$ref": "AAAAAAF2n3DA2QumhHE="
 							},
 							"lineStyle": 1,
-							"points": "272:302;272:320;383:331",
+							"points": "272:302;272:320;383:326",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAF2n3NFJwv71Hc="
@@ -402,7 +402,7 @@
 								"$ref": "AAAAAAF2n3KkxAvcFRk="
 							},
 							"lineStyle": 1,
-							"points": "383:337;280:336;280:407",
+							"points": "383:332;280:336;280:407",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAF2n3T64gw3jp0="
@@ -570,7 +570,7 @@
 											"top": 415,
 											"width": 135,
 											"height": 26,
-											"text": "Prikaz svih podataka o kompani",
+											"text": "Prikaz svih podataka o kompaniji",
 											"wordWrap": true
 										},
 										{
@@ -663,7 +663,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -64,
-											"top": 152,
+											"top": 136,
 											"height": 13
 										},
 										{
@@ -674,7 +674,7 @@
 											},
 											"font": "Arial;13;1",
 											"left": 389,
-											"top": 311,
+											"top": 303,
 											"width": 119,
 											"height": 39,
 											"text": "Pribavlja sve podatke o kompani",
@@ -689,7 +689,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -64,
-											"top": 152,
+											"top": 136,
 											"width": 156.76171875,
 											"height": 13,
 											"text": "(from Korisnička Aplikacija)"
@@ -703,14 +703,14 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -64,
-											"top": 152,
+											"top": 136,
 											"horizontalAlignment": 1,
 											"wordWrap": true
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 384,
-									"top": 304,
+									"top": 296,
 									"width": 129,
 									"height": 51,
 									"stereotypeLabel": {
@@ -733,7 +733,7 @@
 							"font": "Arial;13;0",
 							"containerChangeable": true,
 							"left": 384,
-							"top": 304,
+							"top": 296,
 							"width": 129,
 							"height": 67,
 							"nameCompartment": {
@@ -1162,7 +1162,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF2n2/3CAuKJjA="
 							},
-							"name": "Prikaz svih podataka o kompani"
+							"name": "Prikaz svih podataka o kompaniji"
 						}
 					]
 				},
