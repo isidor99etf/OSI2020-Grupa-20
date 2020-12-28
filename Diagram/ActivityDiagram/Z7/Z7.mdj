@@ -2318,7 +2318,7 @@
 								"$ref": "AAAAAAF2qXgil/dME38="
 							},
 							"lineStyle": 1,
-							"points": "693:355;888:416;888:610;758:783",
+							"points": "693:355;888:416;888:610;759:775",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAF2qX6tSPlGnzU="
@@ -2352,7 +2352,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 950,
-									"top": 789,
+									"top": 785,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -2373,7 +2373,7 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"left": 950,
-									"top": 774,
+									"top": 770,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -2393,8 +2393,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 950,
-									"top": 819,
+									"left": 949,
+									"top": 814,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -2412,7 +2412,7 @@
 								"$ref": "AAAAAAF2qX6CYvksfrg="
 							},
 							"lineStyle": 1,
-							"points": "869:811;1031:810",
+							"points": "869:805;1031:808",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAF2qX901fl5nIM="
@@ -2853,7 +2853,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -168,
-											"top": 336,
+											"top": 320,
 											"height": 13
 										},
 										{
@@ -2864,7 +2864,7 @@
 											},
 											"font": "Arial;13;1",
 											"left": 613,
-											"top": 791,
+											"top": 783,
 											"width": 250.68798828125,
 											"height": 13,
 											"text": "Bira radnika čije podatke želi da pogleda"
@@ -2878,7 +2878,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -168,
-											"top": 336,
+											"top": 320,
 											"width": 101.12451171875,
 											"height": 13,
 											"text": "(from HR Radnik)"
@@ -2892,14 +2892,14 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -168,
-											"top": 336,
+											"top": 320,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 608,
-									"top": 784,
+									"top": 776,
 									"width": 260.68798828125,
 									"height": 25,
 									"stereotypeLabel": {
@@ -2922,7 +2922,7 @@
 							"font": "Arial;13;0",
 							"containerChangeable": true,
 							"left": 608,
-							"top": 784,
+							"top": 776,
 							"width": 260.68798828125,
 							"height": 56,
 							"nameCompartment": {
