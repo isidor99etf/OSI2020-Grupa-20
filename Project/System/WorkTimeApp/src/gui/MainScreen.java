@@ -12,9 +12,22 @@ public class MainScreen extends JFrame{
     private JPasswordField pinField;
     private JComboBox statusBox ;
     private JButton okButton;
+    private JLabel humanIcon;
     private JMenuBar menuBar = new JMenuBar();
     private JMenu help = new JMenu("help");
     private  JMenuItem contactInfo = new JMenuItem("Contact Info");
+    private JPanel workTimePanel;
+    private JPanel companyInfoPanel;
+    private JPanel personalInfoPanel;
+    private JPanel backPanel;
+    private JLabel nameLabel;
+    private JLabel surnameLabel;
+    private JLabel dateOfBirthLabel;
+    private JLabel addressLabel;
+    private JLabel workPlaceLabel;
+    private JLabel sectorLAbel;
+    private JLabel userNameLabel;
+    private JPanel leftPanel;
 
 
     public MainScreen() {
