@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="WorkTimeApp:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/WorkTimeApp_jar</output-path>
+    <root id="archive" name="WorkTimeApp.jar">
+      <element id="module-output" name="WorkTimeApp" />
+      <element id="module-output" name="Model" />
+    </root>
+  </artifact>
+</component>
