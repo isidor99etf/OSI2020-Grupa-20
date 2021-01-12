@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="gui.MainScreenAdmin">
-  <grid id="27dc6" binding="backPanel" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-    <margin top="0" left="0" bottom="0" right="0"/>
+  <grid id="27dc6" binding="backPanel" layout-manager="CardLayout" hgap="0" vgap="0" show="14793">
     <constraints>
-      <xy x="20" y="20" width="684" height="634"/>
+      <xy x="20" y="20" width="684" height="638"/>
     </constraints>
     <properties>
       <autoscrolls value="true"/>
@@ -11,144 +10,622 @@
     </properties>
     <border type="none"/>
     <children>
-      <grid id="d869d" binding="buttonPanel" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="a3d0a" binding="mainPanelCard" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-16672017"/>
-        </properties>
-        <border type="none"/>
-        <children>
-          <component id="74af6" class="javax.swing.JButton" binding="addHrButtonPanel">
-            <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-16672017"/>
-              <borderPainted value="false"/>
-              <focusPainted value="false"/>
-              <focusable value="false"/>
-              <font name="Arial" size="16"/>
-              <foreground color="-1"/>
-              <text value="Add HR User"/>
-            </properties>
-          </component>
-          <component id="4aa4" class="javax.swing.JButton" binding="deleteUserButtonPanel">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-16672017"/>
-              <borderPainted value="false"/>
-              <focusPainted value="false"/>
-              <focusable value="false"/>
-              <font name="Arial" size="16"/>
-              <foreground color="-1"/>
-              <text value="Delete User"/>
-            </properties>
-          </component>
-          <component id="2bf3" class="javax.swing.JButton" binding="activateButtonPanel">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-16672017"/>
-              <borderPainted value="false"/>
-              <focusPainted value="false"/>
-              <focusable value="false"/>
-              <font name="Arial" size="16"/>
-              <foreground color="-1"/>
-              <text value="Activate"/>
-            </properties>
-          </component>
-        </children>
-      </grid>
-      <grid id="f53e6" binding="rightPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints>
-          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <card name="mainPanelCard"/>
         </constraints>
         <properties>
           <background color="-1"/>
         </properties>
         <border type="none"/>
         <children>
-          <grid id="f8fa4" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-            <margin top="5" left="0" bottom="5" right="5"/>
+          <grid id="cb469" binding="buttonPanel" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-16672017"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="c58e8" class="javax.swing.JButton" binding="addHrButtonPanel">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-16672017"/>
+                  <borderPainted value="false"/>
+                  <focusPainted value="false"/>
+                  <focusable value="false"/>
+                  <font name="Arial" size="16"/>
+                  <foreground color="-1"/>
+                  <text value="Add HR User"/>
+                </properties>
+              </component>
+              <component id="1df7a" class="javax.swing.JButton" binding="deleteUserButtonPanel">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-16672017"/>
+                  <borderPainted value="false"/>
+                  <focusPainted value="false"/>
+                  <focusable value="false"/>
+                  <font name="Arial" size="16"/>
+                  <foreground color="-1"/>
+                  <text value="Delete User"/>
+                </properties>
+              </component>
+              <component id="f65e4" class="javax.swing.JButton" binding="activateButtonPanel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-16672017"/>
+                  <borderPainted value="false"/>
+                  <focusPainted value="false"/>
+                  <focusable value="false"/>
+                  <font name="Arial" size="16"/>
+                  <foreground color="-1"/>
+                  <text value="Activate"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="63210" binding="rightPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <background color="-1"/>
             </properties>
             <border type="none"/>
             <children>
-              <component id="76efe" class="javax.swing.JButton" binding="logoutButton">
+              <grid id="6d297" binding="logoutPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="5" left="0" bottom="5" right="5"/>
                 <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <background color="-16672017"/>
-                  <font name="Arial" size="14"/>
+                  <background color="-1"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="bcf52" class="javax.swing.JButton" binding="logoutButton">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-16672017"/>
+                      <font name="Arial" size="14"/>
+                      <foreground color="-1"/>
+                      <text value="Logout"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="8bb34" binding="mainPanel" layout-manager="CardLayout" hgap="0" vgap="0" show="ec906">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <autoscrolls value="true"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <grid id="d067" binding="activatePanel" layout-manager="GridLayoutManager" row-count="5" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="5" left="5" bottom="25" right="25"/>
+                    <constraints>
+                      <card name="activatePanel"/>
+                    </constraints>
+                    <properties>
+                      <background color="-1"/>
+                      <font name="Arial" size="16"/>
+                    </properties>
+                    <border type="none"/>
+                    <children>
+                      <component id="45a3d" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="Arial" size="20"/>
+                          <text value="Activate"/>
+                        </properties>
+                      </component>
+                      <component id="9fb28" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="Arial" size="16"/>
+                          <text value="Enter licence key:"/>
+                        </properties>
+                      </component>
+                      <component id="52b38" class="javax.swing.JTextField" binding="keyTextField">
+                        <constraints>
+                          <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <font name="Arial" size="18"/>
+                        </properties>
+                      </component>
+                      <component id="3e77e" class="javax.swing.JButton" binding="okLicenceButton">
+                        <constraints>
+                          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="6" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <background color="-16672017"/>
+                          <font name="Arial" size="16"/>
+                          <foreground color="-1"/>
+                          <text value="OK"/>
+                        </properties>
+                      </component>
+                      <vspacer id="55e9f">
+                        <constraints>
+                          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </vspacer>
+                      <vspacer id="e5268">
+                        <constraints>
+                          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </vspacer>
+                    </children>
+                  </grid>
+                  <grid id="74bf5" binding="deleteUserPanel" layout-manager="GridLayoutManager" row-count="5" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="5" left="5" bottom="25" right="25"/>
+                    <constraints>
+                      <card name="deleteUserPanel"/>
+                    </constraints>
+                    <properties>
+                      <background color="-1"/>
+                    </properties>
+                    <border type="none"/>
+                    <children>
+                      <component id="5dfc" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="Arial" size="20"/>
+                          <text value="Delete User"/>
+                        </properties>
+                      </component>
+                      <component id="352b3" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="Arial" size="16"/>
+                          <text value="Enter User Name"/>
+                        </properties>
+                      </component>
+                      <grid id="8be33" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                        <margin top="0" left="0" bottom="10" right="25"/>
+                        <constraints>
+                          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <background color="-1"/>
+                        </properties>
+                        <border type="none"/>
+                        <children>
+                          <component id="b3914" class="javax.swing.JTextField" binding="searchTextField">
+                            <constraints>
+                              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                <preferred-size width="150" height="-1"/>
+                              </grid>
+                            </constraints>
+                            <properties>
+                              <font name="Arial" size="16"/>
+                            </properties>
+                          </component>
+                          <component id="6170d" class="javax.swing.JButton" binding="searchButton">
+                            <constraints>
+                              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <background color="-16672017"/>
+                              <font name="Arial" size="14"/>
+                              <foreground color="-1"/>
+                              <icon value="gui/rsz_magnifying-glass-1976105_640.png"/>
+                              <text value="Search"/>
+                            </properties>
+                          </component>
+                        </children>
+                      </grid>
+                      <component id="f3f0" class="javax.swing.JButton" binding="deleteButton" default-binding="true">
+                        <constraints>
+                          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="6" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <background color="-16672017"/>
+                          <font name="Arial" size="16"/>
+                          <foreground color="-1"/>
+                          <text value="Delete"/>
+                        </properties>
+                      </component>
+                      <scrollpane id="61db5">
+                        <constraints>
+                          <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <background color="-1"/>
+                          <foreground color="-16672017"/>
+                        </properties>
+                        <border type="none"/>
+                        <children>
+                          <component id="281b1" class="javax.swing.JTable" binding="userTable" custom-create="true">
+                            <constraints/>
+                            <properties>
+                              <background color="-1"/>
+                              <cellSelectionEnabled value="false"/>
+                              <columnSelectionAllowed value="false"/>
+                              <editingColumn value="-1"/>
+                              <editingRow value="-1"/>
+                              <fillsViewportHeight value="false"/>
+                              <font name="Arial" size="14"/>
+                              <foreground color="-4473925"/>
+                              <rowSelectionAllowed value="true"/>
+                            </properties>
+                          </component>
+                        </children>
+                      </scrollpane>
+                    </children>
+                  </grid>
+                  <grid id="5a76b" binding="addHrPanel" layout-manager="GridLayoutManager" row-count="18" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="5" left="5" bottom="25" right="25"/>
+                    <constraints>
+                      <card name="addHrPanel"/>
+                    </constraints>
+                    <properties>
+                      <autoscrolls value="true"/>
+                      <background color="-1"/>
+                    </properties>
+                    <border type="none"/>
+                    <children>
+                      <component id="b0728" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="Arial" size="20"/>
+                          <text value="Add HR User"/>
+                        </properties>
+                      </component>
+                      <vspacer id="13aad">
+                        <constraints>
+                          <grid row="17" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </vspacer>
+                      <component id="cc44" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="Arial" size="16"/>
+                          <text value="Name:"/>
+                        </properties>
+                      </component>
+                      <component id="9b4ad" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="Arial" size="16"/>
+                          <text value="Surname:"/>
+                        </properties>
+                      </component>
+                      <component id="4740b" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="Arial" size="16"/>
+                          <text value="Date of Birth:"/>
+                        </properties>
+                      </component>
+                      <component id="2b4b" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="7" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="Arial" size="16"/>
+                          <text value="Address:"/>
+                        </properties>
+                      </component>
+                      <component id="67ac8" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="9" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="Arial" size="16"/>
+                          <text value="Work Place:"/>
+                        </properties>
+                      </component>
+                      <component id="a5f7" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="11" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="Arial" size="16"/>
+                          <text value="Sector:"/>
+                        </properties>
+                      </component>
+                      <component id="18b71" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="15" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="Arial" size="16"/>
+                          <text value="User Password:"/>
+                        </properties>
+                      </component>
+                      <component id="61a73" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="13" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="Arial" size="16"/>
+                          <text value="User Name:"/>
+                        </properties>
+                      </component>
+                      <component id="9bd31" class="javax.swing.JTextField" binding="nameTextField">
+                        <constraints>
+                          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <font name="Arial" size="16"/>
+                        </properties>
+                      </component>
+                      <component id="11124" class="javax.swing.JTextField" binding="surnameTextField">
+                        <constraints>
+                          <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <font name="Arial" size="16"/>
+                        </properties>
+                      </component>
+                      <component id="7a893" class="javax.swing.JTextField" binding="dateOfBirthTextField">
+                        <constraints>
+                          <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <font name="Arial" size="16"/>
+                        </properties>
+                      </component>
+                      <component id="b73a2" class="javax.swing.JTextField" binding="addressTextField">
+                        <constraints>
+                          <grid row="8" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <font name="Arial" size="16"/>
+                        </properties>
+                      </component>
+                      <component id="22466" class="javax.swing.JComboBox" binding="workPlaceBox">
+                        <constraints>
+                          <grid row="10" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <background color="-1"/>
+                          <font name="Arial" size="16"/>
+                        </properties>
+                      </component>
+                      <component id="9939c" class="javax.swing.JComboBox" binding="sectorBox">
+                        <constraints>
+                          <grid row="12" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <background color="-1"/>
+                          <font name="Arial" size="16"/>
+                        </properties>
+                      </component>
+                      <component id="4141" class="javax.swing.JTextField" binding="userNameTextField">
+                        <constraints>
+                          <grid row="14" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <font name="Arial" size="16"/>
+                        </properties>
+                      </component>
+                      <component id="4f373" class="javax.swing.JButton" binding="addUserButton">
+                        <constraints>
+                          <grid row="17" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="6" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <background color="-16672017"/>
+                          <font name="Arial" size="14"/>
+                          <foreground color="-1"/>
+                          <text value="ADD"/>
+                        </properties>
+                      </component>
+                      <grid id="eebcc" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                        <margin top="0" left="0" bottom="0" right="0"/>
+                        <constraints>
+                          <grid row="16" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <background color="-1"/>
+                        </properties>
+                        <border type="none"/>
+                        <children>
+                          <component id="789e4" class="javax.swing.JPasswordField" binding="userPasswordField">
+                            <constraints>
+                              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                <preferred-size width="150" height="-1"/>
+                              </grid>
+                            </constraints>
+                            <properties>
+                              <font name="Arial" size="16"/>
+                            </properties>
+                          </component>
+                          <component id="dd4e" class="javax.swing.JButton" binding="showPasswordButton">
+                            <constraints>
+                              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <background color="-16672017"/>
+                              <font name="Arial" size="14"/>
+                              <foreground color="-1"/>
+                              <text value="Show Password"/>
+                            </properties>
+                          </component>
+                        </children>
+                      </grid>
+                    </children>
+                  </grid>
+                </children>
+              </grid>
+            </children>
+          </grid>
+        </children>
+      </grid>
+      <grid id="14793" binding="loginPanelCard" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <card name="loginPanelCard"/>
+        </constraints>
+        <properties>
+          <background color="-1"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="f7054" binding="leftPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-16672017"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="e1958" class="javax.swing.JLabel" binding="humanIcon">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-1"/>
+                  <enabled value="false"/>
+                  <icon value="gui/humanIcon.png"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="72098" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial" size="18"/>
                   <foreground color="-1"/>
-                  <text value="Logout"/>
+                  <text value="Admin App"/>
                 </properties>
               </component>
             </children>
           </grid>
-          <grid id="17d87" binding="mainPanel" layout-manager="CardLayout" hgap="0" vgap="0" show="ec906">
+          <grid id="87d29" binding="loginPanel" layout-manager="CardLayout" hgap="0" vgap="0" show="7c18d">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <autoscrolls value="true"/>
+              <background color="-1"/>
             </properties>
             <border type="none"/>
             <children>
-              <grid id="ec906" binding="activatePanel" layout-manager="GridLayoutManager" row-count="5" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+              <grid id="cbc68" binding="newPasswordCard" layout-manager="GridLayoutManager" row-count="9" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                 <margin top="5" left="5" bottom="25" right="25"/>
                 <constraints>
-                  <card name="activatePanel"/>
+                  <card name="newPasswordCard"/>
                 </constraints>
                 <properties>
                   <background color="-1"/>
-                  <font name="Arial" size="16"/>
                 </properties>
                 <border type="none"/>
                 <children>
-                  <component id="9ea5b" class="javax.swing.JLabel">
+                  <component id="21dce" class="javax.swing.JLabel">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
                       <font name="Arial" size="20"/>
-                      <text value="Activate"/>
+                      <text value="New Password"/>
                     </properties>
                   </component>
-                  <component id="27892" class="javax.swing.JLabel">
+                  <vspacer id="47fe2">
+                    <constraints>
+                      <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </vspacer>
+                  <component id="44838" class="javax.swing.JLabel">
                     <constraints>
                       <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
                       <font name="Arial" size="16"/>
-                      <text value="Enter licence key:"/>
+                      <text value="Old Password"/>
                     </properties>
                   </component>
-                  <component id="8ec7d" class="javax.swing.JTextField" binding="keyTextField">
+                  <component id="85d22" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Arial" size="16"/>
+                      <text value="New Password"/>
+                    </properties>
+                  </component>
+                  <component id="4b7b1" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Arial" size="16"/>
+                      <text value="Confirm New Password"/>
+                    </properties>
+                  </component>
+                  <component id="e8546" class="javax.swing.JPasswordField" binding="confirmNewPasswordField">
+                    <constraints>
+                      <grid row="7" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties/>
+                  </component>
+                  <component id="a9657" class="javax.swing.JPasswordField" binding="newPasswordField">
+                    <constraints>
+                      <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties/>
+                  </component>
+                  <component id="5b70f" class="javax.swing.JPasswordField" binding="oldPasswordField">
                     <constraints>
                       <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>
                       </grid>
                     </constraints>
-                    <properties>
-                      <font name="Arial" size="18"/>
-                    </properties>
+                    <properties/>
                   </component>
-                  <component id="a7314" class="javax.swing.JButton" binding="okLicenceButton">
+                  <component id="b037f" class="javax.swing.JButton" binding="okConfirmPassButton">
                     <constraints>
-                      <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="6" fill="0" indent="0" use-parent-layout="false"/>
+                      <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
                       <background color="-16672017"/>
@@ -157,328 +634,91 @@
                       <text value="OK"/>
                     </properties>
                   </component>
-                  <vspacer id="ba702">
-                    <constraints>
-                      <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                  </vspacer>
-                  <vspacer id="6489">
+                  <vspacer id="2521">
                     <constraints>
                       <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                     </constraints>
                   </vspacer>
                 </children>
               </grid>
-              <grid id="994a7" binding="deleteUserPanel" layout-manager="GridLayoutManager" row-count="5" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+              <grid id="7c18d" binding="loginMainCard" layout-manager="GridLayoutManager" row-count="7" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                 <margin top="5" left="5" bottom="25" right="25"/>
                 <constraints>
-                  <card name="deleteUserPanel"/>
+                  <card name="loginMainCard"/>
                 </constraints>
                 <properties>
                   <background color="-1"/>
                 </properties>
                 <border type="none"/>
                 <children>
-                  <component id="81495" class="javax.swing.JLabel">
+                  <component id="727e" class="javax.swing.JLabel">
                     <constraints>
-                      <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
+                      <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <font name="Arial" size="20"/>
-                      <text value="Delete User"/>
-                    </properties>
-                  </component>
-                  <component id="fba04" class="javax.swing.JLabel">
-                    <constraints>
-                      <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
+                      <enabled value="true"/>
                       <font name="Arial" size="16"/>
-                      <text value="Enter User Name"/>
+                      <text value="User name:"/>
                     </properties>
                   </component>
-                  <grid id="83fab" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-                    <margin top="0" left="0" bottom="10" right="25"/>
+                  <component id="896e3" class="javax.swing.JTextField" binding="userNameField">
                     <constraints>
-                      <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <background color="-1"/>
-                    </properties>
-                    <border type="none"/>
-                    <children>
-                      <component id="d3af0" class="javax.swing.JTextField" binding="searchTextField">
-                        <constraints>
-                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                            <preferred-size width="150" height="-1"/>
-                          </grid>
-                        </constraints>
-                        <properties>
-                          <font name="Arial" size="16"/>
-                        </properties>
-                      </component>
-                      <component id="f78fe" class="javax.swing.JButton" binding="searchButton">
-                        <constraints>
-                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                        <properties>
-                          <background color="-16672017"/>
-                          <font name="Arial" size="14"/>
-                          <foreground color="-1"/>
-                          <icon value="gui/rsz_magnifying-glass-1976105_640.png"/>
-                          <text value="Search"/>
-                        </properties>
-                      </component>
-                    </children>
-                  </grid>
-                  <component id="c8bd0" class="javax.swing.JButton" binding="deleteButton" default-binding="true">
-                    <constraints>
-                      <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="6" fill="0" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <background color="-16672017"/>
-                      <font name="Arial" size="16"/>
-                      <foreground color="-1"/>
-                      <text value="Delete"/>
-                    </properties>
-                  </component>
-                  <scrollpane id="aba07">
-                    <constraints>
-                      <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <background color="-1"/>
-                      <foreground color="-16672017"/>
-                    </properties>
-                    <border type="none"/>
-                    <children>
-                      <component id="d08da" class="javax.swing.JTable" binding="userTable" custom-create="true">
-                        <constraints/>
-                        <properties>
-                          <background color="-1"/>
-                          <cellSelectionEnabled value="false"/>
-                          <columnSelectionAllowed value="false"/>
-                          <editingColumn value="-1"/>
-                          <editingRow value="-1"/>
-                          <fillsViewportHeight value="false"/>
-                          <font name="Arial" size="14"/>
-                          <foreground color="-4473925"/>
-                          <rowSelectionAllowed value="true"/>
-                        </properties>
-                      </component>
-                    </children>
-                  </scrollpane>
-                </children>
-              </grid>
-              <grid id="49561" binding="addHrPanel" layout-manager="GridLayoutManager" row-count="18" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-                <margin top="5" left="5" bottom="25" right="25"/>
-                <constraints>
-                  <card name="addHrPanel"/>
-                </constraints>
-                <properties>
-                  <autoscrolls value="true"/>
-                  <background color="-1"/>
-                </properties>
-                <border type="none"/>
-                <children>
-                  <component id="d7a51" class="javax.swing.JLabel">
-                    <constraints>
-                      <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <font name="Arial" size="20"/>
-                      <text value="Add HR User"/>
-                    </properties>
-                  </component>
-                  <vspacer id="2fac6">
-                    <constraints>
-                      <grid row="17" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                  </vspacer>
-                  <component id="20297" class="javax.swing.JLabel">
-                    <constraints>
-                      <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <font name="Arial" size="16"/>
-                      <text value="Name:"/>
-                    </properties>
-                  </component>
-                  <component id="d6f82" class="javax.swing.JLabel">
-                    <constraints>
-                      <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <font name="Arial" size="16"/>
-                      <text value="Surname:"/>
-                    </properties>
-                  </component>
-                  <component id="859a4" class="javax.swing.JLabel">
-                    <constraints>
-                      <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <font name="Arial" size="16"/>
-                      <text value="Date of Birth:"/>
-                    </properties>
-                  </component>
-                  <component id="85b28" class="javax.swing.JLabel">
-                    <constraints>
-                      <grid row="7" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <font name="Arial" size="16"/>
-                      <text value="Address:"/>
-                    </properties>
-                  </component>
-                  <component id="11af9" class="javax.swing.JLabel">
-                    <constraints>
-                      <grid row="9" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <font name="Arial" size="16"/>
-                      <text value="Work Place:"/>
-                    </properties>
-                  </component>
-                  <component id="b47fb" class="javax.swing.JLabel">
-                    <constraints>
-                      <grid row="11" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <font name="Arial" size="16"/>
-                      <text value="Sector:"/>
-                    </properties>
-                  </component>
-                  <component id="2fbc7" class="javax.swing.JLabel">
-                    <constraints>
-                      <grid row="15" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <font name="Arial" size="16"/>
-                      <text value="User Password:"/>
-                    </properties>
-                  </component>
-                  <component id="4edf2" class="javax.swing.JLabel">
-                    <constraints>
-                      <grid row="13" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <font name="Arial" size="16"/>
-                      <text value="User Name:"/>
-                    </properties>
-                  </component>
-                  <component id="f1d10" class="javax.swing.JTextField" binding="nameTextField">
-                    <constraints>
-                      <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                      <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>
                       </grid>
                     </constraints>
                     <properties>
-                      <font name="Arial" size="16"/>
+                      <text value=""/>
                     </properties>
                   </component>
-                  <component id="32e01" class="javax.swing.JTextField" binding="surnameTextField">
+                  <component id="6b48b" class="javax.swing.JLabel">
                     <constraints>
-                      <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                      <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Arial" size="16"/>
+                      <text value="Password:"/>
+                    </properties>
+                  </component>
+                  <component id="7d5fd" class="javax.swing.JPasswordField" binding="loginPasswordField">
+                    <constraints>
+                      <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>
                       </grid>
                     </constraints>
-                    <properties>
-                      <font name="Arial" size="16"/>
-                    </properties>
+                    <properties/>
                   </component>
-                  <component id="59685" class="javax.swing.JTextField" binding="dateOfBirthTextField">
+                  <component id="5a2f1" class="javax.swing.JButton" binding="loginButton" default-binding="true">
                     <constraints>
-                      <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                        <preferred-size width="150" height="-1"/>
-                      </grid>
-                    </constraints>
-                    <properties>
-                      <font name="Arial" size="16"/>
-                    </properties>
-                  </component>
-                  <component id="8d19a" class="javax.swing.JTextField" binding="addressTextField">
-                    <constraints>
-                      <grid row="8" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                        <preferred-size width="150" height="-1"/>
-                      </grid>
-                    </constraints>
-                    <properties>
-                      <font name="Arial" size="16"/>
-                    </properties>
-                  </component>
-                  <component id="84e3b" class="javax.swing.JComboBox" binding="workPlaceBox">
-                    <constraints>
-                      <grid row="10" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <background color="-1"/>
-                      <font name="Arial" size="16"/>
-                    </properties>
-                  </component>
-                  <component id="f2e3b" class="javax.swing.JComboBox" binding="sectorBox">
-                    <constraints>
-                      <grid row="12" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <background color="-1"/>
-                      <font name="Arial" size="16"/>
-                    </properties>
-                  </component>
-                  <component id="f5e55" class="javax.swing.JTextField" binding="userNameTextField">
-                    <constraints>
-                      <grid row="14" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                        <preferred-size width="150" height="-1"/>
-                      </grid>
-                    </constraints>
-                    <properties>
-                      <font name="Arial" size="16"/>
-                    </properties>
-                  </component>
-                  <component id="a5fb" class="javax.swing.JButton" binding="addUserButton">
-                    <constraints>
-                      <grid row="17" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="6" fill="0" indent="0" use-parent-layout="false"/>
+                      <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
                       <background color="-16672017"/>
                       <font name="Arial" size="14"/>
                       <foreground color="-1"/>
-                      <text value="ADD"/>
+                      <text value="Login"/>
                     </properties>
                   </component>
-                  <grid id="1a5b2" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-                    <margin top="0" left="0" bottom="0" right="0"/>
+                  <vspacer id="60b64">
                     <constraints>
-                      <grid row="16" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                      <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </vspacer>
+                  <vspacer id="e6301">
+                    <constraints>
+                      <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </vspacer>
+                  <component id="fe116" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <background color="-1"/>
+                      <enabled value="true"/>
+                      <font name="Arial" size="20"/>
+                      <text value="Login"/>
                     </properties>
-                    <border type="none"/>
-                    <children>
-                      <component id="f6111" class="javax.swing.JPasswordField" binding="passwordField">
-                        <constraints>
-                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                            <preferred-size width="150" height="-1"/>
-                          </grid>
-                        </constraints>
-                        <properties>
-                          <font name="Arial" size="16"/>
-                        </properties>
-                      </component>
-                      <component id="4a36c" class="javax.swing.JButton" binding="showPasswordButton">
-                        <constraints>
-                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
-                        </constraints>
-                        <properties>
-                          <background color="-16672017"/>
-                          <font name="Arial" size="14"/>
-                          <foreground color="-1"/>
-                          <text value="Show Password"/>
-                        </properties>
-                      </component>
-                    </children>
-                  </grid>
+                  </component>
                 </children>
               </grid>
             </children>

@@ -5,37 +5,31 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainScreen extends JFrame{
-    private String[] statusTypes = {"Start", "Go on break","End the day"};
+    private final String[] statusTypes = {"Start the day", "Go on break","Come back from break","End the day"};
 
     private JPanel mainPanel;
-    private JPasswordField pinField;
-    private JComboBox statusBox ;
+    private JPanel backPanel;
+    private JPanel leftPanel;
     private JButton okButton;
     private JLabel humanIcon;
-    private JMenuBar menuBar = new JMenuBar();
-    private JMenu help = new JMenu("help");
-    private  JMenuItem contactInfo = new JMenuItem("Contact Info");
-    private JPanel workTimePanel;
-    private JPanel companyInfoPanel;
-    private JPanel personalInfoPanel;
-    private JPanel backPanel;
-    private JLabel nameLabel;
-    private JLabel surnameLabel;
-    private JLabel dateOfBirthLabel;
-    private JLabel addressLabel;
-    private JLabel workPlaceLabel;
-    private JLabel sectorLAbel;
-    private JLabel userNameLabel;
-    private JPanel leftPanel;
+    private final JMenuItem contactInfo = new JMenuItem("Contact Info");
+    //Check USer details
+    private JPasswordField pinField;
+    private JComboBox statusBox ;
 
 
     public MainScreen() {
+        //Setting up JFrame
         super("Work Time App");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(backPanel);
         this.pack();
+        this.setVisible(true);
 
+        //Add Menu Bar
+        JMenu help = new JMenu("help");
         help.add(contactInfo);
+        JMenuBar menuBar = new JMenuBar();
         menuBar.add(help);
         this.setJMenuBar(menuBar);
 
@@ -46,8 +40,6 @@ public class MainScreen extends JFrame{
                 contactInfoAction();
             }
         });
-
-
         okButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
