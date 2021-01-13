@@ -7,7 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 
-public class MainScreenAdmin extends JFrame{
+public class MainScreenAdmin extends JFrame {
+
     private JPanel backPanel;
     private JPanel mainPanel;
     private JPanel loginPanel;
@@ -18,11 +19,13 @@ public class MainScreenAdmin extends JFrame{
     private JPanel logoutPanel;
     private JPanel deleteUserPanel;
     private JPanel activatePanel;
-    //For activating the App
+
+    // For activating the App
     private JButton activateButtonPanel;
     private JTextField keyTextField;
     private JButton okLicenceButton;
-    //For deleting USer
+
+    // For deleting USer
     private JButton searchButton;
     private JTable userTable;
     private JButton deleteButton;
@@ -30,7 +33,8 @@ public class MainScreenAdmin extends JFrame{
     private JButton addUserButton;
     private JButton addHrButtonPanel;
     private JTextField searchTextField;
-    //For Adding a HR User
+
+    // For Adding a HR User
     private JButton showPasswordButton;
     private JTextField nameTextField;
     private JTextField surnameTextField;
@@ -40,6 +44,7 @@ public class MainScreenAdmin extends JFrame{
     private JComboBox sectorBox;
     private JTextField userNameTextField;
     private JPasswordField userPasswordField;
+
     //
     private JButton logoutButton;
 
@@ -53,6 +58,7 @@ public class MainScreenAdmin extends JFrame{
         this.setContentPane(backPanel);
         this.pack();
         this.setVisible(true);
+        this.setLocationRelativeTo(null);
 
 
         //Add Menu Bar
@@ -63,71 +69,16 @@ public class MainScreenAdmin extends JFrame{
         this.setJMenuBar(menuBar);
 
 
-        contactInfo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                contactInfoAction();
-            }
-        });
-
-        deleteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                deleteButtonAction();
-            }
-        });
-        searchButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                searchButtonAction();
-            }
-        });
-        logoutButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                logoutButtonAction();
-
-            }
-        });
-        activateButtonPanel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                activateButtonPanelAction();
-            }
-        });
-        deleteUserButtonPanel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                deleteUserButtonPanelAction();
-
-            }
-        });
-        addHrButtonPanel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                addHrButtonPanelAction();
-            }
-        });
-        addUserButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                addUserButtonAction();
-            }
-        });
-        showPasswordButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                showPasswordButton();
-            }
-        });
-        okLicenceButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                okLicenceButtonAction();
-            }
-        });
+        contactInfo.addActionListener(e -> contactInfoAction());
+        deleteButton.addActionListener(e -> deleteButtonAction());
+        searchButton.addActionListener(e -> searchButtonAction());
+        logoutButton.addActionListener(e -> logoutButtonAction());
+        activateButtonPanel.addActionListener(e -> activateButtonPanelAction());
+        deleteUserButtonPanel.addActionListener(e -> deleteUserButtonPanelAction());
+        addHrButtonPanel.addActionListener(e -> addHrButtonPanelAction());
+        addUserButton.addActionListener(e -> addUserButtonAction());
+        showPasswordButton.addActionListener(e -> showPasswordButton());
+        okLicenceButton.addActionListener(e -> okLicenceButtonAction());
 
     }
 
@@ -146,9 +97,10 @@ public class MainScreenAdmin extends JFrame{
     private void okLicenceButtonAction() {
     }
 
-    //For login out
+    // For log out
     private void logoutButtonAction() {
-
+        this.dispose();
+        new LoginScreenAdmin();
     }
 
     //Showing Add HR Panel on Screen

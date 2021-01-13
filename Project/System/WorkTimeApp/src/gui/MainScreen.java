@@ -40,10 +40,11 @@ public class MainScreen extends JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
 
-        for(String fill : WorkTime.getStatusTypes()){
+        for(String fill : WorkTime.getStatusTypes())
             statusBox.addItem(fill);
-        }
-        LOGGER.info(statusBox.getItemCount() + "");
+
+        // default choice is blank
+        statusBox.setSelectedIndex(-1);
 
         //Add Menu Bar
         JMenu help = new JMenu("Help");
@@ -60,6 +61,9 @@ public class MainScreen extends JFrame {
 
     //action performed when OK button pressed
     private void okButtonAction() {
+
+        // clear field
+        labelMessage("", false);
 
         if (pinField.getPassword().length > 0) {
             int pin = Integer.parseInt(new String(pinField.getPassword()));
@@ -79,34 +83,31 @@ public class MainScreen extends JFrame {
 
                     LOGGER.info(time.getFormattedWorkTime());
 
-                    if (checkTime(time, newTime))
+                    if (checkTime(time, newTime)) {
+
+                        // reset fields
+                        pinField.setText("");
+                        statusBox.setSelectedIndex(-1);
+
                         writeNewTime(newTime, pin);
-                    else {
-                        messageLabel.setText(Texts.MESSAGE_WRONG_WORK_STATUS);
-                        messageLabel.setVisible(true);
-                    }
+                    } else
+                        labelMessage(Texts.MESSAGE_WRONG_WORK_STATUS, true);
+
 
                 } else
                     writeNewTime(newTime, pin);
-            } else {
-                messageLabel.setText(Texts.MESSAGE_WRONG_PIN);
-                messageLabel.setVisible(true);
-            }
-        } else {
-            messageLabel.setText(Texts.MESSAGE_PIN_FIELD_EMPTY);
-            messageLabel.setVisible(true);
-        }
+            } else
+                labelMessage(Texts.MESSAGE_WRONG_PIN, true);
+
+        } else
+            labelMessage(Texts.MESSAGE_PIN_FIELD_EMPTY, true);
     }
 
     private void contactInfoAction() {
-        JOptionPane.showMessageDialog(contactInfo,"Contact Info\n"+
-                                                            "Admin:\n email: admin@comName.com \n phone:0123456789");
+        JOptionPane.showMessageDialog(
+                contactInfo,
+                "Contact Info\nAdmin\nemail: admin@comName.com\nphone:0123456789");
     }
-
-   /* private void createUIComponents() {
-        statusBox = new JComboBox(WorkTime.getStatusTypes());
-        LOGGER.info(statusBox.getItemCount() + "");
-    }*/
 
     private static boolean checkWorker(int pin) {
         String path = FilePaths.WORKER_REGISTER + pin;
@@ -125,6 +126,8 @@ public class MainScreen extends JFrame {
 
             while ((tempLine = inputStream.readLine()) != null)
                 line = tempLine;
+
+            inputStream.close();
 
             if (line != null) {
                 String[] data = line.split(",");
@@ -168,5 +171,10 @@ public class MainScreen extends JFrame {
         if (lastTime.getType() == WorkTime.TYPE_PAUSE_START && newTime.getType() == WorkTime.TYPE_PAUSE_END) return true;
 
         return lastTime.getType() == WorkTime.TYPE_PAUSE_END && (newTime.getType() == WorkTime.TYPE_PAUSE_START || newTime.getType() == WorkTime.TYPE_END);
+    }
+
+    private void labelMessage(String message, boolean visibility) {
+        messageLabel.setText(message);
+        messageLabel.setVisible(visibility);
     }
 }

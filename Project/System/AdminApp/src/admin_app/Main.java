@@ -8,7 +8,5 @@ public class Main {
     public static void main(String[] args) {
 
         new LoginScreenAdmin();
-
-        System.out.println("Hello, AdminApp!");
     }
 }

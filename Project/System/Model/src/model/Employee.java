@@ -4,9 +4,6 @@ import java.util.ArrayList;
 
 public abstract class Employee {
 
-    public Employee() {
-    }
-
     protected int PIN;
     protected String name;
     protected String surname;
@@ -22,6 +19,10 @@ public abstract class Employee {
     protected String sector;
     protected int numberOfLogins;
     protected ArrayList<Time> workTime;
+
+    public Employee() {
+        this.numberOfLogins = 0;
+    }
 
     public int getPIN() { return PIN; }
 
