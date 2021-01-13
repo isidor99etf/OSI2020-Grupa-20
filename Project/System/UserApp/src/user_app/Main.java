@@ -1,12 +1,13 @@
 package user_app;
 
+import gui.LoginScreenUser;
 import gui.MainScreenUser;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        MainScreenUser mainScreen = new MainScreenUser();
+        new LoginScreenUser();
         System.out.println("Hello, UserApp!");
     }
 }

@@ -12,28 +12,14 @@ import java.util.Arrays;
 public class MainScreenHR extends JFrame {
     //Just Panels
     private JPanel backPanel;
-    private JPanel loginPanelCard;
     private JPanel mainPanelCard;
-    private JPanel leftPanel;
-    private JLabel humanIcon;
-    private JPanel newPasswordCard;
     private JPanel loginPanel;
-    private JPanel loginMainCard;
     private JPanel mainPanel;
     private JPanel addUserCard;
     private JPanel rightPanel;
     private JPanel buttonPanel;
     private JPanel employeeCard;
-    //Get to see if user details are good
-    private JTextField userNameField;
-    private JPasswordField loginPasswordField;
-    private JButton loginButton;
     private JButton logoutButton;
-    //For Creating a New Password
-    private JPasswordField confirmNewPasswordField;
-    private JPasswordField newPasswordField;
-    private JPasswordField oldPasswordField;
-    private JButton okConfirmPassButton;
     //For switching main Panels
     private JButton newUserCardButton;
     private JButton employeesButton;
@@ -55,6 +41,7 @@ public class MainScreenHR extends JFrame {
     private JButton searchButton;
     private JComboBox sortBox;
     private JComboBox subSortBox;
+    private JPanel homePanel;
 
     private final String[] sortList = {"All","Sector","Work Place"};
     private final String[] subSortListSector = {"Sector1","Sector2","Sector2"};
@@ -96,18 +83,7 @@ public class MainScreenHR extends JFrame {
                 employeesButtonAction();
             }
         });
-        okConfirmPassButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                okConfirmPassButtonAction();
-            }
-        });
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                loginButtonAction();
-            }
-        });
+
         logoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -175,10 +151,12 @@ public class MainScreenHR extends JFrame {
                     subSortBox.addItem(sub);
                 }
             }
-           subSortBox.setVisible(true);
+           subSortBox.setEnabled(true);
+
         }
         else {
-            subSortBox.setVisible(false);
+            subSortBox.removeAllItems();
+            subSortBox.setEnabled(false);
         }
     }
 
@@ -195,50 +173,25 @@ public class MainScreenHR extends JFrame {
     //For Show User Details selected in employeeTable
     private void detailsButtonAction() {
         //Needs some details to work
-        UserDetails screen = new UserDetails();
+         new UserDetails();
 
     }
 
 
     private void logoutButtonAction() {
-        CardLayout card = (CardLayout) (backPanel.getLayout());
-        card.show(backPanel, "loginPanelCard");
-        card = (CardLayout) (loginPanel.getLayout());
-        card.show(loginPanel, "loginMainCard");
+
     }
 
-    private void loginButtonAction() {
-
-        //Chek User Details
-
-        //First login or need new password
-        if (true) {
-            CardLayout card = (CardLayout) (loginPanel.getLayout());
-            card.show(loginPanel, "newPasswordCard");
-        } else {
-            CardLayout card = (CardLayout) (backPanel.getLayout());
-            card.show(backPanel, "mainPanelCard");
-        }
-    }
-
-    private void okConfirmPassButtonAction() {
-        //Chek old password if you want
-
-        boolean good = Arrays.equals(newPasswordField.getPassword(), confirmNewPasswordField.getPassword());
-        if (good) {
-            CardLayout card = (CardLayout) (backPanel.getLayout());
-            card.show(backPanel, "mainPanelCard");
-        }
-    }
-
+    //Showing addUserCard   on mainPanel
     private void newUserCardButtonAction() {
-        //Showing addUserCard   on mainPanel
+
         CardLayout card = (CardLayout) (mainPanel.getLayout());
         card.show(mainPanel, "addUserCard");
     }
 
+    //Showing employeeCard   on mainPanel
     private void employeesButtonAction() {
-        //Showing employeeCard   on mainPanel
+
         CardLayout card = (CardLayout) (mainPanel.getLayout());
         card.show(mainPanel, "employeeCard");
     }

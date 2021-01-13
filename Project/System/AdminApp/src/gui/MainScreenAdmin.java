@@ -1,6 +1,7 @@
 package gui;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,31 +9,29 @@ import java.util.Arrays;
 
 public class MainScreenAdmin extends JFrame{
     private JPanel backPanel;
-    private JPanel mainPanelCard;
+    private JPanel mainPanel;
+    private JPanel loginPanel;
+    private JPanel addHrPanel;
+    private JPanel homePanel;
     private JPanel buttonPanel;
     private JPanel rightPanel;
-    private JPanel activatePanel;
-    private JPanel mainPanel;
+    private JPanel logoutPanel;
     private JPanel deleteUserPanel;
-    private JPanel loginPanelCard;
-    private JPanel leftPanel;
-    private JPanel loginPanel;
-    private JPanel newPasswordCard;
-    private JPanel addHrPanel;
-    private JPanel loginMainCard;
+    private JPanel activatePanel;
     //For activating the App
     private JButton activateButtonPanel;
     private JTextField keyTextField;
     private JButton okLicenceButton;
-    private JButton logoutButton;
-    //For deleting
-    private JButton showPasswordButton;
+    //For deleting USer
     private JButton searchButton;
     private JTable userTable;
-    private JTextField searchTextField;
     private JButton deleteButton;
     private JButton deleteUserButtonPanel;
-    //for Add a New User
+    private JButton addUserButton;
+    private JButton addHrButtonPanel;
+    private JTextField searchTextField;
+    //For Adding a HR User
+    private JButton showPasswordButton;
     private JTextField nameTextField;
     private JTextField surnameTextField;
     private JTextField dateOfBirthTextField;
@@ -41,22 +40,11 @@ public class MainScreenAdmin extends JFrame{
     private JComboBox sectorBox;
     private JTextField userNameTextField;
     private JPasswordField userPasswordField;
-    private JButton addUserButton;
-    private JButton addHrButtonPanel;
-    //For creating a new password
-    private JPasswordField confirmNewPasswordField;
-    private JPasswordField newPasswordField;
-    private JPasswordField oldPasswordField;
-    private JButton okConfirmPassButton;
-    //For Login
-    private JTextField userNameField;
-    private JPasswordField loginPasswordField;
-    private JButton loginButton;
-    private JPanel logoutPanel;
-    private JLabel humanIcon;
+    //
+    private JButton logoutButton;
 
-    private String[] tableColumns = {"Name","Username","User Type"};
-    private String[][] tableData = {{"Nikola","Nikolic","HR"},{"Nikola","Nikolic","HR"},{"Nikola","Nikolic","HR"}};
+    private final String[] tableColumns = {"Name","Username","User Type"};
+
     private final JMenuItem contactInfo = new JMenuItem("Contact Info");
 
     public MainScreenAdmin() {
@@ -140,45 +128,16 @@ public class MainScreenAdmin extends JFrame{
                 okLicenceButtonAction();
             }
         });
-        okConfirmPassButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                okConfirmPassButtonAction();
-            }
-        });
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                loginButtonAction();
-            }
-        });
-    }
-
-    private void loginButtonAction() {
-        //Chek User Details
-
-        //First login or need new password
-        if (true) {
-            CardLayout card = (CardLayout) (loginPanel.getLayout());
-            card.show(loginPanel, "newPasswordCard");
-        } else {
-            CardLayout card = (CardLayout) (backPanel.getLayout());
-            card.show(backPanel, "mainPanelCard");
-        }
-    }
-
-    private void okConfirmPassButtonAction() {
-        boolean good = Arrays.equals(newPasswordField.getPassword(), confirmNewPasswordField.getPassword());
-        if (good) {
-            CardLayout card = (CardLayout) (backPanel.getLayout());
-            card.show(backPanel, "mainPanelCard");
-        }
 
     }
 
+
+
+    //For Add a new HR user
     private void addUserButtonAction() {
     }
 
+    //Shows user password in String form not in *
     private void showPasswordButton() {
         userPasswordField.setEchoChar((char) 0);
     }
@@ -187,28 +146,29 @@ public class MainScreenAdmin extends JFrame{
     private void okLicenceButtonAction() {
     }
 
+    //For login out
     private void logoutButtonAction() {
-        CardLayout card = (CardLayout) (backPanel.getLayout());
-        card.show(backPanel, "loginPanelCard");
-        card = (CardLayout) (loginPanel.getLayout());
-        card.show(loginPanel, "loginMainCard");
+
     }
 
+    //Showing Add HR Panel on Screen
     private void addHrButtonPanelAction() {
-        //Showing Add HR Panel on Screen
+
         CardLayout card = (CardLayout) (mainPanel.getLayout());
         card.show(mainPanel,"addHrPanel");
     }
 
+    //Showing Delete User Panel on Screen
     private void deleteUserButtonPanelAction() {
-        //Showing Delete User Panel on Screen
+
         CardLayout card = (CardLayout) (mainPanel.getLayout());
         card.show(mainPanel,"deleteUserPanel");
 
     }
 
+    //Showing activate Panel on Screen
     private void activateButtonPanelAction() {
-        //Showing activate Panel on Screen
+
         CardLayout card = (CardLayout) (mainPanel.getLayout());
         card.show(mainPanel,"activatePanel");
     }
@@ -225,6 +185,7 @@ public class MainScreenAdmin extends JFrame{
 
     }
 
+    //searches for  user and show it in  userTable
     private void searchButtonAction(){
 
     }
@@ -234,8 +195,4 @@ public class MainScreenAdmin extends JFrame{
 
     }
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-        userTable = new JTable(tableData,tableColumns);
-    }
 }

@@ -40,6 +40,11 @@ public class MainScreen extends JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
 
+        for(String fill : WorkTime.getStatusTypes()){
+            statusBox.addItem(fill);
+        }
+        LOGGER.info(statusBox.getItemCount() + "");
+
         //Add Menu Bar
         JMenu help = new JMenu("Help");
         help.add(contactInfo);
@@ -98,10 +103,10 @@ public class MainScreen extends JFrame {
                                                             "Admin:\n email: admin@comName.com \n phone:0123456789");
     }
 
-    private void createUIComponents() {
+   /* private void createUIComponents() {
         statusBox = new JComboBox(WorkTime.getStatusTypes());
         LOGGER.info(statusBox.getItemCount() + "");
-    }
+    }*/
 
     private static boolean checkWorker(int pin) {
         String path = FilePaths.WORKER_REGISTER + pin;

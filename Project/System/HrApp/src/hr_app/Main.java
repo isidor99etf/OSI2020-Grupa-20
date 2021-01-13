@@ -1,11 +1,12 @@
 package hr_app;
 
+import gui.LoginScreenHR;
 import gui.MainScreenHR;
 
 public class Main {
 
     public static void main(String[] args) {
-        MainScreenHR mainScreen = new MainScreenHR();
+        new LoginScreenHR();
 
         System.out.println("Hello, HrApp!");
     }
