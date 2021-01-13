@@ -15,12 +15,9 @@ public class MainScreenUser extends JFrame {
     private JPanel rightPanel;
     private JPanel personalInfoPanel;
     private JPanel companyInfoPanel;
-    private JPanel loginPanelCard;
-    private JPanel leftPanel;
-    private JPanel loginMainCard;
-    private JPanel newPasswordCard;
     private JPanel loginPanel;
     private JPanel workTimePanel;
+    private JPanel homePanel;
     //For Work Time stuff
     private JComboBox sortWorkTimeBox;
     private JList workTimeList;
@@ -41,17 +38,9 @@ public class MainScreenUser extends JFrame {
     private JLabel companyPhoneLabel;
     private JLabel companyEmailLabel;
     private JButton companyInfoButton;
-    //For creating a new password
-    private JPasswordField confirmNewPasswordField;
-    private JPasswordField newPasswordField;
-    private JPasswordField oldPasswordField;
-    private JButton okConfirmPassButton;
-    //For login
-    private JTextField userNameTextField;
-    private JPasswordField loginPasswordField;
-    private JButton loginButton;
-    private JLabel humanIcon;
+    //
     private JButton logoutButton;
+
 
     private String[] sortList = {"Day","Monthly"};
     private final JMenuItem contactInfo = new JMenuItem("Contact Info");
@@ -111,73 +100,42 @@ public class MainScreenUser extends JFrame {
                 reportButtonAction();
             }
         });
-        okConfirmPassButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                okConfirmPassButtonAction();
-            }
-        });
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                loginButtonAction();
-            }
-        });
+
     }
 
-    private void loginButtonAction() {
-        //Chek User Details
-
-        //First login or need new password
-        if (true) {
-            CardLayout card = (CardLayout) (loginPanel.getLayout());
-            card.show(loginPanel, "newPasswordCard");
-        } else {
-            CardLayout card = (CardLayout) (backPanel.getLayout());
-            card.show(backPanel, "mainPanelCard");
-        }
-    }
-
-    private void okConfirmPassButtonAction() {
-        boolean good = Arrays.equals(newPasswordField.getPassword(), confirmNewPasswordField.getPassword());
-        if (good) {
-            CardLayout card = (CardLayout) (backPanel.getLayout());
-            card.show(backPanel, "mainPanelCard");
-        }
-    }
-
+    //Show and sets Personal Info
     private void personalInfoButtonAction() {
+        //Setting the Labels
+
         CardLayout card = (CardLayout)(mainPanel.getLayout());
         card.show(mainPanel,"personalInfoPanel");
-
-        //Setting the Labels
     }
 
+    //Show Work Time PAnel
     private void workTimeButtonAction() {
+
         CardLayout card = (CardLayout)(mainPanel.getLayout());
         card.show(mainPanel,"workTimePanel");
-
-        //
     }
 
+    //Show and sets Company Info
     private void companyInfoButtonAction() {
+        //Setting the Labels
+
+
         CardLayout card = (CardLayout)(mainPanel.getLayout());
         card.show(mainPanel,"companyInfoPanel");
-
-        //Setting the Labels
     }
 
     private void logoutButtonAction() {
 
-        CardLayout card = (CardLayout) (backPanel.getLayout());
-        card.show(backPanel, "loginPanelCard");
-        card = (CardLayout) (loginPanel.getLayout());
-        card.show(loginPanel, "loginMainCard");
     }
 
+    //Prints a report
     private void reportButtonAction() {
     }
 
+    //Show Contact Info
     private void contactInfoAction() {
         JOptionPane.showMessageDialog(contactInfo,"Contact Info\n"+
                 "Admin:\n email: admin@comName.com \n phone:0123456789");
