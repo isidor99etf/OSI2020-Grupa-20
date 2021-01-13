@@ -42,4 +42,13 @@ public class WorkTime {
                 return -1;
         }
     }
+
+    public static String[] getStatusTypes() {
+        return new String[] {
+                TYPE_STRING_START,
+                TYPE_STRING_END,
+                TYPE_STRING_PAUSE_START,
+                TYPE_STRING_PAUSE_END
+        };
+    }
 }
