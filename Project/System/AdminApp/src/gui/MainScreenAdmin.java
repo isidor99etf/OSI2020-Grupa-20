@@ -30,8 +30,6 @@ public class MainScreenAdmin extends JFrame {
     private JTable userTable;
     private JButton deleteButton;
     private JButton deleteUserButtonPanel;
-    private JButton addUserButton;
-    private JButton addHrButtonPanel;
     private JTextField searchTextField;
 
     // For Adding a HR User
@@ -44,6 +42,8 @@ public class MainScreenAdmin extends JFrame {
     private JComboBox sectorBox;
     private JTextField userNameTextField;
     private JPasswordField userPasswordField;
+    private JButton addUserButton;
+    private JButton addHrButtonPanel;
 
     //
     private JButton logoutButton;
