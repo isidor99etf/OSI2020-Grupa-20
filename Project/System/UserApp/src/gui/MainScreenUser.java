@@ -77,6 +77,7 @@ public class MainScreenUser extends JFrame {
     private void personalInfoButtonAction() {
         //Setting the Labels
 
+
         CardLayout card = (CardLayout)(mainPanel.getLayout());
         card.show(mainPanel,"personalInfoPanel");
     }

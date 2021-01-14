@@ -2,6 +2,7 @@ package gui;
 
 import constants.Config;
 import constants.FilePaths;
+import constants.Texts;
 import model.Admin;
 
 import javax.swing.*;
@@ -28,6 +29,8 @@ public class LoginScreenAdmin extends JFrame {
     private JPasswordField newPasswordField;
     private JPasswordField oldPasswordField;
     private JButton okConfirmPassButton;
+    private JLabel errorLableNewPassword;
+    private JLabel errorLabelLogin;
 
     private final JMenuItem contactInfo = new JMenuItem("Contact Info");
 
@@ -54,6 +57,8 @@ public class LoginScreenAdmin extends JFrame {
     }
 
     private void newPassword() {
+        //deletes old msg
+        showErrorMsgNewPassword("",false);
 
         // Check User passwords
         String oldPassword = new String(oldPasswordField.getPassword());
@@ -76,23 +81,25 @@ public class LoginScreenAdmin extends JFrame {
                     updateAdminFile(admin);
 
                 } else {
-                    // show message
-                    // MESSAGE_NEW_PASSWORD_NOT_MATCH
+
+                    showErrorMsgNewPassword(Texts.MESSAGE_NEW_PASSWORD_NOT_MATCH,true);
                 }
             else {
-                // show message
-                // MESSAGE_SAME_NEW_OLD_PASSWORD
+
+                showErrorMsgNewPassword(Texts.MESSAGE_SAME_NEW_OLD_PASSWORD,true);
             }
 
         } else {
-            // show message
-            // MESSAGE_WRONG_OLD_PASSWORD
+
+            showErrorMsgNewPassword(Texts.MESSAGE_WRONG_OLD_PASSWORD,true);
         }
 
         showMainScreen();
     }
 
     private void login() {
+        //dledtes old msg
+        showErrorMsgLogin("",false);
 
         // Check User Details
         String userName = userNameField.getText();
@@ -114,8 +121,8 @@ public class LoginScreenAdmin extends JFrame {
                 showMainScreen();
             }
         else {
-            // show message
-            // MESSAGE_WRONG_USER_NAME_OR_PASSWORD
+
+            showErrorMsgLogin(Texts.MESSAGE_WRONG_USER_NAME_OR_PASSWORD,true);
         }
     }
 
@@ -174,5 +181,34 @@ public class LoginScreenAdmin extends JFrame {
         this.dispose();
 
         new MainScreenAdmin();
+    }
+
+    private void showErrorMsgLogin(String error, boolean visible){
+        errorLabelLogin.setText(error);
+        errorLabelLogin.setVisible(visible);
+
+        flashTextFieldLogin();
+
+        this.pack();
+    }
+
+    private void showErrorMsgNewPassword(String error, boolean visible){
+        errorLableNewPassword.setText(error);
+        errorLableNewPassword.setVisible(visible);
+
+        flashTextFieldNew();
+
+        this.pack();
+    }
+
+    private void flashTextFieldLogin(){
+        userNameField.setText("");
+        loginPasswordField.setText("");
+    }
+
+    private void flashTextFieldNew(){
+        oldPasswordField.setText("");
+        newPasswordField.setText("");
+        confirmNewPasswordField.setText("");
     }
 }

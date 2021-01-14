@@ -2,6 +2,7 @@ package gui;
 
 import constants.Config;
 import constants.FilePaths;
+import constants.Texts;
 import model.Worker;
 
 import javax.swing.*;
@@ -30,6 +31,8 @@ public class LoginScreenUser extends JFrame {
     private JTextField userNameField;
     private JPasswordField loginPasswordField;
     private JButton loginButton;
+    private JLabel errorLableNewPassword;
+    private JLabel errorLabelLogin;
 
     private final JMenuItem contactInfo = new JMenuItem("Contact Info");
 
@@ -56,6 +59,8 @@ public class LoginScreenUser extends JFrame {
     }
 
     private void newPassword() {
+        // Deletes Old Msg
+        showErrorMsgNewPassword("",false);
 
         String oldPassword = new String(oldPasswordField.getPassword());
         String newPassword = new String(newPasswordField.getPassword());
@@ -76,23 +81,27 @@ public class LoginScreenUser extends JFrame {
                     updateWorkerFile(worker);
                 }
                 else {
-                    // show message
-                    // MESSAGE_NEW_PASSWORD_NOT_MATCH
+
+                    showErrorMsgNewPassword(Texts.MESSAGE_NEW_PASSWORD_NOT_MATCH,true);
                 }
             else {
-                // show message
-                // MESSAGE_SAME_NEW_OLD_PASSWORD
+
+                showErrorMsgNewPassword(Texts.MESSAGE_SAME_NEW_OLD_PASSWORD,true);
             }
 
         } else {
-            // show message
-            // MESSAGE_WRONG_OLD_PASSWORD
+
+            showErrorMsgNewPassword(Texts.MESSAGE_WRONG_OLD_PASSWORD,true);
+
         }
 
         showMainScreen(worker);
     }
 
     private void login() {
+
+        // Deletes odl msg
+        showErrorMsgLogin("",false);
 
         // Check User Details
         String userName = userNameField.getText();
@@ -113,8 +122,8 @@ public class LoginScreenUser extends JFrame {
                 showMainScreen(worker);
             }
         else {
-            // show message
-            // MESSAGE_WRONG_USER_NAME_OR_PASSWORD
+
+            showErrorMsgLogin(Texts.MESSAGE_WRONG_USER_NAME_OR_PASSWORD,true);
         }
     }
 
@@ -167,5 +176,35 @@ public class LoginScreenUser extends JFrame {
 
         new MainScreenUser(worker);
     }
+
+    private void showErrorMsgLogin(String error, boolean visible){
+        errorLabelLogin.setText(error);
+        errorLabelLogin.setVisible(visible);
+
+        flashTextFieldLogin();
+
+        this.pack();
+    }
+
+    private void showErrorMsgNewPassword(String error, boolean visible){
+        errorLableNewPassword.setText(error);
+        errorLableNewPassword.setVisible(visible);
+
+        flashTextFieldNew();
+
+        this.pack();
+    }
+
+    private void flashTextFieldLogin(){
+        userNameField.setText("");
+        loginPasswordField.setText("");
+    }
+
+    private void flashTextFieldNew(){
+        oldPasswordField.setText("");
+        newPasswordField.setText("");
+        confirmNewPasswordField.setText("");
+    }
+
 }
 
