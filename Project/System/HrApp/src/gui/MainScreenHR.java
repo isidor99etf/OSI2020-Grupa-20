@@ -1,5 +1,7 @@
 package gui;
 
+import model.HumanResourceWorker;
+
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
@@ -10,7 +12,8 @@ import java.awt.event.ItemListener;
 import java.util.Arrays;
 
 public class MainScreenHR extends JFrame {
-    //Just Panels
+
+    // Just Panels
     private JPanel backPanel;
     private JPanel mainPanelCard;
     private JPanel loginPanel;
@@ -20,10 +23,12 @@ public class MainScreenHR extends JFrame {
     private JPanel buttonPanel;
     private JPanel employeeCard;
     private JButton logoutButton;
-    //For switching main Panels
+
+    // For switching main Panels
     private JButton newUserCardButton;
     private JButton employeesButton;
-    //For Adding a New User
+
+    // For Adding a New User
     private JTextField nameTextField;
     private JTextField surnameTextField;
     private JTextField dateOfBirthTextField;
@@ -34,7 +39,8 @@ public class MainScreenHR extends JFrame {
     private JPasswordField userPasswordField;
     private JButton showPasswordButton;
     private JButton addUserButton;
-    //For Showing Employees
+
+    // For Showing Employees
     private JTable employeeTable;
     private JButton detailsButton;
     private JTextField searchTextField;
@@ -46,17 +52,18 @@ public class MainScreenHR extends JFrame {
     private final String[] sortList = {"All","Sector","Work Place"};
     private final String[] subSortListSector = {"Sector1","Sector2","Sector2"};
     private final String[] subSortListWork = {"Work Place2","Work Place2","Work Place3"};
-    private  String[] tableColumns ={"Name","Surname","Sector","Work Place","Status"};
-    private  String[][] tableData = {{"NIkola","Nikolic","Sector 1","Work Place 1","At work"},
+    private final String[] tableColumns ={"Name","Surname","Sector","Work Place","Status"};
+    private final String[][] tableData = {{"NIkola","Nikolic","Sector 1","Work Place 1","At work"},
                                       {"NIkola","Nikolic","Sector 1","Work Place 1","At work"}};
     private final JMenuItem contactInfo = new JMenuItem("Contact Info");
 
-    public MainScreenHR() {
+    public MainScreenHR(HumanResourceWorker hrWorker) {
         super("HR App");
         this.setContentPane(backPanel);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
         this.setVisible(true);
+        this.setLocationRelativeTo(null);
 
         JMenu help = new JMenu("help");
         help.add(contactInfo);
@@ -64,70 +71,16 @@ public class MainScreenHR extends JFrame {
         menuBar.add(help);
         this.setJMenuBar(menuBar);
 
-        contactInfo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                contactInfoAction();
-            }
-        });
-
-        newUserCardButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                newUserCardButtonAction();
-            }
-        });
-        employeesButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                employeesButtonAction();
-            }
-        });
-
-        logoutButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                logoutButtonAction();
-            }
-        });
-
-
-        showPasswordButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                userPasswordField.setEchoChar((char) 0);
-            }
-        });
-        detailsButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                detailsButtonAction();
-            }
-        });
-        searchButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                searchButtonAction();
-            }
-        });
-        addUserButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                addUserButtonAction();
-            }
-        });
-        sortBox.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                 sortBoxAction();
-            }
-        });
-        subSortBox.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                subSortBoxAction();
-            }
-        });
+        contactInfo.addActionListener(e -> contactInfoAction());
+        newUserCardButton.addActionListener(e -> newUserCardButtonAction());
+        employeesButton.addActionListener(e -> employeesButtonAction());
+        logoutButton.addActionListener(e -> logoutButtonAction());
+        showPasswordButton.addActionListener(e -> userPasswordField.setEchoChar((char) 0));
+        detailsButton.addActionListener(e -> detailsButtonAction());
+        searchButton.addActionListener(e -> searchButtonAction());
+        addUserButton.addActionListener(e -> addUserButtonAction());
+        sortBox.addItemListener(e -> sortBoxAction());
+        subSortBox.addItemListener(e -> subSortBoxAction());
     }
 
     //For sorting and displaying users in employeeTable
@@ -177,9 +130,9 @@ public class MainScreenHR extends JFrame {
 
     }
 
-
     private void logoutButtonAction() {
-
+        this.dispose();
+        new LoginScreenHR();
     }
 
     //Showing addUserCard   on mainPanel

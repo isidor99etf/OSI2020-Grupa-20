@@ -82,9 +82,7 @@ public class MainScreenAdmin extends JFrame {
 
     }
 
-
-
-    //For Add a new HR user
+    // For Add a new HR user
     private void addUserButtonAction() {
     }
 
@@ -125,11 +123,11 @@ public class MainScreenAdmin extends JFrame {
         card.show(mainPanel,"activatePanel");
     }
 
-    private void deleteButtonAction(){
+    private void deleteButtonAction() {
 
         //Checking if Admin Wants to Delete User
         int tmp = JOptionPane.showConfirmDialog(this,"Are you sure");
-        if (tmp == JOptionPane.YES_OPTION){
+        if (tmp == JOptionPane.YES_OPTION) {
 
             //delete the user
 

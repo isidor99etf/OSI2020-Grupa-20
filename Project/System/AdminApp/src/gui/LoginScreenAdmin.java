@@ -60,19 +60,19 @@ public class LoginScreenAdmin extends JFrame {
         String newPassword = new String(newPasswordField.getPassword());
         String confirmNewPassword = new String(confirmNewPasswordField.getPassword());
 
-        Admin admin = getAdminCredentials();
+        Admin admin = getAdminData();
 
         if (admin != null && admin.getPassword().equals(oldPassword)) {
 
             if (!oldPassword.equals(newPassword))
-                if(newPassword.equals(confirmNewPassword)) {
+                if (newPassword.equals(confirmNewPassword)) {
 
                     Config config = Config.readConfigFile();
 
                     admin.setPassword(newPassword);
                     admin.setNumberOfLogins(config != null ? config.getNumberOfLogins() : 10);
 
-                    LOGGER.info(admin.getUserName() + " " + admin.getPassword() + " " + admin.getNumberOfLogins());
+                    // LOGGER.info(admin.getUserName() + " " + admin.getPassword() + " " + admin.getNumberOfLogins());
                     updateAdminFile(admin);
 
                 } else {
@@ -99,7 +99,7 @@ public class LoginScreenAdmin extends JFrame {
         String password = new String(loginPasswordField.getPassword());
 
         Admin newAdmin = new Admin(userName, password);
-        Admin admin = getAdminCredentials();
+        Admin admin = getAdminData();
 
         // First login or need new password
         if (admin != null && admin.equals(newAdmin))
@@ -119,28 +119,15 @@ public class LoginScreenAdmin extends JFrame {
         }
     }
 
-    private void contactInfoAction() {
-        JOptionPane.showMessageDialog(
-                contactInfo,
-                "Contact Info\nAdmin\nemail: admin@comName.com\nphone:0123456789");
-    }
-
-    private void showMainScreen() {
-        this.setVisible(false);
-        this.dispose();
-
-        new MainScreenAdmin();
-    }
-
-    private Admin getAdminCredentials() {
+    private Admin getAdminData() {
 
         try {
             FileInputStream stream = new FileInputStream(FilePaths.ADMIN_ACCOUNT);
-            BufferedReader inputStream = new BufferedReader(new InputStreamReader(stream));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
 
-            String line = inputStream.readLine();
+            String line = reader.readLine();
 
-            inputStream.close();
+            reader.close();
 
             if (line != null) {
 
@@ -174,5 +161,18 @@ public class LoginScreenAdmin extends JFrame {
         } catch (Exception exception) {
             LOGGER.warning(exception.fillInStackTrace().toString());
         }
+    }
+
+    private void contactInfoAction() {
+        JOptionPane.showMessageDialog(
+                contactInfo,
+                "Contact Info\nAdmin\nemail: admin@comName.com\nphone:0123456789");
+    }
+
+    private void showMainScreen() {
+        this.setVisible(false);
+        this.dispose();
+
+        new MainScreenAdmin();
     }
 }
