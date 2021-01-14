@@ -1,5 +1,7 @@
 package gui;
 
+import model.Worker;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,7 +9,8 @@ import java.awt.event.ActionListener;
 import java.util.Arrays;
 
 public class MainScreenUser extends JFrame {
-    //Just PAnels
+
+    // Just Panels
     private JPanel backPanel;
     private JPanel mainPanel;
     private JPanel mainPanelCard;
@@ -18,12 +21,14 @@ public class MainScreenUser extends JFrame {
     private JPanel loginPanel;
     private JPanel workTimePanel;
     private JPanel homePanel;
-    //For Work Time stuff
+
+    // For Work Time stuff
     private JComboBox sortWorkTimeBox;
     private JList workTimeList;
     private JButton reportButton;
     private JButton workTimeButton;
-    //Need to set be For Personal info
+
+    // Need to set be For Personal info
     private JLabel userNameLabel;
     private JLabel sectorLabel;
     private JLabel workPlaceLabel;
@@ -32,28 +37,25 @@ public class MainScreenUser extends JFrame {
     private JLabel surnameLabel;
     private JLabel nameLabel;
     private JButton personalInfoButton;
-    //Need to be set for Company Info
+
+    // Need to be set for Company Info
     private JLabel companyNameLabel;
     private JLabel companyAddressLabel;
     private JLabel companyPhoneLabel;
     private JLabel companyEmailLabel;
     private JButton companyInfoButton;
-    //
     private JButton logoutButton;
 
-
-    private String[] sortList = {"Day","Monthly"};
+    private final String[] sortList = {"Day","Monthly"};
     private final JMenuItem contactInfo = new JMenuItem("Contact Info");
 
-
-
-    public MainScreenUser() {
+    public MainScreenUser(Worker worker) {
         super("User App");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(backPanel);
         this.pack();
         this.setVisible(true);
-
+        this.setLocationRelativeTo(null);
 
         //Add Menu Bar
         JMenu help = new JMenu("help");
@@ -62,48 +64,16 @@ public class MainScreenUser extends JFrame {
         menuBar.add(help);
         this.setJMenuBar(menuBar);
 
-        contactInfo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                contactInfoAction();
-            }
-        });
-
-        personalInfoButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                personalInfoButtonAction();
-            }
-        });
-        workTimeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                workTimeButtonAction();
-            }
-        });
-        companyInfoButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                companyInfoButtonAction();
-            }
-        });
-        logoutButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                logoutButtonAction();
-            }
-        });
-        reportButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                reportButtonAction();
-            }
-        });
+        contactInfo.addActionListener(e -> contactInfoAction());
+        personalInfoButton.addActionListener(e -> personalInfoButtonAction());
+        workTimeButton.addActionListener(e -> workTimeButtonAction());
+        companyInfoButton.addActionListener(e -> companyInfoButtonAction());
+        logoutButton.addActionListener(e -> logoutButtonAction());
+        reportButton.addActionListener(e -> reportButtonAction());
 
     }
 
-    //Show and sets Personal Info
+    // Show and sets Personal Info
     private void personalInfoButtonAction() {
         //Setting the Labels
 
@@ -127,8 +97,11 @@ public class MainScreenUser extends JFrame {
         card.show(mainPanel,"companyInfoPanel");
     }
 
+    // go back to login
     private void logoutButtonAction() {
+        this.dispose();
 
+        new LoginScreenUser();
     }
 
     //Prints a report

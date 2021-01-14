@@ -7,7 +7,5 @@ public class Main {
 
     public static void main(String[] args) {
         new LoginScreenHR();
-
-        System.out.println("Hello, HrApp!");
     }
 }
