@@ -125,8 +125,8 @@ public class MainScreenHR extends JFrame {
 
     //For Show User Details selected in employeeTable
     private void detailsButtonAction() {
-        //Needs some details to work
-         new UserDetails();
+        //Needs a Worker Odj to work
+        // new UserDetails( worker );
 
     }
 

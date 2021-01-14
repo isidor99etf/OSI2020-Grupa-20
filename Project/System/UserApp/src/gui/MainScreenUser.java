@@ -36,6 +36,8 @@ public class MainScreenUser extends JFrame {
     private JLabel dateOfBirthLabel;
     private JLabel surnameLabel;
     private JLabel nameLabel;
+    private JLabel phoneLabel;
+    private JLabel emailLabel;
     private JButton personalInfoButton;
 
     // Need to be set for Company Info
@@ -46,8 +48,11 @@ public class MainScreenUser extends JFrame {
     private JButton companyInfoButton;
     private JButton logoutButton;
 
+
     private final String[] sortList = {"Day","Monthly"};
     private final JMenuItem contactInfo = new JMenuItem("Contact Info");
+
+    private Worker worker;
 
     public MainScreenUser(Worker worker) {
         super("User App");
@@ -56,6 +61,8 @@ public class MainScreenUser extends JFrame {
         this.pack();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+
+        this.worker = worker;
 
         //Add Menu Bar
         JMenu help = new JMenu("help");
@@ -76,10 +83,20 @@ public class MainScreenUser extends JFrame {
     // Show and sets Personal Info
     private void personalInfoButtonAction() {
         //Setting the Labels
-
+        nameLabel.setText( worker.getFirstName() );
+        surnameLabel.setText( worker.getSurname() );
+        dateOfBirthLabel.setText( worker.getAddress() );
+        addressLabel.setText( worker.getAddress() );
+        phoneLabel.setText( worker.getPhone() );
+        emailLabel.setText( worker.getEmail() );
+        workPlaceLabel.setText( worker.getWorkPlace() );
+        sectorLabel.setText( worker.getSector() );
+        userNameLabel.setText( worker.getUserName() );
 
         CardLayout card = (CardLayout)(mainPanel.getLayout());
         card.show(mainPanel,"personalInfoPanel");
+
+        this.pack();
     }
 
     //Show Work Time PAnel

@@ -53,6 +53,12 @@ public abstract class Employee {
 
     public String getName() { return name + " " + surname; }
 
+    public String getFirstName() { return  name;}
+
+    public String getSurname() { return  surname; }
+
+    public String getPhone() { return phone; }
+
     public String getUserName() { return userName; }
 
     public String getPassword() { return password; }
@@ -60,6 +66,8 @@ public abstract class Employee {
     public String getDateOfBirth() { return dateOfBirth; }
 
     public String getAddress() { return address; }
+
+    public String getEmail() { return email; }
 
     public String getWorkPlace() { return workPlace; }
 
