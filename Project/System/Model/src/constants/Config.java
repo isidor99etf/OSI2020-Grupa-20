@@ -1,8 +1,6 @@
 package constants;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.logging.Logger;
 
 public class Config {
@@ -22,15 +20,20 @@ public class Config {
      */
 
     private final int licence;
-    private final int numberOfHrAccounts;
-    private final int numberOfWorkerAccounts;
+    private int numberOfHrAccounts;
+    private int numberOfWorkerAccounts;
     private final int numberOfLogins;
 
-    private Config(int licence, int numberOfHrAccounts, int numberOfWorkerAccounts, int numberOfLogins) {
+    private boolean haveLicence; //Signalizira da li ima licencu
+    private String licencesKey; //Kljuc za licencu
+
+    private Config(int licence, int numberOfHrAccounts, int numberOfWorkerAccounts, int numberOfLogins, boolean haveLicence,String licencesKey) {
         this.licence = licence;
         this.numberOfHrAccounts = numberOfHrAccounts;
         this.numberOfWorkerAccounts = numberOfWorkerAccounts;
         this.numberOfLogins = numberOfLogins;
+        this.haveLicence = haveLicence;
+        this.licencesKey = licencesKey;
     }
 
     public int getLicence() { return licence; }
@@ -40,6 +43,30 @@ public class Config {
     public int getNumberOfWorkerAccounts() { return numberOfWorkerAccounts; }
 
     public int getNumberOfLogins() { return numberOfLogins; }
+
+    public boolean isHaveLicence() {
+        return haveLicence;
+    }
+
+    public void setHaveLicence(boolean haveLicence) {
+        this.haveLicence = haveLicence;
+    }
+
+    public String getLicencesKey() {
+        return licencesKey;
+    }
+
+    public void setLicencesKey(String licencesKey) {
+        this.licencesKey = licencesKey;
+    }
+
+    public void setNumberOfHrAccounts(int numberOfHrAccounts) {
+        this.numberOfHrAccounts = numberOfHrAccounts;
+    }
+
+    public void setNumberOfWorkerAccounts(int numberOfWorkerAccounts) {
+        this.numberOfWorkerAccounts = numberOfWorkerAccounts;
+    }
 
     public static Config readConfigFile() {
 
@@ -58,7 +85,9 @@ public class Config {
                         Integer.parseInt(data[0]),
                         Integer.parseInt(data[1]),
                         Integer.parseInt(data[2]),
-                        Integer.parseInt(data[3])
+                        Integer.parseInt(data[3]),
+                        Boolean.parseBoolean(data[4]),
+                        data[5]
                 );
             }
         } catch (Exception exception) {
@@ -66,5 +95,25 @@ public class Config {
         }
 
         return null;
+    }
+    public static void rewriteConfigFile(Config config)
+    {
+        try
+        {
+            FileOutputStream stream = new FileOutputStream(FilePaths.CONFIG_FILE);
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stream));
+            writer.write(config.toString());
+            writer.close();
+        }
+        catch (Exception exception)
+        {
+            LOGGER.warning(exception.fillInStackTrace().toString());
+        }
+    }
+    @Override
+    public String toString()
+    {
+        return licence + "," + numberOfWorkerAccounts+","+numberOfHrAccounts+","+numberOfLogins+","+haveLicence+","+licencesKey;
+
     }
 }

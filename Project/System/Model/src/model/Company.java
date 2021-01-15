@@ -14,6 +14,10 @@ public class Company {
     private ArrayList<String> emails;
     private ArrayList<Employee> employees;
 
+    //private boolean haveLicence; //Signalizira da li kompanija vec ima licencu
+
+
+
     public String getName() { return name; }
 
     public String getAddress() { return address; }
@@ -43,4 +47,6 @@ public class Company {
     public void addEmail(String email) { this.emails.add(email); }
 
     public void addEmployee(Employee employee) { this.employees.add(employee); }
+
+
 }

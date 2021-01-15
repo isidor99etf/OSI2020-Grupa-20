@@ -1,8 +1,10 @@
 package gui;
 
 import admin_app.Main;
+import constants.Config;
 import constants.FilePaths;
 import model.Date;
+import model.HumanResourceWorker;
 import model.Time;
 import model.Worker;
 
@@ -104,6 +106,21 @@ public class MainScreenAdmin extends JFrame {
 
     //For checking the Licence KEy
     private void okLicenceButtonAction() {
+
+        Config config = Config.readConfigFile();
+        String key = keyTextField.getText();
+
+        if(key.equals(config.getLicencesKey()) && !config.isHaveLicence())
+        {
+            config.setHaveLicence(true);
+            config.setNumberOfWorkerAccounts(10);
+            config.setNumberOfHrAccounts(5);
+            keyTextField.setVisible(false);
+            okLicenceButton.setVisible(false);
+            //Nakon ovoga treba ubaciti obavjestenje da je kupljena licenca
+            //Treba dodati JLabel da napise da je kompanija vec kupila licencu tj uspjesno kupila licencu
+            Config.rewriteConfigFile(config);
+        }
     }
 
     // For log out
@@ -142,7 +159,9 @@ public class MainScreenAdmin extends JFrame {
 
             String username = searchTextField.getText();
             String path = FilePaths.WORKER_ACCOUNTS+username;
+            String hrPath = FilePaths.HR_ACCOUNTS+username;
             Worker worker = null;
+            HumanResourceWorker humanResourceWorker = null;
 
             try {
                 FileInputStream stream = new FileInputStream(path);
@@ -174,6 +193,7 @@ public class MainScreenAdmin extends JFrame {
                 LOGGER.warning(exception.fillInStackTrace().toString());
             }
 
+
             try{
                 FileOutputStream stream = new FileOutputStream(path);
                 BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stream));
@@ -188,7 +208,52 @@ public class MainScreenAdmin extends JFrame {
             }
 
 
+            //Za HR naloge
 
+            try {
+                FileInputStream stream = new FileInputStream(hrPath);
+                BufferedReader inputStream = new BufferedReader(new InputStreamReader(stream));
+
+                String line = null, tempLine;
+
+                while ((tempLine = inputStream.readLine()) != null)
+                    line = tempLine;
+
+                inputStream.close();
+
+                String datas[] = line.split(",");
+
+                humanResourceWorker=new HumanResourceWorker(datas);
+
+                boolean active = humanResourceWorker.isActive();
+
+                if(active)
+                {
+                    active = false;
+                    humanResourceWorker.setActive(false); //Radnik vise nije aktivan, deaktiviran mu je korisnicki nalog
+                }
+
+
+
+
+            } catch (Exception exception) {
+                LOGGER.warning(exception.fillInStackTrace().toString());
+            }
+
+            try{
+                FileOutputStream stream = new FileOutputStream(hrPath);
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stream));
+
+                writer.write(humanResourceWorker.toString()); //Nakon deaktiviranja vrsimo ponovni upis u fajl
+                writer.close();
+
+            }
+            catch (Exception exception)
+            {
+                LOGGER.warning(exception.fillInStackTrace().toString());
+            }
+
+            searchTextField.setText("");
             //delete the user
 
         }
@@ -200,7 +265,9 @@ public class MainScreenAdmin extends JFrame {
 
         String username = searchTextField.getText();
         String path = FilePaths.WORKER_ACCOUNTS+username;
+        String hrPath = FilePaths.HR_ACCOUNTS + username;
         Worker worker = null;
+        HumanResourceWorker humanResourceWorker = null;
         try {
             FileInputStream stream = new FileInputStream(path);
             BufferedReader inputStream = new BufferedReader(new InputStreamReader(stream));
@@ -215,6 +282,29 @@ public class MainScreenAdmin extends JFrame {
             String datas[] = line.split(",");
 
             worker=new Worker(datas);
+
+            if(worker!=null)
+            {
+                //userTable.add(); //Dodavanje korisnika u tabelu za prikaz
+            }
+
+        } catch (Exception exception) {
+            LOGGER.warning(exception.fillInStackTrace().toString());
+        }
+        try {
+            FileInputStream stream = new FileInputStream(hrPath);
+            BufferedReader inputStream = new BufferedReader(new InputStreamReader(stream));
+
+            String line = null, tempLine;
+
+            while ((tempLine = inputStream.readLine()) != null)
+                line = tempLine;
+
+            inputStream.close();
+
+            String datas[] = line.split(",");
+
+            humanResourceWorker=new HumanResourceWorker(datas);
 
             if(worker!=null)
             {
