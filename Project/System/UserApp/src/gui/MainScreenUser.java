@@ -99,7 +99,7 @@ public class MainScreenUser extends JFrame {
         this.pack();
     }
 
-    //Show Work Time PAnel
+    //Show Work Time Panel
     private void workTimeButtonAction() {
 
         CardLayout card = (CardLayout)(mainPanel.getLayout());
@@ -111,14 +111,16 @@ public class MainScreenUser extends JFrame {
         //Setting the Labels
 
 
+
+
         CardLayout card = (CardLayout)(mainPanel.getLayout());
         card.show(mainPanel,"companyInfoPanel");
     }
 
     // go back to login
     private void logoutButtonAction() {
-        this.dispose();
 
+        this.dispose();
         new LoginScreenUser();
     }
 

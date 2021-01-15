@@ -113,8 +113,10 @@ public class MainScreenHR extends JFrame {
         }
     }
 
-    //For Add a NEw user
+    //For Add a New user
     private void addUserButtonAction() {
+
+
     }
 
     //For searching Users and showing them in   employeeTable
@@ -140,6 +142,8 @@ public class MainScreenHR extends JFrame {
 
         CardLayout card = (CardLayout) (mainPanel.getLayout());
         card.show(mainPanel, "addUserCard");
+
+
     }
 
     //Showing employeeCard   on mainPanel

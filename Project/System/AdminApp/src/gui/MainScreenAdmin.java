@@ -1,11 +1,19 @@
 package gui;
 
+import admin_app.Main;
+import constants.FilePaths;
+import model.Date;
+import model.Time;
+import model.Worker;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 import java.util.Arrays;
+import java.util.logging.Logger;
 
 public class MainScreenAdmin extends JFrame {
 
@@ -52,6 +60,8 @@ public class MainScreenAdmin extends JFrame {
 
     private final JMenuItem contactInfo = new JMenuItem("Contact Info");
 
+    private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
+
     public MainScreenAdmin() {
         super("Admin App");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -84,6 +94,7 @@ public class MainScreenAdmin extends JFrame {
 
     // For Add a new HR user
     private void addUserButtonAction() {
+
     }
 
     //Shows user password in String form not in *
@@ -128,6 +139,55 @@ public class MainScreenAdmin extends JFrame {
         //Checking if Admin Wants to Delete User
         int tmp = JOptionPane.showConfirmDialog(this,"Are you sure");
         if (tmp == JOptionPane.YES_OPTION) {
+
+            String username = searchTextField.getText();
+            String path = FilePaths.WORKER_ACCOUNTS+username;
+            Worker worker = null;
+
+            try {
+                FileInputStream stream = new FileInputStream(path);
+                BufferedReader inputStream = new BufferedReader(new InputStreamReader(stream));
+
+                String line = null, tempLine;
+
+                while ((tempLine = inputStream.readLine()) != null)
+                    line = tempLine;
+
+                inputStream.close();
+
+                String datas[] = line.split(",");
+
+                worker=new Worker(datas);
+
+                boolean active = worker.isActive();
+
+                if(active)
+                {
+                    active = false;
+                    worker.setActive(false); //Radnik vise nije aktivan, deaktiviran mu je korisnicki nalog
+                }
+
+
+
+
+            } catch (Exception exception) {
+                LOGGER.warning(exception.fillInStackTrace().toString());
+            }
+
+            try{
+                FileOutputStream stream = new FileOutputStream(path);
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stream));
+
+                writer.write(worker.toString()); //Nakon deaktiviranja vrsimo ponovni upis u fajl
+                writer.close();
+
+            }
+            catch (Exception exception)
+            {
+                LOGGER.warning(exception.fillInStackTrace().toString());
+            }
+
+
 
             //delete the user
 
