@@ -198,6 +198,35 @@ public class MainScreenAdmin extends JFrame {
     //searches for  user and show it in  userTable
     private void searchButtonAction(){
 
+        String username = searchTextField.getText();
+        String path = FilePaths.WORKER_ACCOUNTS+username;
+        Worker worker = null;
+        try {
+            FileInputStream stream = new FileInputStream(path);
+            BufferedReader inputStream = new BufferedReader(new InputStreamReader(stream));
+
+            String line = null, tempLine;
+
+            while ((tempLine = inputStream.readLine()) != null)
+                line = tempLine;
+
+            inputStream.close();
+
+            String datas[] = line.split(",");
+
+            worker=new Worker(datas);
+
+            if(worker!=null)
+            {
+                //userTable.add(); //Dodavanje korisnika u tabelu za prikaz
+            }
+
+        } catch (Exception exception) {
+            LOGGER.warning(exception.fillInStackTrace().toString());
+        }
+
+
+
     }
     private void contactInfoAction() {
         JOptionPane.showMessageDialog(contactInfo,"Contact Info\n"+
