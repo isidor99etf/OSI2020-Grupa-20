@@ -1,14 +1,12 @@
 package gui;
 
-import constants.Config;
 import constants.FilePaths;
+import model.Admin;
 import model.Worker;
 import user_app.Main;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
@@ -61,7 +59,7 @@ public class MainScreenUser extends JFrame {
     private final JMenuItem contactInfo = new JMenuItem("Contact Info");
     private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
 
-    private Worker worker;
+    private final Worker worker;
 
     public MainScreenUser(Worker worker) {
         super("User App");
@@ -91,7 +89,8 @@ public class MainScreenUser extends JFrame {
 
     // Show and sets Personal Info
     private void personalInfoButtonAction() {
-        //Setting the Labels
+
+        // Setting the Labels
         nameLabel.setText( worker.getFirstName() );
         surnameLabel.setText( worker.getSurname() );
         dateOfBirthLabel.setText( worker.getDateOfBirth() );
@@ -115,56 +114,48 @@ public class MainScreenUser extends JFrame {
         card.show(mainPanel,"workTimePanel");
     }
 
-    //Show and sets Company Info
+    // Show and sets Company Info
     private void companyInfoButtonAction() {
-        //Setting the Labels
+        // Setting the Labels
 
-            String text;
-            String content[];
-            String companyName = null;
-            String companyAdress = null;
-            String companyCity = null;
-            String companyCountry = null;
-            int numberOfEmails;
-            int numberOfPhones;
-            ArrayList<String> phones = new ArrayList<>();
-            ArrayList<String> emails = new ArrayList<>();
+        String text;
+        String[] content;
+        String companyName = null;
+        String companyAdress = null;
+        String companyCity = null;
+        String companyCountry = null;
+        int numberOfEmails;
+        int numberOfPhones;
+        ArrayList<String> phones = new ArrayList<>();
+        ArrayList<String> emails = new ArrayList<>();
 
-            try
-            {
-                FileInputStream fis = new FileInputStream(FilePaths.COMPANY_INFO_FILE);
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fis));
-                text = bufferedReader.readLine();
-                content = text.split(",");
-                companyName = content[0];
-                companyAdress = content[1];
-                companyCity = content[2];
-                companyCountry = content[3];
-                numberOfPhones = Integer.parseInt(content[4]);
-                for(int i = 0 ; i < numberOfPhones;i++)
-                {
-                    phones.add(content[5+i]);
-                }
-                numberOfEmails = Integer.parseInt(content[5+numberOfPhones]);
-                for(int j = 0 ; j< numberOfEmails;j++)
-                {
-                    emails.add(content[(6+numberOfPhones)+j]);
-                }
+        try {
+            FileInputStream fis = new FileInputStream(FilePaths.COMPANY_INFO_FILE);
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fis));
+            text = bufferedReader.readLine();
+            content = text.split(",");
+            companyName = content[0];
+            companyAdress = content[1];
+            companyCity = content[2];
+            companyCountry = content[3];
+
+            numberOfPhones = Integer.parseInt(content[4]);
+            phones.addAll(Arrays.asList(content).subList(5, numberOfPhones + 5));
+
+            numberOfEmails = Integer.parseInt(content[5 + numberOfPhones]);
+            emails.addAll(Arrays.asList(content).subList(6 + numberOfPhones, numberOfEmails + 6 + numberOfPhones));
 
 
-                bufferedReader.close();
+            bufferedReader.close();
 
-            }
-            catch (Exception exception)
-            {
-                LOGGER.warning(exception.fillInStackTrace().toString());
-            }
+        } catch (Exception exception) {
+            LOGGER.warning(exception.fillInStackTrace().toString());
+        }
 
-            companyNameLabel.setText(companyName);
-            companyAddressLabel.setText(companyAdress);
-            companyPhoneLabel.setText(phones.toString());
-            companyEmailLabel.setText(emails.toString());
-
+        companyNameLabel.setText(companyName);
+        companyAddressLabel.setText(companyAdress);
+        companyPhoneLabel.setText(phones.toString());
+        companyEmailLabel.setText(emails.toString());
 
         CardLayout card = (CardLayout)(mainPanel.getLayout());
         card.show(mainPanel,"companyInfoPanel");
@@ -181,12 +172,17 @@ public class MainScreenUser extends JFrame {
     private void reportButtonAction() {
     }
 
-    //Show Contact Info
+    // Show Contact Info
     private void contactInfoAction() {
-        JOptionPane.showMessageDialog(contactInfo,"Contact Info\n"+
-                "Admin:\n email: admin@comName.com \n phone:0123456789");
+        Admin admin = Admin.getDataFromFile();
+        String contactInfoMessage = "";
+        if (admin != null)
+            contactInfoMessage =
+                    String.format("Contact Info:\nAdmin email: %s\nAdmin phone: %s", admin.getEmail(), admin.getPhone());
 
+        JOptionPane.showMessageDialog(contactInfo,contactInfoMessage);
     }
+
     private void createUIComponents() {
         // TODO: place custom component creation code here
         sortWorkTimeBox = new JComboBox(sortList);

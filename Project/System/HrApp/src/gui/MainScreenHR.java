@@ -1,15 +1,10 @@
 package gui;
 
+import model.Admin;
 import model.HumanResourceWorker;
 
 import javax.swing.*;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.util.Arrays;
 
 public class MainScreenHR extends JFrame {
 
@@ -160,11 +155,15 @@ public class MainScreenHR extends JFrame {
         card.show(mainPanel, "employeeCard");
     }
 
-    //Showing Contact Info
+    // Showing Contact Info
     private void contactInfoAction() {
-        JOptionPane.showMessageDialog(contactInfo, "Contact Info\n" +
-                "Admin:\n email: admin@comName.com \n phone:0123456789");
+        Admin admin = Admin.getDataFromFile();
+        String contactInfoMessage = "";
+        if (admin != null)
+            contactInfoMessage =
+                    String.format("Contact Info:\nAdmin email: %s\nAdmin phone: %s", admin.getEmail(), admin.getPhone());
 
+        JOptionPane.showMessageDialog(contactInfo,contactInfoMessage);
     }
 
     private void createUIComponents() {
