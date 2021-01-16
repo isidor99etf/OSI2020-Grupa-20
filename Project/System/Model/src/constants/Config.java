@@ -23,7 +23,6 @@ public class Config {
     private int numberOfHrAccounts;
     private int numberOfWorkerAccounts;
     private final int numberOfLogins;
-
     private boolean haveLicence; //Signalizira da li ima licencu
     private String licencesKey; //Kljuc za licencu
 
@@ -96,24 +95,22 @@ public class Config {
 
         return null;
     }
-    public static void rewriteConfigFile(Config config)
-    {
-        try
-        {
+
+    public static void writeConfigFile(Config config) {
+        try {
             FileOutputStream stream = new FileOutputStream(FilePaths.CONFIG_FILE);
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stream));
             writer.write(config.toString());
             writer.close();
-        }
-        catch (Exception exception)
-        {
+        } catch (Exception exception) {
             LOGGER.warning(exception.fillInStackTrace().toString());
         }
     }
+
     @Override
-    public String toString()
-    {
-        return licence + "," + numberOfWorkerAccounts+","+numberOfHrAccounts+","+numberOfLogins+","+haveLicence+","+licencesKey;
+    public String toString() {
+        return licence + "," + numberOfWorkerAccounts + "," + numberOfHrAccounts + ","
+                + numberOfLogins + "," + haveLicence + "," + licencesKey;
 
     }
 }

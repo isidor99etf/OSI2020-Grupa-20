@@ -58,7 +58,7 @@ public class LoginScreenHR extends JFrame {
     }
 
     private void newPassword() {
-        //deletes ols msg
+
         showErrorMsgNewPassword("",false);
 
         String oldPassword = new String(oldPasswordField.getPassword());
@@ -67,8 +67,7 @@ public class LoginScreenHR extends JFrame {
 
         HumanResourceWorker hrWorker = getHrData(userNameField.getText());
 
-        if (hrWorker != null && hrWorker.getPassword().equals(oldPassword)) {
-
+        if (hrWorker != null && hrWorker.getPassword().equals(oldPassword))
             if (!oldPassword.equals(newPassword))
                 if (newPassword.equals(confirmNewPassword)) {
 
@@ -78,22 +77,15 @@ public class LoginScreenHR extends JFrame {
                     hrWorker.setNumberOfLogins(config != null ? config.getNumberOfLogins() : 10);
 
                     updateHrWorkerFile(hrWorker);
-                }
-                else {
 
+                    showMainScreen(hrWorker);
+                }
+                else
                     showErrorMsgNewPassword(Texts.MESSAGE_NEW_PASSWORD_NOT_MATCH,true);
-                }
-            else {
-
+            else
                 showErrorMsgNewPassword(Texts.MESSAGE_SAME_NEW_OLD_PASSWORD,true);
-            }
-        }
-        else {
-
+        else
             showErrorMsgNewPassword(Texts.MESSAGE_WRONG_OLD_PASSWORD,true);
-        }
-
-        showMainScreen(hrWorker);
     }
 
     private void login() {
@@ -177,35 +169,35 @@ public class LoginScreenHR extends JFrame {
         new MainScreenHR(hrWorker);
     }
 
-    private void showErrorMsgLogin(String error, boolean visible){
+    private void showErrorMsgLogin(String error, boolean visible) {
         errorLabelLogin.setText(error);
         errorLabelLogin.setVisible(visible);
 
-        flashTextFieldLogin();
+        // flashTextFieldLogin();
 
         this.pack();
     }
 
-    private void showErrorMsgNewPassword(String error, boolean visible){
+    private void showErrorMsgNewPassword(String error, boolean visible) {
         errorLableNewPassword.setText(error);
         errorLableNewPassword.setVisible(visible);
 
-        flashTextFieldNew();
+        // flashTextFieldNew();
 
         this.pack();
     }
 
-    private void flashTextFieldLogin(){
+    /*private void flashTextFieldLogin() {
         userNameField.setText("");
         loginPasswordField.setText("");
 
     }
 
-    private void flashTextFieldNew(){
+    private void flashTextFieldNew() {
         oldPasswordField.setText("");
         newPasswordField.setText("");
         confirmNewPasswordField.setText("");
 
-    }
+    }*/
 }
 

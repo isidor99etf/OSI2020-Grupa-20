@@ -7,8 +7,6 @@ import model.Worker;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.logging.Logger;
 
@@ -31,7 +29,7 @@ public class LoginScreenUser extends JFrame {
     private JTextField userNameField;
     private JPasswordField loginPasswordField;
     private JButton loginButton;
-    private JLabel errorLableNewPassword;
+    private JLabel errorLabelNewPassword;
     private JLabel errorLabelLogin;
 
     private final JMenuItem contactInfo = new JMenuItem("Contact Info");
@@ -59,8 +57,6 @@ public class LoginScreenUser extends JFrame {
     }
 
     private void newPassword() {
-        // Deletes Old Msg
-        showErrorMsgNewPassword("",false);
 
         String oldPassword = new String(oldPasswordField.getPassword());
         String newPassword = new String(newPasswordField.getPassword());
@@ -68,8 +64,10 @@ public class LoginScreenUser extends JFrame {
 
         Worker worker = getWorkerData(userNameField.getText());
 
-        if (worker != null && worker.getPassword().equals(oldPassword)) {
+        // Deletes Old Msg
+        showErrorMsgNewPassword("",false);
 
+        if (worker != null && worker.getPassword().equals(oldPassword))
             if (!oldPassword.equals(newPassword))
                 if (newPassword.equals(confirmNewPassword)) {
 
@@ -79,35 +77,27 @@ public class LoginScreenUser extends JFrame {
                     worker.setNumberOfLogins(config != null ? config.getNumberOfLogins() : 10);
 
                     updateWorkerFile(worker);
-                }
-                else {
 
+                    showMainScreen(worker);
+                }
+                else
                     showErrorMsgNewPassword(Texts.MESSAGE_NEW_PASSWORD_NOT_MATCH,true);
-                }
-            else {
-
+            else
                 showErrorMsgNewPassword(Texts.MESSAGE_SAME_NEW_OLD_PASSWORD,true);
-            }
-
-        } else {
-
+        else
             showErrorMsgNewPassword(Texts.MESSAGE_WRONG_OLD_PASSWORD,true);
-
-        }
-
-        showMainScreen(worker);
     }
 
     private void login() {
 
-        // Deletes odl msg
-        showErrorMsgLogin("",false);
-
         // Check User Details
-        String userName = userNameField.getText();
+        String userName = userNameField.getText().trim();
         String password = new String(loginPasswordField.getPassword());
 
         Worker worker = getWorkerData(userName);
+
+        // Deletes odl msg
+        showErrorMsgLogin("",false);
 
         // First login or need new password
         if (worker != null && worker.getPassword().equals(password))
@@ -135,6 +125,7 @@ public class LoginScreenUser extends JFrame {
 
             String line = reader.readLine();
 
+            stream.close();
             reader.close();
 
             if (line != null) {
@@ -159,6 +150,8 @@ public class LoginScreenUser extends JFrame {
             writer.flush();
             writer.close();
 
+            fileWriter.close();
+
         } catch (Exception exception) {
             LOGGER.warning(exception.fillInStackTrace().toString());
         }
@@ -177,30 +170,30 @@ public class LoginScreenUser extends JFrame {
         new MainScreenUser(worker);
     }
 
-    private void showErrorMsgLogin(String error, boolean visible){
+    private void showErrorMsgLogin(String error, boolean visible) {
         errorLabelLogin.setText(error);
         errorLabelLogin.setVisible(visible);
 
-        flashTextFieldLogin();
+        // flashTextFieldLogin();
 
         this.pack();
     }
 
     private void showErrorMsgNewPassword(String error, boolean visible){
-        errorLableNewPassword.setText(error);
-        errorLableNewPassword.setVisible(visible);
+        errorLabelNewPassword.setText(error);
+        errorLabelNewPassword.setVisible(visible);
 
-        flashTextFieldNew();
+        // flashTextFieldNew();
 
         this.pack();
     }
 
-    private void flashTextFieldLogin(){
+    private void flashTextFieldLogin() {
         userNameField.setText("");
         loginPasswordField.setText("");
     }
 
-    private void flashTextFieldNew(){
+    private void flashTextFieldNew() {
         oldPasswordField.setText("");
         newPasswordField.setText("");
         confirmNewPasswordField.setText("");

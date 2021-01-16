@@ -4,18 +4,19 @@ import java.util.ArrayList;
 
 public class Company {
 
-    public Company() { }
-
     private String name;
     private String address;
     private String city;
     private String country;
     private ArrayList<String> phones;
     private ArrayList<String> emails;
-    private ArrayList<Employee> employees;
+    private ArrayList<Employee> employees; // maybe
 
-    //private boolean haveLicence; //Signalizira da li kompanija vec ima licencu
+    //private boolean haveLicence; //Signalizira da li kompanija vec ima licencu, Config fajl
 
+    // Prointer d.o.o,Mile Dodika 55A,Banja Luka,Republika Srpska,3,066/546-546,065/432-314,066/543-897,2,mile@gmail.com,milinsin@gmail.com
+
+    public Company() { }
 
 
     public String getName() { return name; }

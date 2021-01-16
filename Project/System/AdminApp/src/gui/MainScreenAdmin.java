@@ -3,18 +3,12 @@ package gui;
 import admin_app.Main;
 import constants.Config;
 import constants.FilePaths;
-import model.Date;
 import model.HumanResourceWorker;
-import model.Time;
 import model.Worker;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.*;
-import java.util.Arrays;
 import java.util.logging.Logger;
 
 public class MainScreenAdmin extends JFrame {
@@ -119,7 +113,7 @@ public class MainScreenAdmin extends JFrame {
             okLicenceButton.setVisible(false);
             //Nakon ovoga treba ubaciti obavjestenje da je kupljena licenca
             //Treba dodati JLabel da napise da je kompanija vec kupila licencu tj uspjesno kupila licencu
-            Config.rewriteConfigFile(config);
+            Config.writeConfigFile(config);
         }
     }
 

@@ -67,8 +67,7 @@ public class LoginScreenAdmin extends JFrame {
 
         Admin admin = getAdminData();
 
-        if (admin != null && admin.getPassword().equals(oldPassword)) {
-
+        if (admin != null && admin.getPassword().equals(oldPassword))
             if (!oldPassword.equals(newPassword))
                 if (newPassword.equals(confirmNewPassword)) {
 
@@ -77,24 +76,16 @@ public class LoginScreenAdmin extends JFrame {
                     admin.setPassword(newPassword);
                     admin.setNumberOfLogins(config != null ? config.getNumberOfLogins() : 10);
 
-                    // LOGGER.info(admin.getUserName() + " " + admin.getPassword() + " " + admin.getNumberOfLogins());
                     updateAdminFile(admin);
 
-                } else {
+                    showMainScreen();
 
-                    showErrorMsgNewPassword(Texts.MESSAGE_NEW_PASSWORD_NOT_MATCH,true);
-                }
-            else {
-
-                showErrorMsgNewPassword(Texts.MESSAGE_SAME_NEW_OLD_PASSWORD,true);
-            }
-
-        } else {
-
+                } else
+                    showErrorMsgNewPassword(Texts.MESSAGE_NEW_PASSWORD_NOT_MATCH, true);
+            else
+                showErrorMsgNewPassword(Texts.MESSAGE_SAME_NEW_OLD_PASSWORD, true);
+        else
             showErrorMsgNewPassword(Texts.MESSAGE_WRONG_OLD_PASSWORD,true);
-        }
-
-        showMainScreen();
     }
 
     private void login() {
