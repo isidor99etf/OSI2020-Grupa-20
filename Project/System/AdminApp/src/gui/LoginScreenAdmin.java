@@ -89,7 +89,7 @@ public class LoginScreenAdmin extends JFrame {
     }
 
     private void login() {
-        //dledtes old msg
+        //deletes old msg
         showErrorMsgLogin("",false);
 
         // Check User Details
@@ -178,8 +178,9 @@ public class LoginScreenAdmin extends JFrame {
         errorLabelLogin.setText(error);
         errorLabelLogin.setVisible(visible);
 
-        flashTextFieldLogin();
-
+        if (visible) {
+            flashTextFieldLogin();
+        }
         this.pack();
     }
 
@@ -187,8 +188,9 @@ public class LoginScreenAdmin extends JFrame {
         errorLableNewPassword.setText(error);
         errorLableNewPassword.setVisible(visible);
 
-        flashTextFieldNew();
-
+        if(visible) {
+            flashTextFieldNew();
+        }
         this.pack();
     }
 

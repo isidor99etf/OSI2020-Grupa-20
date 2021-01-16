@@ -9,4 +9,6 @@ public interface Texts {
     String MESSAGE_WRONG_OLD_PASSWORD = "Pogresna stara lozinka";
     String MESSAGE_SAME_NEW_OLD_PASSWORD = "Identicna stara i novi lozinka";
     String MESSAGE_NEW_PASSWORD_NOT_MATCH = "Ne poklapa se lozinka sa potvrdom";
+    String MESSAGE_LICENCE_HASE_BEEN_ACTIVATED = "CESTITAMO!! Uspjesno ste aktivirali vasu aplikaciju";
+    String MESSAGE_LICENCE_IS_ACTIVE = "Vasa aplikacija je vec aktivirana";
 }

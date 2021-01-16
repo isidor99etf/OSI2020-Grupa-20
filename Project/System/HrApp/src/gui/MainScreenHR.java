@@ -33,12 +33,14 @@ public class MainScreenHR extends JFrame {
     private JTextField surnameTextField;
     private JTextField dateOfBirthTextField;
     private JTextField addressTextField;
-    private JComboBox workPlaceBox;
-    private JComboBox sectorBox;
     private JTextField userNameTextField;
     private JPasswordField userPasswordField;
     private JButton showPasswordButton;
     private JButton addUserButton;
+    private JTextField sectorTextField;
+    private JTextField workPlaceTextField;
+    private JTextField phoneTextField;
+    private JTextField emailTextField;
 
     // For Showing Employees
     private JTable employeeTable;
@@ -48,6 +50,7 @@ public class MainScreenHR extends JFrame {
     private JComboBox sortBox;
     private JComboBox subSortBox;
     private JPanel homePanel;
+
 
     private final String[] sortList = {"All","Sector","Work Place"};
     private final String[] subSortListSector = {"Sector1","Sector2","Sector2"};
@@ -98,6 +101,7 @@ public class MainScreenHR extends JFrame {
                 for (String sub : subSortListSector){
                         subSortBox.addItem(sub);
                 }
+
             }
             else {
                 for (String sub : subSortListWork) {
@@ -117,7 +121,10 @@ public class MainScreenHR extends JFrame {
     private void addUserButtonAction() {
 
 
+        //Empties Text Fields
+        flashUserTextFields();
     }
+
 
     //For searching Users and showing them in   employeeTable
     private void searchButtonAction() {
@@ -166,5 +173,20 @@ public class MainScreenHR extends JFrame {
         subSortBox = new JComboBox();
 
         employeeTable = new JTable(tableData,tableColumns);
+    }
+
+    private void flashUserTextFields() {
+
+        nameTextField.setText("");
+        surnameTextField.setText("");
+        dateOfBirthTextField.setText("");
+        addressTextField.setText("");
+        phoneTextField.setText("");
+        emailTextField.setText("");
+        sectorTextField.setText("");
+        workPlaceTextField.setText("");
+        userNameTextField.setText("");
+        userPasswordField.setText("");
+
     }
 }

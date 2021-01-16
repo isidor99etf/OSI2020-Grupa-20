@@ -173,8 +173,9 @@ public class LoginScreenHR extends JFrame {
         errorLabelLogin.setText(error);
         errorLabelLogin.setVisible(visible);
 
-        // flashTextFieldLogin();
-
+        if(visible) {
+            flashTextFieldLogin();
+        }
         this.pack();
     }
 
@@ -182,12 +183,13 @@ public class LoginScreenHR extends JFrame {
         errorLableNewPassword.setText(error);
         errorLableNewPassword.setVisible(visible);
 
-        // flashTextFieldNew();
-
+        if(visible) {
+            flashTextFieldNew();
+        }
         this.pack();
     }
 
-    /*private void flashTextFieldLogin() {
+    private void flashTextFieldLogin() {
         userNameField.setText("");
         loginPasswordField.setText("");
 
@@ -198,6 +200,6 @@ public class LoginScreenHR extends JFrame {
         newPasswordField.setText("");
         confirmNewPasswordField.setText("");
 
-    }*/
+    }
 }
 
