@@ -85,7 +85,7 @@ public class MainScreenUser extends JFrame {
         //Setting the Labels
         nameLabel.setText( worker.getFirstName() );
         surnameLabel.setText( worker.getSurname() );
-        dateOfBirthLabel.setText( worker.getAddress() );
+        dateOfBirthLabel.setText( worker.getDateOfBirth() );
         addressLabel.setText( worker.getAddress() );
         phoneLabel.setText( worker.getPhone() );
         emailLabel.setText( worker.getEmail() );

@@ -174,7 +174,9 @@ public class LoginScreenUser extends JFrame {
         errorLabelLogin.setText(error);
         errorLabelLogin.setVisible(visible);
 
-        // flashTextFieldLogin();
+        if(visible) {
+            flashTextFieldLogin();
+        }
 
         this.pack();
     }
@@ -183,7 +185,9 @@ public class LoginScreenUser extends JFrame {
         errorLabelNewPassword.setText(error);
         errorLabelNewPassword.setVisible(visible);
 
-        // flashTextFieldNew();
+        if(visible) {
+            flashTextFieldNew();
+        }
 
         this.pack();
     }

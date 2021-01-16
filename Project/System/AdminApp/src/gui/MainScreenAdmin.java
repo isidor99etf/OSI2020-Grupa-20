@@ -3,10 +3,12 @@ package gui;
 import admin_app.Main;
 import constants.Config;
 import constants.FilePaths;
+import constants.Texts;
 import model.HumanResourceWorker;
 import model.Worker;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.io.*;
 import java.util.logging.Logger;
@@ -42,19 +44,25 @@ public class MainScreenAdmin extends JFrame {
     private JTextField surnameTextField;
     private JTextField dateOfBirthTextField;
     private JTextField addressTextField;
-    private JComboBox workPlaceBox;
-    private JComboBox sectorBox;
     private JTextField userNameTextField;
     private JPasswordField userPasswordField;
     private JButton addUserButton;
     private JButton addHrButtonPanel;
+    private JTextField phoneTextField;
+    private JTextField emailTextField;
+    private JTextField sectorTextField;
+    private JTextField workPlaceTextField;
 
     //
     private JButton logoutButton;
+    private JLabel licenceMsgLabel;
 
-    private final String[] tableColumns = {"Name","Username","User Type"};
+
+    private final String[] tableColumns = {"Username","Name","Surname","User Type"};
 
     private final JMenuItem contactInfo = new JMenuItem("Contact Info");
+
+    private DefaultTableModel workerModel;
 
     private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
 
@@ -74,6 +82,8 @@ public class MainScreenAdmin extends JFrame {
         menuBar.add(help);
         this.setJMenuBar(menuBar);
 
+        workerModel = new DefaultTableModel(null,tableColumns);
+        userTable.setModel( workerModel );
 
         contactInfo.addActionListener(e -> contactInfoAction());
         deleteButton.addActionListener(e -> deleteButtonAction());
@@ -88,9 +98,13 @@ public class MainScreenAdmin extends JFrame {
 
     }
 
+
     // For Add a new HR user
     private void addUserButtonAction() {
 
+
+        //Empties Text Fields
+        flashUserTextFields();
     }
 
     //Shows user password in String form not in *
@@ -109,10 +123,15 @@ public class MainScreenAdmin extends JFrame {
             config.setHaveLicence(true);
             config.setNumberOfWorkerAccounts(10);
             config.setNumberOfHrAccounts(5);
-            keyTextField.setVisible(false);
-            okLicenceButton.setVisible(false);
-            //Nakon ovoga treba ubaciti obavjestenje da je kupljena licenca
-            //Treba dodati JLabel da napise da je kompanija vec kupila licencu tj uspjesno kupila licencu
+
+            // Looking the input and showing a msg
+            keyTextField.setText("");
+            keyTextField.setEnabled(false);
+            okLicenceButton.setEnabled(false);
+            licenceMsgLabel.setText(Texts.MESSAGE_LICENCE_HASE_BEEN_ACTIVATED);
+            licenceMsgLabel.setVisible(true);
+
+            //Saving Config
             Config.writeConfigFile(config);
         }
     }
@@ -140,6 +159,18 @@ public class MainScreenAdmin extends JFrame {
 
     //Showing activate Panel on Screen
     private void activateButtonPanelAction() {
+        Config config = Config.readConfigFile();
+
+        licenceMsgLabel.setText("");
+
+
+        if( config.isHaveLicence() ){
+            // Looking the input and showing a msg
+            keyTextField.setEnabled(false);
+            okLicenceButton.setEnabled(false);
+            licenceMsgLabel.setText(Texts.MESSAGE_LICENCE_IS_ACTIVE);
+            licenceMsgLabel.setVisible(true);
+        }
 
         CardLayout card = (CardLayout) (mainPanel.getLayout());
         card.show(mainPanel,"activatePanel");
@@ -279,7 +310,7 @@ public class MainScreenAdmin extends JFrame {
 
             if(worker!=null)
             {
-                //userTable.add(); //Dodavanje korisnika u tabelu za prikaz
+                addUserInTable(worker,"Worker");
             }
 
         } catch (Exception exception) {
@@ -302,7 +333,7 @@ public class MainScreenAdmin extends JFrame {
 
             if(worker!=null)
             {
-                //userTable.add(); //Dodavanje korisnika u tabelu za prikaz
+                addUserInTable(worker,"HR");
             }
 
         } catch (Exception exception) {
@@ -318,4 +349,23 @@ public class MainScreenAdmin extends JFrame {
 
     }
 
+    private void flashUserTextFields() {
+
+        nameTextField.setText("");
+        surnameTextField.setText("");
+        dateOfBirthTextField.setText("");
+        addressTextField.setText("");
+        phoneTextField.setText("");
+        emailTextField.setText("");
+        sectorTextField.setText("");
+        workPlaceTextField.setText("");
+        userNameTextField.setText("");
+        userPasswordField.setText("");
+
+    }
+
+    private void addUserInTable(Worker worker, String type){
+        workerModel.getDataVector().removeAllElements();
+        workerModel.insertRow(0, new Object[] {worker.getUserName(),worker.getFirstName(),worker.getSurname(),type});
+    }
 }
