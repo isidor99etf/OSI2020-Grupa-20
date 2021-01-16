@@ -1,5 +1,10 @@
 package model;
 
+import constants.FilePaths;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Company {
@@ -17,6 +22,7 @@ public class Company {
     // Prointer d.o.o,Mile Dodika 55A,Banja Luka,Republika Srpska,3,066/546-546,065/432-314,066/543-897,2,mile@gmail.com,milinsin@gmail.com
 
     public Company() { }
+
 
 
     public String getName() { return name; }
@@ -48,6 +54,7 @@ public class Company {
     public void addEmail(String email) { this.emails.add(email); }
 
     public void addEmployee(Employee employee) { this.employees.add(employee); }
+
 
 
 }

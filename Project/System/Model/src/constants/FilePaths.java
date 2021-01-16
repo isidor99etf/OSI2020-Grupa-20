@@ -13,4 +13,6 @@ public interface FilePaths {
     String ADMIN_ACCOUNT = DATA_FOLDER + "admin";
 
     String CONFIG_FILE = DATA_FOLDER + "config";
+
+    String COMPANY_INFO_FILE = DATA_FOLDER+"CompanyInfo";
 }
