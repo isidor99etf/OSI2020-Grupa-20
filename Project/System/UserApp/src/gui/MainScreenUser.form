@@ -382,7 +382,7 @@
                       </component>
                     </children>
                   </grid>
-                  <grid id="617bb" binding="companyInfoPanel" layout-manager="GridLayoutManager" row-count="10" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                  <grid id="617bb" binding="companyInfoPanel" layout-manager="GridLayoutManager" row-count="14" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="5" left="5" bottom="25" right="25"/>
                     <constraints>
                       <card name="companyInfoPanel"/>
@@ -397,13 +397,13 @@
                           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <font name="Arial" size="16"/>
+                          <font name="Arial" size="16" style="2"/>
                           <text value="Name:"/>
                         </properties>
                       </component>
                       <vspacer id="9ce53">
                         <constraints>
-                          <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                          <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                         </constraints>
                       </vspacer>
                       <component id="55d35" class="javax.swing.JLabel" binding="companyNameLabel">
@@ -420,7 +420,7 @@
                           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <font name="Arial" size="16"/>
+                          <font name="Arial" size="16" style="2"/>
                           <text value="Address:"/>
                         </properties>
                       </component>
@@ -435,16 +435,16 @@
                       </component>
                       <component id="f15dd" class="javax.swing.JLabel">
                         <constraints>
-                          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                          <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <font name="Arial" size="16"/>
+                          <font name="Arial" size="16" style="2"/>
                           <text value="phones:"/>
                         </properties>
                       </component>
                       <component id="32812" class="javax.swing.JLabel" binding="companyPhoneLabel">
                         <constraints>
-                          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                          <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
                           <font name="Arial" size="16"/>
@@ -453,16 +453,16 @@
                       </component>
                       <component id="78f7a" class="javax.swing.JLabel">
                         <constraints>
-                          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                          <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
-                          <font name="Arial" size="16"/>
+                          <font name="Arial" size="16" style="2"/>
                           <text value="emails:"/>
                         </properties>
                       </component>
                       <component id="8afd0" class="javax.swing.JLabel" binding="companyEmailLabel">
                         <constraints>
-                          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                          <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
                           <font name="Arial" size="16"/>
@@ -476,6 +476,43 @@
                         <properties>
                           <font name="Arial" size="20"/>
                           <text value="Company Info"/>
+                        </properties>
+                      </component>
+                      <component id="adc95" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="Arial" size="16" style="2"/>
+                          <text value="City:"/>
+                        </properties>
+                      </component>
+                      <component id="f61fe" class="javax.swing.JLabel" binding="companyCountryLabel">
+                        <constraints>
+                          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="Arial" size="16"/>
+                          <text value=""/>
+                        </properties>
+                      </component>
+                      <component id="c0c9b" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="Arial" size="16" style="2"/>
+                          <text value="Country:"/>
+                        </properties>
+                      </component>
+                      <component id="79d1a" class="javax.swing.JLabel" binding="companyCityLabel">
+                        <constraints>
+                          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <enabled value="true"/>
+                          <font name="Arial" size="16"/>
+                          <text value=""/>
                         </properties>
                       </component>
                     </children>

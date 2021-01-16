@@ -55,6 +55,8 @@ public class MainScreenUser extends JFrame {
     private JLabel companyEmailLabel;
     private JButton companyInfoButton;
     private JButton logoutButton;
+    private JLabel companyCityLabel;
+    private JLabel companyCountryLabel;
 
 
     private final String[] sortList = {"Day","Monthly"};
@@ -162,6 +164,8 @@ public class MainScreenUser extends JFrame {
 
             companyNameLabel.setText(companyName);
             companyAddressLabel.setText(companyAdress);
+            companyCityLabel.setText(companyCity);
+            companyCountryLabel.setText(companyCountry);
             companyPhoneLabel.setText(phones.toString());
             companyEmailLabel.setText(emails.toString());
 
