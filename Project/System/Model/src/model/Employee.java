@@ -49,6 +49,12 @@ public abstract class Employee {
         this.numberOfLogins = numberOfLogins;
     }
 
+    public Employee(String userName, String password, String email, String phone, int numberOfLogins) {
+        this(userName, password, numberOfLogins);
+        this.email = email;
+        this.phone = phone;
+    }
+
     public int getPIN() { return PIN; }
 
     public String getName() { return name + " " + surname; }

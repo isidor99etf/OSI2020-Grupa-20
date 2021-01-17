@@ -4,6 +4,7 @@ import admin_app.Main;
 import constants.Config;
 import constants.FilePaths;
 import constants.Texts;
+import model.Admin;
 import model.HumanResourceWorker;
 import model.Worker;
 
@@ -68,11 +69,9 @@ public class MainScreenAdmin extends JFrame {
     private JButton addEmailButtonPanel;
 
 
-    private final String[] tableColumns = {"Username","Name","Surname","User Type"};
-
     private final JMenuItem contactInfo = new JMenuItem("Contact Info");
 
-    private DefaultTableModel workerModel;
+    private final DefaultTableModel workerModel;
 
     private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
 
@@ -92,7 +91,8 @@ public class MainScreenAdmin extends JFrame {
         menuBar.add(help);
         this.setJMenuBar(menuBar);
 
-        workerModel = new DefaultTableModel(null,tableColumns);
+        String[] tableColumns = {"Username", "Name", "Surname", "User Type"};
+        workerModel = new DefaultTableModel(null, tableColumns);
         userTable.setModel( workerModel );
 
         contactInfo.addActionListener(e -> contactInfoAction());
@@ -155,8 +155,7 @@ public class MainScreenAdmin extends JFrame {
         Config config = Config.readConfigFile();
         String key = keyTextField.getText();
 
-        if(key.equals(config.getLicencesKey()) && !config.isHaveLicence())
-        {
+        if (config != null && key.equals(config.getLicencesKey()) && !config.isHaveLicence()) {
             config.setHaveLicence(true);
             config.setNumberOfWorkerAccounts(10);
             config.setNumberOfHrAccounts(5);
@@ -200,8 +199,8 @@ public class MainScreenAdmin extends JFrame {
 
         licenceMsgLabel.setText("");
 
+        if (config != null && config.isHaveLicence()) {
 
-        if( config.isHaveLicence() ){
             // Looking the input and showing a msg
             keyTextField.setEnabled(false);
             okLicenceButton.setEnabled(false);
@@ -215,7 +214,7 @@ public class MainScreenAdmin extends JFrame {
 
     private void deleteButtonAction() {
 
-        //Checking if Admin Wants to Delete User
+        // Checking if Admin Wants to Delete User
         int tmp = JOptionPane.showConfirmDialog(this,"Are you sure");
         if (tmp == JOptionPane.YES_OPTION) {
 
@@ -229,34 +228,24 @@ public class MainScreenAdmin extends JFrame {
                 FileInputStream stream = new FileInputStream(path);
                 BufferedReader inputStream = new BufferedReader(new InputStreamReader(stream));
 
-                String line = null, tempLine;
+                String line = "", tempLine;
 
                 while ((tempLine = inputStream.readLine()) != null)
                     line = tempLine;
 
                 inputStream.close();
 
-                String datas[] = line.split(",");
+                String[] data = line.split(",");
+                worker = new Worker(data);
 
-                worker=new Worker(datas);
-
-                boolean active = worker.isActive();
-
-                if(active)
-                {
-                    active = false;
+                if (worker.isActive())
                     worker.setActive(false); //Radnik vise nije aktivan, deaktiviran mu je korisnicki nalog
-                }
-
-
-
 
             } catch (Exception exception) {
                 LOGGER.warning(exception.fillInStackTrace().toString());
             }
 
-
-            try{
+            try {
                 FileOutputStream stream = new FileOutputStream(path);
                 BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stream));
 
@@ -276,16 +265,16 @@ public class MainScreenAdmin extends JFrame {
                 FileInputStream stream = new FileInputStream(hrPath);
                 BufferedReader inputStream = new BufferedReader(new InputStreamReader(stream));
 
-                String line = null, tempLine;
+                String line = "", tempLine;
 
                 while ((tempLine = inputStream.readLine()) != null)
                     line = tempLine;
 
                 inputStream.close();
 
-                String datas[] = line.split(",");
+                String[] data = line.split(",");
 
-                humanResourceWorker=new HumanResourceWorker(datas);
+                humanResourceWorker=new HumanResourceWorker(data);
 
                 boolean active = humanResourceWorker.isActive();
 
@@ -376,14 +365,16 @@ public class MainScreenAdmin extends JFrame {
         } catch (Exception exception) {
             LOGGER.warning(exception.fillInStackTrace().toString());
         }
-
-
-
     }
-    private void contactInfoAction() {
-        JOptionPane.showMessageDialog(contactInfo,"Contact Info\n"+
-                "Admin:\n email: admin@comName.com \n phone:0123456789");
 
+    private void contactInfoAction() {
+        Admin admin = Admin.getDataFromFile();
+        String contactInfoMessage = "";
+        if (admin != null)
+            contactInfoMessage =
+                String.format("Contact Info:\nAdmin email: %s\nAdmin phone: %s", admin.getEmail(), admin.getPhone());
+
+        JOptionPane.showMessageDialog(contactInfo,contactInfoMessage);
     }
 
     private void flashUserTextFields() {
@@ -401,7 +392,7 @@ public class MainScreenAdmin extends JFrame {
 
     }
 
-    private void addUserInTable(Worker worker, String type){
+    private void addUserInTable(Worker worker, String type) {
         workerModel.getDataVector().removeAllElements();
         workerModel.insertRow(0, new Object[] {worker.getUserName(),worker.getFirstName(),worker.getSurname(),type});
     }

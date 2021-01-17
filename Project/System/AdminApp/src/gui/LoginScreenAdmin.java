@@ -1,13 +1,11 @@
 package gui;
 
 import constants.Config;
-import constants.FilePaths;
 import constants.Texts;
 import model.Admin;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.*;
 import java.util.logging.Logger;
 
 public class LoginScreenAdmin extends JFrame {
@@ -29,12 +27,13 @@ public class LoginScreenAdmin extends JFrame {
     private JPasswordField newPasswordField;
     private JPasswordField oldPasswordField;
     private JButton okConfirmPassButton;
-    private JLabel errorLableNewPassword;
+    private JLabel errorLabelNewPassword;
     private JLabel errorLabelLogin;
 
     private final JMenuItem contactInfo = new JMenuItem("Contact Info");
 
     private static final Logger LOGGER = Logger.getLogger(LoginScreenAdmin.class.getName());
+
     public LoginScreenAdmin() {
         super("Admin App - Login");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,7 +64,7 @@ public class LoginScreenAdmin extends JFrame {
         String newPassword = new String(newPasswordField.getPassword());
         String confirmNewPassword = new String(confirmNewPasswordField.getPassword());
 
-        Admin admin = getAdminData();
+        Admin admin = Admin.getDataFromFile();
 
         if (admin != null && admin.getPassword().equals(oldPassword))
             if (!oldPassword.equals(newPassword))
@@ -76,7 +75,7 @@ public class LoginScreenAdmin extends JFrame {
                     admin.setPassword(newPassword);
                     admin.setNumberOfLogins(config != null ? config.getNumberOfLogins() : 10);
 
-                    updateAdminFile(admin);
+                    Admin.updateFile(admin);
 
                     showMainScreen();
 
@@ -97,7 +96,7 @@ public class LoginScreenAdmin extends JFrame {
         String password = new String(loginPasswordField.getPassword());
 
         Admin newAdmin = new Admin(userName, password);
-        Admin admin = getAdminData();
+        Admin admin = Admin.getDataFromFile();
 
         // First login or need new password
         if (admin != null && admin.equals(newAdmin))
@@ -108,63 +107,22 @@ public class LoginScreenAdmin extends JFrame {
 
             } else {
                 admin.setNumberOfLogins(admin.getNumberOfLogins() - 1);
-                updateAdminFile(admin);
+                Admin.updateFile(admin);
                 showMainScreen();
             }
-        else {
-
+        else
             showErrorMsgLogin(Texts.MESSAGE_WRONG_USER_NAME_OR_PASSWORD,true);
-        }
-    }
 
-    private Admin getAdminData() {
-
-        try {
-            FileInputStream stream = new FileInputStream(FilePaths.ADMIN_ACCOUNT);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-
-            String line = reader.readLine();
-
-            reader.close();
-
-            if (line != null) {
-
-                String[] data = line.split(",");
-
-                return new Admin(data[0], data[1], Integer.parseInt(data[2]));
-            }
-
-        } catch (Exception exception) {
-            LOGGER.warning(exception.fillInStackTrace().toString());
-        }
-
-        return null;
-    }
-
-    private void updateAdminFile(Admin admin) {
-
-        try {
-            FileWriter fileWriter = new FileWriter(FilePaths.ADMIN_ACCOUNT);
-            BufferedWriter writer = new BufferedWriter(fileWriter);
-
-            writer.write(admin.getUserName());
-            writer.write(",");
-            writer.write(admin.getPassword());
-            writer.write(",");
-            writer.write(String.valueOf(admin.getNumberOfLogins()));
-
-            writer.flush();
-            writer.close();
-
-        } catch (Exception exception) {
-            LOGGER.warning(exception.fillInStackTrace().toString());
-        }
     }
 
     private void contactInfoAction() {
-        JOptionPane.showMessageDialog(
-                contactInfo,
-                "Contact Info\nAdmin\nemail: admin@comName.com\nphone:0123456789");
+        Admin admin = Admin.getDataFromFile();
+        String contactInfoMessage = "";
+        if (admin != null)
+            contactInfoMessage =
+                    String.format("Contact Info:\nAdmin email: %s\nAdmin phone: %s", admin.getEmail(), admin.getPhone());
+
+        JOptionPane.showMessageDialog(contactInfo,contactInfoMessage);
     }
 
     private void showMainScreen() {
@@ -174,32 +132,32 @@ public class LoginScreenAdmin extends JFrame {
         new MainScreenAdmin();
     }
 
-    private void showErrorMsgLogin(String error, boolean visible){
+    private void showErrorMsgLogin(String error, boolean visible) {
         errorLabelLogin.setText(error);
         errorLabelLogin.setVisible(visible);
 
-        if (visible) {
+        if (visible)
             flashTextFieldLogin();
-        }
+
         this.pack();
     }
 
-    private void showErrorMsgNewPassword(String error, boolean visible){
-        errorLableNewPassword.setText(error);
-        errorLableNewPassword.setVisible(visible);
+    private void showErrorMsgNewPassword(String error, boolean visible) {
+        errorLabelNewPassword.setText(error);
+        errorLabelNewPassword.setVisible(visible);
 
-        if(visible) {
+        if (visible)
             flashTextFieldNew();
-        }
+
         this.pack();
     }
 
-    private void flashTextFieldLogin(){
+    private void flashTextFieldLogin() {
         userNameField.setText("");
         loginPasswordField.setText("");
     }
 
-    private void flashTextFieldNew(){
+    private void flashTextFieldNew() {
         oldPasswordField.setText("");
         newPasswordField.setText("");
         confirmNewPasswordField.setText("");
