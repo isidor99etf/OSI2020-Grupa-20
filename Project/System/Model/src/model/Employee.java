@@ -71,6 +71,7 @@ public abstract class Employee {
         this.userName = userName;
         this.password = password;
         this.numberOfLogins = 0;
+        this.active = true;
     }
 
     public int getPIN() { return PIN; }

@@ -5,6 +5,7 @@ import constants.Config;
 import constants.FilePaths;
 import constants.Texts;
 import model.Admin;
+import model.Company;
 import model.HumanResourceWorker;
 import model.Worker;
 
@@ -112,12 +113,26 @@ public class MainScreenAdmin extends JFrame {
     // For adding a new email address
     private void addNewPhoneButtonAction() {
 
+        Company company = Company.getDataFromFile();
+        String phone = newPhoneTextField.getText();
+
+        if (company != null) {
+            company.addPhone(phone);
+            Company.writeData(company);
+        }
+
         newPhoneTextField.setText("");
     }
 
     // For adding a new phone number
     private void addNewEmailButtonAction() {
+        Company company = Company.getDataFromFile();
+        String email = newEmailTextField.getText();
 
+        if (company != null) {
+            company.addEmail(email);
+            Company.writeData(company);
+        }
         newEmailTextField.setText("");
     }
 
@@ -310,7 +325,7 @@ public class MainScreenAdmin extends JFrame {
     }
 
     //searches for  user and show it in  userTable
-    private void searchButtonAction(){
+    private void searchButtonAction() {
 
         String username = searchTextField.getText();
         String path = FilePaths.WORKER_ACCOUNTS+username;
