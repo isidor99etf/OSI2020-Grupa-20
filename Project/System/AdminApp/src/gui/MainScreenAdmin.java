@@ -10,6 +10,8 @@ import model.Worker;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.logging.Logger;
 
@@ -56,6 +58,14 @@ public class MainScreenAdmin extends JFrame {
     //
     private JButton logoutButton;
     private JLabel licenceMsgLabel;
+    private JPanel addEmailPanel;
+    private JPanel addPhonePanel;
+    private JTextField newPhoneTextField;
+    private JButton addNewPhoneButton;
+    private JTextField newEmailTextField;
+    private JButton addNewEmailButton;
+    private JButton addPhoneButtonPanel;
+    private JButton addEmailButtonPanel;
 
 
     private final String[] tableColumns = {"Username","Name","Surname","User Type"};
@@ -95,7 +105,34 @@ public class MainScreenAdmin extends JFrame {
         addUserButton.addActionListener(e -> addUserButtonAction());
         showPasswordButton.addActionListener(e -> showPasswordButton());
         okLicenceButton.addActionListener(e -> okLicenceButtonAction());
+        addNewPhoneButton.addActionListener(e -> addNewPhoneButtonAction());
+        addNewEmailButton.addActionListener(e -> addNewEmailButtonAction());
+        addEmailButtonPanel.addActionListener(e -> addEmailButtonPanelAction());
+        addPhoneButtonPanel.addActionListener(e -> addPhoneButtonPanelAction());
+    }
 
+    // For adding a new email address
+    private void addNewPhoneButtonAction() {
+
+        newPhoneTextField.setText("");
+    }
+
+    // For adding a new phone number
+    private void addNewEmailButtonAction() {
+
+        newEmailTextField.setText("");
+    }
+
+    // Shows ADD new Email address on Screen
+    private void addEmailButtonPanelAction() {
+        CardLayout card = (CardLayout) (mainPanel.getLayout());
+        card.show(mainPanel,"addEmailPanel");
+    }
+
+    // Shows ADD New phone number on Screen
+    private void addPhoneButtonPanelAction() {
+        CardLayout card = (CardLayout) mainPanel.getLayout();
+        card.show(mainPanel,"addPhonePanel");
     }
 
 
