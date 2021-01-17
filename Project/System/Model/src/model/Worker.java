@@ -21,6 +21,10 @@ public class Worker extends Employee {
         super(data);
     }
 
+    public Worker(String name, String surname, String dateOfBirth, String address, String phone, String email, String workPlace, String sector, String userName, String password) {
+        super(name, surname, dateOfBirth, address, phone, email, workPlace, sector, userName, password);
+    }
+
     public static Worker getDataFromFile(String userName) {
         try {
             FileInputStream stream = new FileInputStream(FilePaths.WORKER_ACCOUNTS + userName);

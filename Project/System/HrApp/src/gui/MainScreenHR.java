@@ -1,10 +1,17 @@
 package gui;
 
+import constants.FilePaths;
+import constants.Texts;
 import model.Admin;
+import model.Employee;
 import model.HumanResourceWorker;
+import model.Worker;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.util.Random;
+import java.util.logging.Logger;
 
 public class MainScreenHR extends JFrame {
 
@@ -46,6 +53,7 @@ public class MainScreenHR extends JFrame {
     private JComboBox subSortBox;
     private JPanel homePanel;
 
+    private static final Logger LOGGER = Logger.getLogger(MainScreenHR.class.getName());
 
     private final String[] sortList = {"All","Sector","Work Place"};
     private final String[] subSortListSector = {"Sector1","Sector2","Sector2"};
@@ -73,7 +81,7 @@ public class MainScreenHR extends JFrame {
         newUserCardButton.addActionListener(e -> newUserCardButtonAction());
         employeesButton.addActionListener(e -> employeesButtonAction());
         logoutButton.addActionListener(e -> logoutButtonAction());
-        showPasswordButton.addActionListener(e -> userPasswordField.setEchoChar((char) 0));
+        showPasswordButton.addActionListener(e -> togglePassword());
         detailsButton.addActionListener(e -> detailsButtonAction());
         searchButton.addActionListener(e -> searchButtonAction());
         addUserButton.addActionListener(e -> addUserButtonAction());
@@ -87,7 +95,7 @@ public class MainScreenHR extends JFrame {
 
     private void sortBoxAction() {
 
-        //Need to show All user in   employeeTable
+        // Need to show All user in   employeeTable
 
         String item =  (String)sortBox.getSelectedItem();
         if(!item.equals("All")){
@@ -112,12 +120,72 @@ public class MainScreenHR extends JFrame {
         }
     }
 
-    //For Add a New user
+    // For Add a New user
     private void addUserButtonAction() {
 
+        String name = nameTextField.getText();
+        String surname = surnameTextField.getText();
+        String dateOfBirth = dateOfBirthTextField.getText();
+        String address = addressTextField.getText();
+        String phone = phoneTextField.getText();
+        String email = emailTextField.getText();
+        String workPlace = workPlaceTextField.getText();
+        String sector = sectorTextField.getText();
+        String userName = userNameTextField.getText();
+        String password = new String(userPasswordField.getPassword());
 
-        //Empties Text Fields
-        flashUserTextFields();
+        File file = new File(FilePaths.WORKER_ACCOUNTS + userName);
+        if (!file.exists()) {
+
+            if (!Employee.DATE_PATTERN.matcher(dateOfBirth).find()) {
+                // show message
+                // Texts.MESSAGE_DATE_FORMAT
+                System.out.println(Texts.MESSAGE_DATE_FORMAT);
+                return;
+            }
+
+            if (!Employee.EMAIL_PATTERN.matcher(email).find()) {
+                // show message
+                // Texts.MESSAGE_EMAIL_FORMAT
+                System.out.println(Texts.MESSAGE_EMAIL_FORMAT);
+                return;
+            }
+
+            Worker worker = new Worker(name, surname, dateOfBirth, address, phone, email, workPlace, sector, userName, password);
+
+            File register = new File(FilePaths.WORKER_REGISTER);
+            File[] files = register.listFiles();
+
+            int pin;
+            boolean isPin = true;
+            Random random = new Random();
+            do {
+                pin = 100_000 + random.nextInt(800_000);
+
+                if (files != null)
+                    for (File f : files)
+                        if (f.getName().equals(String.valueOf(pin)))
+                            isPin = false;
+
+            } while (!isPin);
+
+            worker.setPIN(pin);
+
+            // create register file
+            try {
+                File workerRegister = new File(FilePaths.WORKER_REGISTER + pin);
+                workerRegister.createNewFile();
+            } catch (Exception exception) {
+                LOGGER.warning(exception.fillInStackTrace().toString());
+            }
+
+            Worker.updateFile(worker);
+            flashUserTextFields();
+
+        } else {
+            // show message
+            // MESSAGE_WORKER_EXISTS
+        }
     }
 
 
@@ -164,6 +232,10 @@ public class MainScreenHR extends JFrame {
                     String.format("Contact Info:\nAdmin email: %s\nAdmin phone: %s", admin.getEmail(), admin.getPhone());
 
         JOptionPane.showMessageDialog(contactInfo,contactInfoMessage);
+    }
+
+    private void togglePassword() {
+        userPasswordField.setEchoChar((char) 0);
     }
 
     private void createUIComponents() {

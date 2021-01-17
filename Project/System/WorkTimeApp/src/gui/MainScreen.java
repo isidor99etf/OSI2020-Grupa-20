@@ -60,7 +60,7 @@ public class MainScreen extends JFrame {
         okButton.addActionListener(e -> okButtonAction());
     }
 
-    //action performed when OK button pressed
+    // action performed when OK button pressed
     private void okButtonAction() {
 
         // clear field
@@ -70,7 +70,7 @@ public class MainScreen extends JFrame {
             int pin = Integer.parseInt(new String(pinField.getPassword()));
             if (checkWorker(pin)) {
 
-                Time time = getLastTime(pin);
+                Time time = Time.getLastTime(pin);
 
                 int status = WorkTime.resolveTypeFromString(WorkTime.getStatusTypes()[statusBox.getSelectedIndex()]);
 
@@ -80,23 +80,15 @@ public class MainScreen extends JFrame {
                 Date date = new Date(currentDate.getDayOfMonth(), currentDate.getMonthValue(), currentDate.getYear());
                 Time newTime = new Time(currentTime.getHour(), currentTime.getMinute(), date, status);
 
-                if (time != null) {
-
-                    LOGGER.info(time.getFormattedWorkTime());
-
-                    if (checkTime(time, newTime)) {
-
-                        // reset fields
-                        pinField.setText("");
-                        statusBox.setSelectedIndex(-1);
-
-                        writeNewTime(newTime, pin);
-                    } else
+                if (time != null)
+                    if (checkTime(time, newTime))
+                        writeTime(newTime, pin);
+                    else
                         labelMessage(Texts.MESSAGE_WRONG_WORK_STATUS, true);
+                else
+                    writeTime(newTime, pin);
 
 
-                } else
-                    writeNewTime(newTime, pin);
             } else
                 labelMessage(Texts.MESSAGE_WRONG_PIN, true);
 
@@ -119,54 +111,6 @@ public class MainScreen extends JFrame {
         return new File(path).exists();
     }
 
-    private static Time getLastTime(int pin) {
-
-        String path = FilePaths.WORKER_REGISTER + pin;
-
-        try {
-            FileInputStream stream = new FileInputStream(path);
-            BufferedReader inputStream = new BufferedReader(new InputStreamReader(stream));
-
-            String line = null, tempLine;
-
-            while ((tempLine = inputStream.readLine()) != null)
-                line = tempLine;
-
-            inputStream.close();
-
-            if (line != null) {
-                String[] data = line.split(",");
-
-                Date date = new Date(data[2], data[3], data[4]);
-
-                return new Time(Integer.parseInt(data[0]), Integer.parseInt(data[1]), date, Integer.parseInt(data[5]));
-            }
-
-        } catch (Exception exception) {
-            LOGGER.warning(exception.fillInStackTrace().toString());
-        }
-
-        return null;
-    }
-
-    private static void writeNewTime(Time time, int pin) {
-        String path = FilePaths.WORKER_REGISTER + pin;
-
-        try {
-
-            FileWriter fileWriter = new FileWriter(path, true);
-            BufferedWriter writer = new BufferedWriter(fileWriter);
-
-            writer.write(time.toString());
-            writer.write("\n");
-            writer.flush();
-            writer.close();
-
-        } catch (Exception exception) {
-            LOGGER.warning(exception.fillInStackTrace().toString());
-        }
-    }
-
     private static boolean checkTime(Time lastTime, Time newTime) {
 
         if (lastTime.getType() == WorkTime.TYPE_END && newTime.getType() == WorkTime.TYPE_START) return true;
@@ -181,5 +125,17 @@ public class MainScreen extends JFrame {
     private void labelMessage(String message, boolean visibility) {
         messageLabel.setText(message);
         messageLabel.setVisible(visibility);
+        this.pack();
+    }
+
+    private void writeTime(Time time, int pin) {
+        // reset fields
+        pinField.setText("");
+        statusBox.setSelectedIndex(-1);
+
+        Time.writeNewTime(time, pin);
+
+        // show message
+        labelMessage(Texts.MESSAGE_SUCCESS, true);
     }
 }

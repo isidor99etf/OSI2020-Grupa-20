@@ -11,8 +11,6 @@ import model.Worker;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.logging.Logger;
 
@@ -164,7 +162,7 @@ public class MainScreenAdmin extends JFrame {
             keyTextField.setText("");
             keyTextField.setEnabled(false);
             okLicenceButton.setEnabled(false);
-            licenceMsgLabel.setText(Texts.MESSAGE_LICENCE_HASE_BEEN_ACTIVATED);
+            licenceMsgLabel.setText(Texts.MESSAGE_LICENCE_HAS_BEEN_ACTIVATED);
             licenceMsgLabel.setVisible(true);
 
             //Saving Config

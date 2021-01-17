@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public abstract class Employee {
 
@@ -18,6 +19,9 @@ public abstract class Employee {
     protected String sector;
     protected int numberOfLogins;
     protected ArrayList<Time> workTime;
+
+    public static final Pattern DATE_PATTERN = Pattern.compile("^(([1-9]|0[1-9]|[12][0-9]|3[01])\\.([1-9]|0[1-9]|1[012])\\.(19|20)[0-9]{2}\\.)$");
+    public static final Pattern EMAIL_PATTERN = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
     public Employee(String[] data) {
         PIN = Integer.parseInt(data[0]);
@@ -53,6 +57,20 @@ public abstract class Employee {
         this(userName, password, numberOfLogins);
         this.email = email;
         this.phone = phone;
+    }
+
+    public Employee(String name, String surname, String dateOfBirth, String address, String phone, String email, String workPlace, String sector, String userName, String password) {
+        this.name = name;
+        this.surname = surname;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.phone = phone;
+        this.email = email;
+        this.workPlace = workPlace;
+        this.sector = sector;
+        this.userName = userName;
+        this.password = password;
+        this.numberOfLogins = 0;
     }
 
     public int getPIN() { return PIN; }
