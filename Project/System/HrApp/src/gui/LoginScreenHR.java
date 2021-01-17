@@ -1,13 +1,12 @@
 package gui;
 
 import constants.Config;
-import constants.FilePaths;
 import constants.Texts;
+import model.Admin;
 import model.HumanResourceWorker;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.*;
 import java.util.logging.Logger;
 
 public class LoginScreenHR extends JFrame {
@@ -29,7 +28,7 @@ public class LoginScreenHR extends JFrame {
     private JTextField userNameField;
     private JPasswordField loginPasswordField;
     private JButton loginButton;
-    private JLabel errorLableNewPassword;
+    private JLabel errorLabelNewPassword;
     private JLabel errorLabelLogin;
 
     private final JMenuItem contactInfo = new JMenuItem("Contact Info");
@@ -65,7 +64,7 @@ public class LoginScreenHR extends JFrame {
         String newPassword = new String(newPasswordField.getPassword());
         String confirmNewPassword = new String(confirmNewPasswordField.getPassword());
 
-        HumanResourceWorker hrWorker = getHrData(userNameField.getText());
+        HumanResourceWorker hrWorker = HumanResourceWorker.getDataFromFile(userNameField.getText());
 
         if (hrWorker != null && hrWorker.getPassword().equals(oldPassword))
             if (!oldPassword.equals(newPassword))
@@ -76,7 +75,7 @@ public class LoginScreenHR extends JFrame {
                     hrWorker.setPassword(newPassword);
                     hrWorker.setNumberOfLogins(config != null ? config.getNumberOfLogins() : 10);
 
-                    updateHrWorkerFile(hrWorker);
+                    HumanResourceWorker.updateFile(hrWorker);
 
                     showMainScreen(hrWorker);
                 }
@@ -96,7 +95,7 @@ public class LoginScreenHR extends JFrame {
         String userName = userNameField.getText();
         String password = new String(loginPasswordField.getPassword());
 
-        HumanResourceWorker hrWorker = getHrData(userName);
+        HumanResourceWorker hrWorker = HumanResourceWorker.getDataFromFile(userName);
 
         // First login or need new password
         if (hrWorker != null && hrWorker.getPassword().equals(password))
@@ -108,7 +107,7 @@ public class LoginScreenHR extends JFrame {
             } else {
 
                 hrWorker.setNumberOfLogins(hrWorker.getNumberOfLogins() - 1);
-                updateHrWorkerFile(hrWorker);
+                HumanResourceWorker.updateFile(hrWorker);
                 showMainScreen(hrWorker);
             }
         else {
@@ -119,47 +118,14 @@ public class LoginScreenHR extends JFrame {
 
     }
 
-    private HumanResourceWorker getHrData(String userName) {
-
-        try {
-            FileInputStream stream = new FileInputStream(FilePaths.HR_ACCOUNTS + userName);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-
-            String line = reader.readLine();
-
-            reader.close();
-
-            if (line != null) {
-                String[] data = line.split(",");
-                return new HumanResourceWorker(data);
-            }
-
-        } catch (Exception exception) {
-            LOGGER.warning(exception.fillInStackTrace().toString());
-        }
-
-        return null;
-    }
-
-    private void updateHrWorkerFile(HumanResourceWorker hrWorker) {
-
-        try {
-            FileWriter fileWriter = new FileWriter(FilePaths.HR_ACCOUNTS + hrWorker.getUserName());
-            BufferedWriter writer = new BufferedWriter(fileWriter);
-
-            writer.write(hrWorker.toString());
-            writer.flush();
-            writer.close();
-
-        } catch (Exception exception) {
-            LOGGER.warning(exception.fillInStackTrace().toString());
-        }
-    }
-
     private void contactInfoAction() {
-        JOptionPane.showMessageDialog(
-                contactInfo,
-                "Contact Info\nAdmin\nemail: admin@comName.com\nphone:0123456789");
+        Admin admin = Admin.getDataFromFile();
+        String contactInfoMessage = "";
+        if (admin != null)
+            contactInfoMessage =
+                    String.format("Contact Info:\nAdmin email: %s\nAdmin phone: %s", admin.getEmail(), admin.getPhone());
+
+        JOptionPane.showMessageDialog(contactInfo,contactInfoMessage);
     }
 
     private void showMainScreen(HumanResourceWorker hrWorker) {
@@ -180,26 +146,24 @@ public class LoginScreenHR extends JFrame {
     }
 
     private void showErrorMsgNewPassword(String error, boolean visible) {
-        errorLableNewPassword.setText(error);
-        errorLableNewPassword.setVisible(visible);
+        errorLabelNewPassword.setText(error);
+        errorLabelNewPassword.setVisible(visible);
 
-        if(visible) {
+        if( visible)
             flashTextFieldNew();
-        }
+
         this.pack();
     }
 
     private void flashTextFieldLogin() {
         userNameField.setText("");
         loginPasswordField.setText("");
-
     }
 
     private void flashTextFieldNew() {
         oldPasswordField.setText("");
         newPasswordField.setText("");
         confirmNewPasswordField.setText("");
-
     }
 }
 

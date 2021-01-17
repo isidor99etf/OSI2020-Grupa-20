@@ -1,13 +1,12 @@
 package gui;
 
 import constants.Config;
-import constants.FilePaths;
 import constants.Texts;
+import model.Admin;
 import model.Worker;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.*;
 import java.util.logging.Logger;
 
 public class LoginScreenUser extends JFrame {
@@ -62,7 +61,7 @@ public class LoginScreenUser extends JFrame {
         String newPassword = new String(newPasswordField.getPassword());
         String confirmNewPassword = new String(confirmNewPasswordField.getPassword());
 
-        Worker worker = getWorkerData(userNameField.getText());
+        Worker worker = Worker.getDataFromFile(userNameField.getText());
 
         // Deletes Old Msg
         showErrorMsgNewPassword("",false);
@@ -76,7 +75,7 @@ public class LoginScreenUser extends JFrame {
                     worker.setPassword(newPassword);
                     worker.setNumberOfLogins(config != null ? config.getNumberOfLogins() : 10);
 
-                    updateWorkerFile(worker);
+                    Worker.updateFile(worker);
 
                     showMainScreen(worker);
                 }
@@ -94,7 +93,7 @@ public class LoginScreenUser extends JFrame {
         String userName = userNameField.getText().trim();
         String password = new String(loginPasswordField.getPassword());
 
-        Worker worker = getWorkerData(userName);
+        Worker worker = Worker.getDataFromFile(userName);
 
         // Deletes odl msg
         showErrorMsgLogin("",false);
@@ -108,7 +107,7 @@ public class LoginScreenUser extends JFrame {
 
             } else {
                 worker.setNumberOfLogins(worker.getNumberOfLogins() - 1);
-                updateWorkerFile(worker);
+                Worker.updateFile(worker);
                 showMainScreen(worker);
             }
         else {
@@ -117,50 +116,14 @@ public class LoginScreenUser extends JFrame {
         }
     }
 
-    private Worker getWorkerData(String userName) {
-
-        try {
-            FileInputStream stream = new FileInputStream(FilePaths.WORKER_ACCOUNTS + userName);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-
-            String line = reader.readLine();
-
-            stream.close();
-            reader.close();
-
-            if (line != null) {
-                String[] data = line.split(",");
-                return new Worker(data);
-            }
-
-        } catch (Exception exception) {
-            LOGGER.warning(exception.fillInStackTrace().toString());
-        }
-
-        return null;
-    }
-
-    private void updateWorkerFile(Worker worker) {
-
-        try {
-            FileWriter fileWriter = new FileWriter(FilePaths.WORKER_ACCOUNTS + worker.getUserName());
-            BufferedWriter writer = new BufferedWriter(fileWriter);
-
-            writer.write(worker.toString());
-            writer.flush();
-            writer.close();
-
-            fileWriter.close();
-
-        } catch (Exception exception) {
-            LOGGER.warning(exception.fillInStackTrace().toString());
-        }
-    }
-
     private void contactInfoAction() {
-        JOptionPane.showMessageDialog(
-                contactInfo,
-                "Contact Info\nAdmin\nemail: admin@comName.com\nphone:0123456789");
+        Admin admin = Admin.getDataFromFile();
+        String contactInfoMessage = "";
+        if (admin != null)
+            contactInfoMessage =
+                    String.format("Contact Info:\nAdmin email: %s\nAdmin phone: %s", admin.getEmail(), admin.getPhone());
+
+        JOptionPane.showMessageDialog(contactInfo,contactInfoMessage);
     }
 
     private void showMainScreen(Worker worker) {
