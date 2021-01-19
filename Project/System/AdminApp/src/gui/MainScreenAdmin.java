@@ -14,6 +14,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.logging.Logger;
 
 public class MainScreenAdmin extends JFrame {
@@ -223,89 +226,86 @@ public class MainScreenAdmin extends JFrame {
             String hrPath = FilePaths.HR_ACCOUNTS+username;
             Worker worker = null;
             HumanResourceWorker humanResourceWorker = null;
+            Path filePath = Paths.get(path);
+            Path filePathHR = Paths.get(hrPath);
 
-            try {
-                FileInputStream stream = new FileInputStream(path);
-                BufferedReader inputStream = new BufferedReader(new InputStreamReader(stream));
+            if(Files.exists(filePath)) {
+                try {
+                    FileInputStream stream = new FileInputStream(path);
+                    BufferedReader inputStream = new BufferedReader(new InputStreamReader(stream));
 
-                String line = "", tempLine;
+                    String line = "", tempLine;
 
-                while ((tempLine = inputStream.readLine()) != null)
-                    line = tempLine;
+                    while ((tempLine = inputStream.readLine()) != null)
+                        line = tempLine;
 
-                inputStream.close();
+                    inputStream.close();
 
-                String[] data = line.split(",");
-                worker = new Worker(data);
+                    String[] data = line.split(",");
+                    worker = new Worker(data);
 
-                if (worker.isActive())
-                    worker.setActive(false); //Radnik vise nije aktivan, deaktiviran mu je korisnicki nalog
+                    if (worker.isActive())
+                        worker.setActive(false); //Radnik vise nije aktivan, deaktiviran mu je korisnicki nalog
 
-            } catch (Exception exception) {
-                LOGGER.warning(exception.fillInStackTrace().toString());
-            }
-
-            try {
-                FileOutputStream stream = new FileOutputStream(path);
-                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stream));
-
-                writer.write(worker.toString()); //Nakon deaktiviranja vrsimo ponovni upis u fajl
-                writer.close();
-
-            }
-            catch (Exception exception)
-            {
-                LOGGER.warning(exception.fillInStackTrace().toString());
-            }
-
-
-            //Za HR naloge
-
-            try {
-                FileInputStream stream = new FileInputStream(hrPath);
-                BufferedReader inputStream = new BufferedReader(new InputStreamReader(stream));
-
-                String line = "", tempLine;
-
-                while ((tempLine = inputStream.readLine()) != null)
-                    line = tempLine;
-
-                inputStream.close();
-
-                String[] data = line.split(",");
-
-                humanResourceWorker=new HumanResourceWorker(data);
-
-                boolean active = humanResourceWorker.isActive();
-
-                if(active)
-                {
-                    active = false;
-                    humanResourceWorker.setActive(false); //Radnik vise nije aktivan, deaktiviran mu je korisnicki nalog
+                } catch (Exception exception) {
+                    LOGGER.warning(exception.fillInStackTrace().toString());
                 }
 
+                try {
+                    FileOutputStream stream = new FileOutputStream(path);
+                    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stream));
 
+                    //assert worker != null;
+                    writer.write(worker.toString()); //Nakon deaktiviranja vrsimo ponovni upis u fajl
+                    writer.close();
 
-
-            } catch (Exception exception) {
-                LOGGER.warning(exception.fillInStackTrace().toString());
+                } catch (Exception exception) {
+                    LOGGER.warning(exception.fillInStackTrace().toString());
+                }
             }
 
-            try{
-                FileOutputStream stream = new FileOutputStream(hrPath);
-                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stream));
+            //Za HR naloge
+            if(Files.exists(filePathHR)) {
+                try {
+                    FileInputStream stream = new FileInputStream(hrPath);
+                    BufferedReader inputStream = new BufferedReader(new InputStreamReader(stream));
 
-                writer.write(humanResourceWorker.toString()); //Nakon deaktiviranja vrsimo ponovni upis u fajl
-                writer.close();
+                    String line = "", tempLine;
 
+                    while ((tempLine = inputStream.readLine()) != null)
+                        line = tempLine;
+
+                    inputStream.close();
+
+                    String[] data = line.split(",");
+
+                    humanResourceWorker = new HumanResourceWorker(data);
+
+                    boolean active = humanResourceWorker.isActive();
+
+                    if (active) {
+                        active = false;
+                        humanResourceWorker.setActive(false); //Radnik vise nije aktivan, deaktiviran mu je korisnicki nalog
+                    }
+
+
+                } catch (Exception exception) {
+                    LOGGER.warning(exception.fillInStackTrace().toString());
+                }
+
+                try {
+                    FileOutputStream stream = new FileOutputStream(hrPath);
+                    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stream));
+
+                    writer.write(humanResourceWorker.toString()); //Nakon deaktiviranja vrsimo ponovni upis u fajl
+                    writer.close();
+
+                } catch (Exception exception) {
+                    LOGGER.warning(exception.fillInStackTrace().toString());
+                }
             }
-            catch (Exception exception)
-            {
-                LOGGER.warning(exception.fillInStackTrace().toString());
-            }
-
-            searchTextField.setText("");
-            //delete the user
+                searchTextField.setText("");
+                //delete the user
 
         }
 
@@ -319,51 +319,57 @@ public class MainScreenAdmin extends JFrame {
         String hrPath = FilePaths.HR_ACCOUNTS + username;
         Worker worker = null;
         HumanResourceWorker humanResourceWorker = null;
-        try {
-            FileInputStream stream = new FileInputStream(path);
-            BufferedReader inputStream = new BufferedReader(new InputStreamReader(stream));
+        Path filePath = Paths.get(path);
+        Path filePathHR = Paths.get(hrPath);
 
-            String line = null, tempLine;
+        if(Files.exists(filePath)) {
 
-            while ((tempLine = inputStream.readLine()) != null)
-                line = tempLine;
+            try {
+                FileInputStream stream = new FileInputStream(path);
+                BufferedReader inputStream = new BufferedReader(new InputStreamReader(stream));
 
-            inputStream.close();
+                String line = null, tempLine;
 
-            String datas[] = line.split(",");
+                while ((tempLine = inputStream.readLine()) != null)
+                    line = tempLine;
 
-            worker=new Worker(datas);
+                inputStream.close();
 
-            if(worker!=null)
-            {
-                addUserInTable(worker,"Worker");
+                String datas[] = line.split(",");
+
+                worker = new Worker(datas);
+
+                if (worker != null) {
+                    addUserInTable(worker, "Worker");
+                }
+
+            } catch (Exception exception) {
+                LOGGER.warning(exception.fillInStackTrace().toString());
             }
-
-        } catch (Exception exception) {
-            LOGGER.warning(exception.fillInStackTrace().toString());
         }
-        try {
-            FileInputStream stream = new FileInputStream(hrPath);
-            BufferedReader inputStream = new BufferedReader(new InputStreamReader(stream));
+        if(Files.exists(filePathHR)) {
+            try {
+                FileInputStream stream = new FileInputStream(hrPath);
+                BufferedReader inputStream = new BufferedReader(new InputStreamReader(stream));
 
-            String line = null, tempLine;
+                String line = null, tempLine;
 
-            while ((tempLine = inputStream.readLine()) != null)
-                line = tempLine;
+                while ((tempLine = inputStream.readLine()) != null)
+                    line = tempLine;
 
-            inputStream.close();
+                inputStream.close();
 
-            String datas[] = line.split(",");
+                String datas[] = line.split(",");
 
-            humanResourceWorker=new HumanResourceWorker(datas);
+                humanResourceWorker = new HumanResourceWorker(datas);
 
-            if(worker!=null)
-            {
-                addUserInTable(worker,"HR");
+                if (worker != null) {
+                    addUserInTable(worker, "HR");
+                }
+
+            } catch (Exception exception) {
+                LOGGER.warning(exception.fillInStackTrace().toString());
             }
-
-        } catch (Exception exception) {
-            LOGGER.warning(exception.fillInStackTrace().toString());
         }
     }
 
