@@ -1,17 +1,12 @@
 package gui;
 
-import constants.FilePaths;
 import model.Admin;
+import model.Company;
 import model.Worker;
 import user_app.Main;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.logging.Logger;
 
 public class MainScreenUser extends JFrame {
@@ -118,8 +113,10 @@ public class MainScreenUser extends JFrame {
 
     // Show and sets Company Info
     private void companyInfoButtonAction() {
+
         // Setting the Labels
 
+        /*
         String text;
         String[] content;
         String companyName = null;
@@ -152,17 +149,23 @@ public class MainScreenUser extends JFrame {
 
         } catch (Exception exception) {
             LOGGER.warning(exception.fillInStackTrace().toString());
-        }
+        }*/
 
-            companyNameLabel.setText(companyName);
-            companyAddressLabel.setText(companyAdress);
-            companyCityLabel.setText(companyCity);
-            companyCountryLabel.setText(companyCountry);
-            companyPhoneLabel.setText(phones.toString());
-            companyEmailLabel.setText(emails.toString());
+        Company company = Company.getDataFromFile();
+
+        if (company != null) {
+            companyNameLabel.setText(company.getName());
+            companyAddressLabel.setText(company.getAddress());
+            companyCityLabel.setText(company.getCity());
+            companyCountryLabel.setText(company.getCountry());
+            companyPhoneLabel.setText(company.getPhonesStringFormatted());
+            companyEmailLabel.setText(company.getEmailsStringFormatted());
+        }
 
         CardLayout card = (CardLayout)(mainPanel.getLayout());
         card.show(mainPanel,"companyInfoPanel");
+
+        this.pack();
     }
 
     // go back to login

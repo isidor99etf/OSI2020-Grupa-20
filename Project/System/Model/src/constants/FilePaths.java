@@ -14,5 +14,5 @@ public interface FilePaths {
 
     String CONFIG_FILE = DATA_FOLDER + "config";
 
-    String COMPANY_INFO_FILE = DATA_FOLDER+"CompanyInfo";
+    String COMPANY_INFO_FILE = DATA_FOLDER + "CompanyInfo";
 }
