@@ -13,9 +13,11 @@ public class Company {
     private String address;
     private String city;
     private String country;
+    private int numberOfWorkers;
+    private int numberOfHrWorkers;
     private ArrayList<String> phones;
     private ArrayList<String> emails;
-    private ArrayList<Employee> employees; // maybe
+    //private ArrayList<Employee> employees; // maybe
 
     //private boolean haveLicence; //Signalizira da li kompanija vec ima licencu, Config fajl
 
@@ -25,11 +27,13 @@ public class Company {
 
     public Company() { }
 
-    public Company(String name, String address, String city, String country, ArrayList<String> phones, ArrayList<String> emails) {
+    public Company(String name, String address, String city, String country, int numberOfWorkers, int numberOfHrWorkers, ArrayList<String> phones, ArrayList<String> emails) {
         this.name = name;
         this.address = address;
         this.city = city;
         this.country = country;
+        this.numberOfWorkers = numberOfWorkers;
+        this.numberOfHrWorkers = numberOfHrWorkers;
         this.phones = phones;
         this.emails = emails;
     }
@@ -42,7 +46,9 @@ public class Company {
 
     public String getCountry() { return country; }
 
-    public int getNumberOfEmployees() { return employees.size(); }
+    public int getNumberOfWorkers() { return numberOfWorkers; }
+
+    public int getNumberOfHrWorkers() { return numberOfHrWorkers; }
 
     public ArrayList<String> getPhones() { return phones; }
 
@@ -70,8 +76,6 @@ public class Company {
         return builder.toString();
     }
 
-    public ArrayList<Employee> getEmployees() { return employees; }
-
     public void setName(String name) { this.name = name; }
 
     public void setAddress(String address) { this.address = address; }
@@ -80,17 +84,19 @@ public class Company {
 
     public void setCountry(String country) { this.country = country; }
 
+    public void setNumberOfWorkers(int numberOfWorkers) { this.numberOfWorkers = numberOfWorkers; }
+
+    public void setNumberOfHrWorkers(int numberOfHrWorkers) { this.numberOfHrWorkers = numberOfHrWorkers; }
+
     public void addPhone(String phone) { this.phones.add(phone); }
 
     public void addEmail(String email) { this.emails.add(email); }
-
-    public void addEmployee(Employee employee) { this.employees.add(employee); }
-
 
     @Override
     public String toString() {
         return name + "," +
                 address + "," + city + "," + country + "," +
+                numberOfWorkers + "," + numberOfHrWorkers + "," +
                 phones.size() + "," + getPhonesString() +
                 emails.size() + "," + getEmailsString();
     }
@@ -108,20 +114,24 @@ public class Company {
 
                 String[] data = line.split(",");
 
-                int numberOfPhones = Integer.parseInt(data[4]);
-                int numberOfEmails = Integer.parseInt(data[5 + numberOfPhones]);
+                int numberOfWorkers = Integer.parseInt(data[4]);
+                int numberOfHrWorkers = Integer.parseInt(data[5]);
+                int numberOfPhones = Integer.parseInt(data[6]);
+                int numberOfEmails = Integer.parseInt(data[7 + numberOfPhones]);
 
                 ArrayList<String> phones = new ArrayList<>(numberOfPhones);
                 ArrayList<String> emails = new ArrayList<>(numberOfEmails);
 
-                phones.addAll(Arrays.asList(data).subList(5, 5 + numberOfPhones));
-                emails.addAll(Arrays.asList(data).subList(5 + (numberOfPhones + 1), 5 + (numberOfPhones + 1) + numberOfEmails));
+                phones.addAll(Arrays.asList(data).subList(7, 7 + numberOfPhones));
+                emails.addAll(Arrays.asList(data).subList(7 + (numberOfPhones + 1), 7 + (numberOfPhones + 1) + numberOfEmails));
 
                 return new Company(
                         data[0],
                         data[1],
                         data[2],
                         data[3],
+                        numberOfWorkers,
+                        numberOfHrWorkers,
                         phones,
                         emails
                 );

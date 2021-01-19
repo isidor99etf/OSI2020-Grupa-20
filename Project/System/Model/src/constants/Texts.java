@@ -3,6 +3,7 @@ package constants;
 public interface Texts {
 
     String MESSAGE_WRONG_PIN = "Unijeli ste nepostojeci PIN";
+    String MESSAGE_WRONG_LICENCE = "Unijeli ste pogresnu licencu";
     String MESSAGE_WRONG_WORK_STATUS = "Unijeli ste pogresan radni status";
     String MESSAGE_SUCCESS = "Uspjesno upisano u bazu podataka";
     String MESSAGE_PIN_FIELD_EMPTY = "Unesite PIN";
@@ -15,4 +16,6 @@ public interface Texts {
     String MESSAGE_WORKER_EXISTS = "Vec je registrovan korisnik sa unesenim korisnickim imenom";
     String MESSAGE_DATE_FORMAT = "Datum mora biti u formatu dd.mm.yyyy.";
     String MESSAGE_EMAIL_FORMAT = "Pogresan format email-a";
+    String MESSAGE_MAX_NUMBER_OF_WORKERS = "Vasa kompanija nema licencu. Maksimalan broj zaposlenih je dokucen.";
+    String MESSAGE_ALL_FIELDS_REQUIRED = "Morate popuniti sva polja";
 }

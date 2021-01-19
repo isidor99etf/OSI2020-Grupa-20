@@ -21,6 +21,10 @@ public class HumanResourceWorker extends Employee {
         super(data);
     }
 
+    public HumanResourceWorker(String name, String surname, String dateOfBirth, String address, String phone, String email, String workPlace, String sector, String userName, String password) {
+        super(name, surname, dateOfBirth, address, phone, email, workPlace, sector, userName, password);
+    }
+
     public static HumanResourceWorker getDataFromFile(String userName) {
         try {
             FileInputStream stream = new FileInputStream(FilePaths.HR_ACCOUNTS + userName);
