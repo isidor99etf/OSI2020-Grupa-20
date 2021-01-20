@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="WorkTimeApp">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/System/out/artifacts/WorkTimeApp_jar/WorkTimeApp.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

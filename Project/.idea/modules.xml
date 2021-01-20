@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/System/AdminApp/AdminApp.iml" filepath="$PROJECT_DIR$/System/AdminApp/AdminApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/System/HrApp/HrApp.iml" filepath="$PROJECT_DIR$/System/HrApp/HrApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/System/Model/Model.iml" filepath="$PROJECT_DIR$/System/Model/Model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Project.iml" filepath="$PROJECT_DIR$/.idea/Project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/System/UserApp/UserApp.iml" filepath="$PROJECT_DIR$/System/UserApp/UserApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/System/WorkTimeApp/WorkTimeApp.iml" filepath="$PROJECT_DIR$/System/WorkTimeApp/WorkTimeApp.iml" />
+    </modules>
+  </component>
+</project>
