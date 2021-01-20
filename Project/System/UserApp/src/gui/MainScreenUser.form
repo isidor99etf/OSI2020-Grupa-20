@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="gui.MainScreenUser">
   <grid id="27dc6" binding="backPanel" layout-manager="CardLayout" hgap="0" vgap="0" show="18538">
     <constraints>
-      <xy x="20" y="20" width="711" height="605"/>
+      <xy x="20" y="20" width="711" height="655"/>
     </constraints>
     <properties>
       <background color="-1"/>
@@ -68,7 +68,7 @@
                   <focusable value="false"/>
                   <font name="Arial" size="16"/>
                   <foreground color="-1"/>
-                  <text value="Personal info"/>
+                  <text value="Personal Info"/>
                 </properties>
               </component>
             </children>
@@ -113,7 +113,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <grid id="814c7" binding="personalInfoPanel" layout-manager="GridLayoutManager" row-count="21" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                  <grid id="814c7" binding="personalInfoPanel" layout-manager="GridLayoutManager" row-count="23" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="5" left="5" bottom="25" right="25"/>
                     <constraints>
                       <card name="personalInfoPanel"/>
@@ -260,7 +260,7 @@
                       </component>
                       <vspacer id="4f857">
                         <constraints>
-                          <grid row="20" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                          <grid row="22" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                         </constraints>
                       </vspacer>
                       <vspacer id="cf8e9">
@@ -302,6 +302,24 @@
                         <properties>
                           <font name="Arial" size="16" style="2"/>
                           <text value="email:"/>
+                        </properties>
+                      </component>
+                      <component id="b474d" class="javax.swing.JLabel" binding="pinLabel">
+                        <constraints>
+                          <grid row="21" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="Arial" size="16"/>
+                          <text value=""/>
+                        </properties>
+                      </component>
+                      <component id="5ad3f" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="20" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="Arial" size="16" style="2"/>
+                          <text value="PIN:"/>
                         </properties>
                       </component>
                     </children>

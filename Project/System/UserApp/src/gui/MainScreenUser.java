@@ -50,6 +50,7 @@ public class MainScreenUser extends JFrame {
     private JButton logoutButton;
     private JLabel companyCityLabel;
     private JLabel companyCountryLabel;
+    private JLabel pinLabel;
 
 
     private final String[] sortList = {"Day","Monthly"};
@@ -97,6 +98,7 @@ public class MainScreenUser extends JFrame {
         workPlaceLabel.setText( worker.getWorkPlace() );
         sectorLabel.setText( worker.getSector() );
         userNameLabel.setText( worker.getUserName() );
+        pinLabel.setText( String.valueOf(worker.getPIN()) );
 
         CardLayout card = (CardLayout)(mainPanel.getLayout());
         card.show(mainPanel,"personalInfoPanel");
