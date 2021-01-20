@@ -29,7 +29,7 @@ public class Admin extends Employee {
 
     @Override
     public String toString() {
-        return "model.Admin " + super.toString();
+        return userName + "," + password + "," + email + "," + phone + "," + numberOfLogins;
     }
 
     public static Admin getDataFromFile() {
@@ -59,16 +59,9 @@ public class Admin extends Employee {
         try {
             FileWriter fileWriter = new FileWriter(FilePaths.ADMIN_ACCOUNT);
             BufferedWriter writer = new BufferedWriter(fileWriter);
-
-            writer.write(admin.getUserName());
-            writer.write(",");
-            writer.write(admin.getPassword());
-            writer.write(",");
-            writer.write(String.valueOf(admin.getNumberOfLogins()));
-
+            writer.write(admin.toString());
             writer.flush();
             writer.close();
-
         } catch (Exception exception) {
             LOGGER.warning(exception.fillInStackTrace().toString());
         }

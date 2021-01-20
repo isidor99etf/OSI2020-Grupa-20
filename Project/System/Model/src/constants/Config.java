@@ -10,7 +10,6 @@ public class Config {
     /*
         All data are separated by comma, and all are in one row
         FORMAT:
-            licence
             number_of_hr_without_licence
             number_of_worker_without_licence
             number_of_logins_with_one_password
@@ -19,23 +18,19 @@ public class Config {
 
      */
 
-    private final int licence;
-    private int numberOfHrAccounts;
     private int numberOfWorkerAccounts;
+    private int numberOfHrAccounts;
     private final int numberOfLogins;
     private boolean haveLicence; //Signalizira da li ima licencu
     private String licencesKey; //Kljuc za licencu
 
-    private Config(int licence, int numberOfHrAccounts, int numberOfWorkerAccounts, int numberOfLogins, boolean haveLicence,String licencesKey) {
-        this.licence = licence;
-        this.numberOfHrAccounts = numberOfHrAccounts;
+    private Config(int numberOfWorkerAccounts, int numberOfHrAccounts, int numberOfLogins, boolean haveLicence,String licencesKey) {
         this.numberOfWorkerAccounts = numberOfWorkerAccounts;
+        this.numberOfHrAccounts = numberOfHrAccounts;
         this.numberOfLogins = numberOfLogins;
         this.haveLicence = haveLicence;
         this.licencesKey = licencesKey;
     }
-
-    public int getLicence() { return licence; }
 
     public int getNumberOfHrAccounts() { return numberOfHrAccounts; }
 
@@ -84,9 +79,8 @@ public class Config {
                         Integer.parseInt(data[0]),
                         Integer.parseInt(data[1]),
                         Integer.parseInt(data[2]),
-                        Integer.parseInt(data[3]),
-                        Boolean.parseBoolean(data[4]),
-                        data[5]
+                        Boolean.parseBoolean(data[3]),
+                        data[4]
                 );
             }
         } catch (Exception exception) {
@@ -101,6 +95,7 @@ public class Config {
             FileOutputStream stream = new FileOutputStream(FilePaths.CONFIG_FILE);
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stream));
             writer.write(config.toString());
+            writer.flush();
             writer.close();
         } catch (Exception exception) {
             LOGGER.warning(exception.fillInStackTrace().toString());
@@ -109,8 +104,7 @@ public class Config {
 
     @Override
     public String toString() {
-        return licence + "," + numberOfWorkerAccounts + "," + numberOfHrAccounts + ","
+        return numberOfWorkerAccounts + "," + numberOfHrAccounts + ","
                 + numberOfLogins + "," + haveLicence + "," + licencesKey;
-
     }
 }

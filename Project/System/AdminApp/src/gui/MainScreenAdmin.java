@@ -4,16 +4,13 @@ import admin_app.Main;
 import constants.Config;
 import constants.FilePaths;
 import constants.Texts;
-import model.Admin;
-import model.HumanResourceWorker;
-import model.Worker;
+import model.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.*;
+import java.util.Random;
 import java.util.logging.Logger;
 
 public class MainScreenAdmin extends JFrame {
@@ -67,7 +64,10 @@ public class MainScreenAdmin extends JFrame {
     private JButton addNewEmailButton;
     private JButton addPhoneButtonPanel;
     private JButton addEmailButtonPanel;
+    private JLabel errorMsgLabel;
+    private JLabel errorMsgKeyLabel;
 
+    private boolean isPasswordHidden = true;
 
     private final JMenuItem contactInfo = new JMenuItem("Contact Info");
 
@@ -103,7 +103,7 @@ public class MainScreenAdmin extends JFrame {
         deleteUserButtonPanel.addActionListener(e -> deleteUserButtonPanelAction());
         addHrButtonPanel.addActionListener(e -> addHrButtonPanelAction());
         addUserButton.addActionListener(e -> addUserButtonAction());
-        showPasswordButton.addActionListener(e -> showPasswordButton());
+        showPasswordButton.addActionListener(e -> togglePassword());
         okLicenceButton.addActionListener(e -> okLicenceButtonAction());
         addNewPhoneButton.addActionListener(e -> addNewPhoneButtonAction());
         addNewEmailButton.addActionListener(e -> addNewEmailButtonAction());
@@ -114,12 +114,26 @@ public class MainScreenAdmin extends JFrame {
     // For adding a new email address
     private void addNewPhoneButtonAction() {
 
+        Company company = Company.getDataFromFile();
+        String phone = newPhoneTextField.getText();
+
+        if (company != null) {
+            company.addPhone(phone);
+            Company.writeData(company);
+        }
+
         newPhoneTextField.setText("");
     }
 
     // For adding a new phone number
     private void addNewEmailButtonAction() {
+        Company company = Company.getDataFromFile();
+        String email = newEmailTextField.getText();
 
+        if (company != null) {
+            company.addEmail(email);
+            Company.writeData(company);
+        }
         newEmailTextField.setText("");
     }
 
@@ -139,18 +153,93 @@ public class MainScreenAdmin extends JFrame {
     // For Add a new HR user
     private void addUserButtonAction() {
 
+        showErrorMsg("", false);
 
-        //Empties Text Fields
-        flashUserTextFields();
+        if (!checkFields()) {
+
+            String name = nameTextField.getText();
+            String surname = surnameTextField.getText();
+            String dateOfBirth = dateOfBirthTextField.getText();
+            String address = addressTextField.getText();
+            String phone = phoneTextField.getText();
+            String email = emailTextField.getText();
+            String workPlace = workPlaceTextField.getText();
+            String sector = sectorTextField.getText();
+            String userName = userNameTextField.getText();
+            String password = new String(userPasswordField.getPassword());
+
+            File file = new File(FilePaths.HR_ACCOUNTS + userName);
+            if (!file.exists()) {
+
+                if (!Employee.DATE_PATTERN.matcher(dateOfBirth).find()) {
+
+                    showErrorMsg(Texts.MESSAGE_DATE_FORMAT, true);
+                    System.out.println(Texts.MESSAGE_DATE_FORMAT);
+                    this.pack();
+                    return;
+                }
+
+                if (!Employee.EMAIL_PATTERN.matcher(email).find()) {
+
+                    showErrorMsg(Texts.MESSAGE_EMAIL_FORMAT, true);
+                    System.out.println(Texts.MESSAGE_EMAIL_FORMAT);
+                    this.pack();
+                    return;
+                }
+
+                HumanResourceWorker worker = new HumanResourceWorker(name, surname, dateOfBirth, address, phone, email, workPlace, sector, userName, password);
+
+                File register = new File(FilePaths.WORKER_REGISTER);
+                File[] files = register.listFiles();
+
+                int pin;
+                boolean isPin = true;
+                Random random = new Random();
+                do {
+                    pin = 100_000 + random.nextInt(800_000);
+
+                    if (files != null)
+                        for (File f : files)
+                            if (f.getName().equals(String.valueOf(pin)))
+                                isPin = false;
+
+                } while (!isPin);
+
+                worker.setPIN(pin);
+
+                // create register file
+                try {
+                    File workerRegister = new File(FilePaths.WORKER_REGISTER + pin);
+                    workerRegister.createNewFile();
+                } catch (Exception exception) {
+                    LOGGER.warning(exception.fillInStackTrace().toString());
+                }
+
+                HumanResourceWorker.updateFile(worker);
+                flashUserTextFields();
+
+                Company company = Company.getDataFromFile();
+                if (company != null) {
+                    company.setNumberOfHrWorkers(company.getNumberOfHrWorkers() + 1);
+                    Company.writeData(company);
+                }
+
+            } else {
+
+                showErrorMsg(Texts.MESSAGE_WORKER_EXISTS,true);
+                System.out.println(Texts.MESSAGE_WORKER_EXISTS);
+            }
+        } else {
+            showErrorMsg(Texts.MESSAGE_ALL_FIELDS_REQUIRED, true);
+            System.out.println(Texts.MESSAGE_ALL_FIELDS_REQUIRED);
+        }
+
+        this.pack();
     }
 
-    //Shows user password in String form not in *
-    private void showPasswordButton() {
-        userPasswordField.setEchoChar((char) 0);
-    }
-
-    //For checking the Licence KEy
+    // For checking the Licence Key
     private void okLicenceButtonAction() {
+        showErrorMsgKey("",false);
 
         Config config = Config.readConfigFile();
         String key = keyTextField.getText();
@@ -164,12 +253,22 @@ public class MainScreenAdmin extends JFrame {
             keyTextField.setText("");
             keyTextField.setEnabled(false);
             okLicenceButton.setEnabled(false);
-            licenceMsgLabel.setText(Texts.MESSAGE_LICENCE_HASE_BEEN_ACTIVATED);
+            licenceMsgLabel.setText(Texts.MESSAGE_LICENCE_HAS_BEEN_ACTIVATED);
             licenceMsgLabel.setVisible(true);
 
-            //Saving Config
+            // Saving Config
             Config.writeConfigFile(config);
+        } else {
+
+            showErrorMsgKey(Texts.MESSAGE_WRONG_LICENCE, true);
+            System.out.println(Texts.MESSAGE_WRONG_LICENCE);
         }
+        this.pack();
+    }
+
+    private void showErrorMsgKey(String msg, boolean visible){
+        errorMsgKeyLabel.setVisible(visible);
+        errorMsgKeyLabel.setText(msg);
     }
 
     // For log out
@@ -181,8 +280,26 @@ public class MainScreenAdmin extends JFrame {
     //Showing Add HR Panel on Screen
     private void addHrButtonPanelAction() {
 
+        showErrorMsg("", false);
+
         CardLayout card = (CardLayout) (mainPanel.getLayout());
         card.show(mainPanel,"addHrPanel");
+
+        sectorTextField.setText("Administracija");
+        sectorTextField.setEditable(false);
+        workPlaceTextField.setText("Menadzer ljudskih resursa");
+        workPlaceTextField.setEditable(false);
+
+        Config config = Config.readConfigFile();
+        Company company = Company.getDataFromFile();
+
+        if (company != null && config != null && !config.isHaveLicence())
+            if (company.getNumberOfHrWorkers() >= config.getNumberOfHrAccounts()) {
+                addUserButton.setEnabled(false);
+
+                showErrorMsg(Texts.MESSAGE_MAX_NUMBER_OF_WORKERS,true);
+                System.out.println(Texts.MESSAGE_MAX_NUMBER_OF_WORKERS);
+            }
     }
 
     //Showing Delete User Panel on Screen
@@ -198,6 +315,7 @@ public class MainScreenAdmin extends JFrame {
         Config config = Config.readConfigFile();
 
         licenceMsgLabel.setText("");
+        showErrorMsgKey("", false);
 
         if (config != null && config.isHaveLicence()) {
 
@@ -249,7 +367,7 @@ public class MainScreenAdmin extends JFrame {
                 FileOutputStream stream = new FileOutputStream(path);
                 BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stream));
 
-                writer.write(worker.toString()); //Nakon deaktiviranja vrsimo ponovni upis u fajl
+                writer.write(worker.toString()); //Nakon deaktiviranja vrsimo ponovni upis u fajl4
                 writer.close();
 
             }
@@ -312,7 +430,7 @@ public class MainScreenAdmin extends JFrame {
     }
 
     //searches for  user and show it in  userTable
-    private void searchButtonAction(){
+    private void searchButtonAction() {
 
         String username = searchTextField.getText();
         String path = FilePaths.WORKER_ACCOUNTS+username;
@@ -378,7 +496,6 @@ public class MainScreenAdmin extends JFrame {
     }
 
     private void flashUserTextFields() {
-
         nameTextField.setText("");
         surnameTextField.setText("");
         dateOfBirthTextField.setText("");
@@ -389,11 +506,34 @@ public class MainScreenAdmin extends JFrame {
         workPlaceTextField.setText("");
         userNameTextField.setText("");
         userPasswordField.setText("");
+    }
 
+    private void togglePassword() {
+        if (isPasswordHidden) {
+            userPasswordField.setEchoChar((char) 0);
+            isPasswordHidden = false;
+        } else {
+            userPasswordField.setEchoChar('•');
+            isPasswordHidden = true;
+        }
     }
 
     private void addUserInTable(Worker worker, String type) {
         workerModel.getDataVector().removeAllElements();
         workerModel.insertRow(0, new Object[] {worker.getUserName(),worker.getFirstName(),worker.getSurname(),type});
+    }
+
+    private boolean checkFields() {
+        return nameTextField.getText().isEmpty() || surnameTextField.getText().isEmpty() ||
+                dateOfBirthTextField.getText().isEmpty() || addressTextField.getText().isEmpty() ||
+                phoneTextField.getText().isEmpty() || emailTextField.getText().isEmpty() ||
+                workPlaceTextField.getText().isEmpty() || sectorTextField.getText().isEmpty() ||
+                userNameTextField.getText().isEmpty() || userPasswordField.getPassword().length == 0;
+
+    }
+
+    private void showErrorMsg (String msg, boolean visible){
+        errorMsgLabel.setText(msg);
+        errorMsgLabel.setVisible(visible);
     }
 }
