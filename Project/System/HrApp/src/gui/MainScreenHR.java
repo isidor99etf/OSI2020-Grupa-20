@@ -1,11 +1,9 @@
 package gui;
 
+import constants.Config;
 import constants.FilePaths;
 import constants.Texts;
-import model.Admin;
-import model.Employee;
-import model.HumanResourceWorker;
-import model.Worker;
+import model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -62,6 +60,8 @@ public class MainScreenHR extends JFrame {
     private final String[][] tableData = {{"NIkola","Nikolic","Sector 1","Work Place 1","At work"},
                                       {"NIkola","Nikolic","Sector 1","Work Place 1","At work"}};
     private final JMenuItem contactInfo = new JMenuItem("Contact Info");
+
+    private boolean isPasswordHidden = true;
 
     public MainScreenHR(HumanResourceWorker hrWorker) {
         super("HR App");
@@ -123,68 +123,82 @@ public class MainScreenHR extends JFrame {
     // For Add a New user
     private void addUserButtonAction() {
 
-        String name = nameTextField.getText();
-        String surname = surnameTextField.getText();
-        String dateOfBirth = dateOfBirthTextField.getText();
-        String address = addressTextField.getText();
-        String phone = phoneTextField.getText();
-        String email = emailTextField.getText();
-        String workPlace = workPlaceTextField.getText();
-        String sector = sectorTextField.getText();
-        String userName = userNameTextField.getText();
-        String password = new String(userPasswordField.getPassword());
+        if (!checkFields()) {
 
-        File file = new File(FilePaths.WORKER_ACCOUNTS + userName);
-        if (!file.exists()) {
+            String name = nameTextField.getText();
+            String surname = surnameTextField.getText();
+            String dateOfBirth = dateOfBirthTextField.getText();
+            String address = addressTextField.getText();
+            String phone = phoneTextField.getText();
+            String email = emailTextField.getText();
+            String workPlace = workPlaceTextField.getText();
+            String sector = sectorTextField.getText();
+            String userName = userNameTextField.getText();
+            String password = new String(userPasswordField.getPassword());
 
-            if (!Employee.DATE_PATTERN.matcher(dateOfBirth).find()) {
+            File file = new File(FilePaths.WORKER_ACCOUNTS + userName);
+            if (!file.exists()) {
+
+                if (!Employee.DATE_PATTERN.matcher(dateOfBirth).find()) {
+                    // show message
+                    // Texts.MESSAGE_DATE_FORMAT
+                    System.out.println(Texts.MESSAGE_DATE_FORMAT);
+                    return;
+                }
+
+                if (!Employee.EMAIL_PATTERN.matcher(email).find()) {
+                    // show message
+                    // Texts.MESSAGE_EMAIL_FORMAT
+                    System.out.println(Texts.MESSAGE_EMAIL_FORMAT);
+                    return;
+                }
+
+                Worker worker = new Worker(name, surname, dateOfBirth, address, phone, email, workPlace, sector, userName, password);
+
+                File register = new File(FilePaths.WORKER_REGISTER);
+                File[] files = register.listFiles();
+
+                int pin;
+                boolean isPin = true;
+                Random random = new Random();
+                do {
+                    pin = 100_000 + random.nextInt(800_000);
+
+                    if (files != null)
+                        for (File f : files)
+                            if (f.getName().equals(String.valueOf(pin)))
+                                isPin = false;
+
+                } while (!isPin);
+
+                worker.setPIN(pin);
+
+                // create register file
+                try {
+                    File workerRegister = new File(FilePaths.WORKER_REGISTER + pin);
+                    workerRegister.createNewFile();
+                } catch (Exception exception) {
+                    LOGGER.warning(exception.fillInStackTrace().toString());
+                }
+
+                Worker.updateFile(worker);
+                flashUserTextFields();
+
+                Company company = Company.getDataFromFile();
+                if (company != null) {
+                    company.setNumberOfWorkers(company.getNumberOfWorkers() + 1);
+                    Company.writeData(company);
+                }
+
+            } else {
                 // show message
-                // Texts.MESSAGE_DATE_FORMAT
-                System.out.println(Texts.MESSAGE_DATE_FORMAT);
-                return;
+                // MESSAGE_WORKER_EXISTS
+                System.out.println(Texts.MESSAGE_WORKER_EXISTS);
             }
-
-            if (!Employee.EMAIL_PATTERN.matcher(email).find()) {
-                // show message
-                // Texts.MESSAGE_EMAIL_FORMAT
-                System.out.println(Texts.MESSAGE_EMAIL_FORMAT);
-                return;
-            }
-
-            Worker worker = new Worker(name, surname, dateOfBirth, address, phone, email, workPlace, sector, userName, password);
-
-            File register = new File(FilePaths.WORKER_REGISTER);
-            File[] files = register.listFiles();
-
-            int pin;
-            boolean isPin = true;
-            Random random = new Random();
-            do {
-                pin = 100_000 + random.nextInt(800_000);
-
-                if (files != null)
-                    for (File f : files)
-                        if (f.getName().equals(String.valueOf(pin)))
-                            isPin = false;
-
-            } while (!isPin);
-
-            worker.setPIN(pin);
-
-            // create register file
-            try {
-                File workerRegister = new File(FilePaths.WORKER_REGISTER + pin);
-                workerRegister.createNewFile();
-            } catch (Exception exception) {
-                LOGGER.warning(exception.fillInStackTrace().toString());
-            }
-
-            Worker.updateFile(worker);
-            flashUserTextFields();
-
         } else {
             // show message
-            // MESSAGE_WORKER_EXISTS
+            // MESSAGE_ALL_FIELDS_REQUIRED
+            System.out.println(Texts.MESSAGE_ALL_FIELDS_REQUIRED);
         }
     }
 
@@ -207,16 +221,26 @@ public class MainScreenHR extends JFrame {
         new LoginScreenHR();
     }
 
-    //Showing addUserCard   on mainPanel
+    // Showing addUserCard   on mainPanel
     private void newUserCardButtonAction() {
 
         CardLayout card = (CardLayout) (mainPanel.getLayout());
         card.show(mainPanel, "addUserCard");
 
+        Config config = Config.readConfigFile();
+        Company company = Company.getDataFromFile();
 
+        if (company != null && config != null && !config.isHaveLicence())
+            if (company.getNumberOfWorkers() >= config.getNumberOfWorkerAccounts()) {
+                addUserButton.setEnabled(false);
+
+                // show message
+                // MESSAGE_MAX_NUMBER_OF_WORKERS
+                System.out.println(Texts.MESSAGE_MAX_NUMBER_OF_WORKERS);
+            }
     }
 
-    //Showing employeeCard   on mainPanel
+    // Showing employeeCard   on mainPanel
     private void employeesButtonAction() {
 
         CardLayout card = (CardLayout) (mainPanel.getLayout());
@@ -234,8 +258,15 @@ public class MainScreenHR extends JFrame {
         JOptionPane.showMessageDialog(contactInfo,contactInfoMessage);
     }
 
+    //
     private void togglePassword() {
-        userPasswordField.setEchoChar((char) 0);
+        if (isPasswordHidden) {
+            userPasswordField.setEchoChar((char) 0);
+            isPasswordHidden = false;
+        } else {
+            userPasswordField.setEchoChar('•');
+            isPasswordHidden = true;
+        }
     }
 
     private void createUIComponents() {
@@ -247,7 +278,6 @@ public class MainScreenHR extends JFrame {
     }
 
     private void flashUserTextFields() {
-
         nameTextField.setText("");
         surnameTextField.setText("");
         dateOfBirthTextField.setText("");
@@ -258,6 +288,14 @@ public class MainScreenHR extends JFrame {
         workPlaceTextField.setText("");
         userNameTextField.setText("");
         userPasswordField.setText("");
+    }
+
+    private boolean checkFields() {
+        return nameTextField.getText().isEmpty() || surnameTextField.getText().isEmpty() ||
+                dateOfBirthTextField.getText().isEmpty() || addressTextField.getText().isEmpty() ||
+                phoneTextField.getText().isEmpty() || emailTextField.getText().isEmpty() ||
+                workPlaceTextField.getText().isEmpty() || sectorTextField.getText().isEmpty() ||
+                userNameTextField.getText().isEmpty() || userPasswordField.getPassword().length == 0;
 
     }
 }
