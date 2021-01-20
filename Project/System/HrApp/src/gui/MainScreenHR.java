@@ -6,10 +6,13 @@ import constants.Texts;
 import model.*;
 
 import javax.swing.*;
+import javax.swing.table.TableModel;
 import java.awt.*;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class MainScreenHR extends JFrame {
 
@@ -56,12 +59,14 @@ public class MainScreenHR extends JFrame {
     private final String[] sortList = {"All","Sector","Work Place"};
     private final String[] subSortListSector = {"Sector1","Sector2","Sector2"};
     private final String[] subSortListWork = {"Work Place2","Work Place2","Work Place3"};
-    private final String[] tableColumns ={"Name","Surname","Sector","Work Place","Status"};
-    private final String[][] tableData = {{"NIkola","Nikolic","Sector 1","Work Place 1","At work"},
-                                      {"NIkola","Nikolic","Sector 1","Work Place 1","At work"}};
+    private final String[] tableColumns ={"Username", "Name and Surname", "Sector", "Work Place"};
+    /*private final String[][] tableData = {{"NIkola","Nikolic","Sector 1","Work Place 1","At work"},
+                                      {"NIkola","Nikolic","Sector 1","Work Place 1","At work"}};*/
     private final JMenuItem contactInfo = new JMenuItem("Contact Info");
 
     private boolean isPasswordHidden = true;
+
+    private ArrayList<Employee> workers;
 
     public MainScreenHR(HumanResourceWorker hrWorker) {
         super("HR App");
@@ -87,34 +92,59 @@ public class MainScreenHR extends JFrame {
         addUserButton.addActionListener(e -> addUserButtonAction());
         sortBox.addItemListener(e -> sortBoxAction());
         subSortBox.addItemListener(e -> subSortBoxAction());
+
+        workers = new ArrayList<>();
     }
 
-    //For sorting and displaying users in employeeTable
+    // For sorting and displaying users in employeeTable
     private void subSortBoxAction() {
+
+        String cat = (String) sortBox.getSelectedItem();
+        String item = (String) subSortBox.getSelectedItem();
+
+        if (cat != null && item != null) {
+            ArrayList<Employee> targetData = null;
+
+            if (cat.equals("Sector"))
+                targetData = (ArrayList<Employee>) workers.stream()
+                        .filter(w -> w.getSector().equals(item))
+                        .collect(Collectors.toList());
+            else if (cat.equals("Work Place"))
+                targetData = (ArrayList<Employee>) workers.stream()
+                        .filter(w -> w.getWorkPlace().equals(item))
+                        .collect(Collectors.toList());
+
+            if (targetData != null) {
+
+            }
+        }
     }
 
     private void sortBoxAction() {
 
         // Need to show All user in   employeeTable
+        String item =  (String) sortBox.getSelectedItem();
 
-        String item =  (String)sortBox.getSelectedItem();
-        if(!item.equals("All")){
+        if (item != null && !item.equals("All")) {
+
             subSortBox.removeAllItems();
-            if (item.equals("Sector")){
-                for (String sub : subSortListSector){
-                        subSortBox.addItem(sub);
-                }
+            ArrayList<String> data = null;
 
-            }
-            else {
-                for (String sub : subSortListWork) {
+            if (item.equals("Sector"))
+                // get sectors
+                data = (ArrayList<String>) workers.stream().map(Employee::getSector).collect(Collectors.toList());
+
+            else if (item.equals("Work Place"))
+                // get work places
+                data = (ArrayList<String>) workers.stream().map(Employee::getWorkPlace).collect(Collectors.toList());
+
+            if (data != null) {
+                for (String sub : data)
                     subSortBox.addItem(sub);
-                }
+                subSortBox.setSelectedIndex(0);
+                subSortBox.setEnabled(true);
             }
-           subSortBox.setEnabled(true);
-
-        }
-        else {
+        } else {
             subSortBox.removeAllItems();
             subSortBox.setEnabled(false);
         }
@@ -213,7 +243,14 @@ public class MainScreenHR extends JFrame {
     private void detailsButtonAction() {
         //Needs a Worker Odj to work
         // new UserDetails( worker );
+        int row = employeeTable.getSelectedRow();
+        String username = (String) employeeTable.getValueAt(row, 0);
+        System.out.println(username);
 
+        Worker worker = (Worker) workers.stream().filter(w -> w.getUserName().equals(username)).findFirst().orElse(null);
+
+        if (worker != null)
+            new UserDetails(worker);
     }
 
     private void logoutButtonAction() {
@@ -245,6 +282,20 @@ public class MainScreenHR extends JFrame {
 
         CardLayout card = (CardLayout) (mainPanel.getLayout());
         card.show(mainPanel, "employeeCard");
+
+        workers.clear();
+
+        File workersFolder = new File(FilePaths.WORKER_ACCOUNTS);
+        if (workersFolder.exists()) {
+            File[] files = workersFolder.listFiles();
+            if (files != null)
+            for (File file : files) {
+                Worker worker = Worker.getDataFromFile(file);
+                workers.add(worker);
+            }
+
+            arrayListToMatrix(workers);
+        }
     }
 
     // Showing Contact Info
@@ -272,9 +323,11 @@ public class MainScreenHR extends JFrame {
     private void createUIComponents() {
         // TODO: place custom component creation code here
         sortBox = new JComboBox(sortList);
+        sortBox.setSelectedIndex(0);
+
         subSortBox = new JComboBox();
 
-        employeeTable = new JTable(tableData,tableColumns);
+        employeeTable = new JTable(new Object[1][tableColumns.length], tableColumns);
     }
 
     private void flashUserTextFields() {
@@ -297,5 +350,19 @@ public class MainScreenHR extends JFrame {
                 workPlaceTextField.getText().isEmpty() || sectorTextField.getText().isEmpty() ||
                 userNameTextField.getText().isEmpty() || userPasswordField.getPassword().length == 0;
 
+    }
+
+    private void arrayListToMatrix(ArrayList<Employee> employees) {
+
+        TableModel t = employeeTable.getModel();
+        for (int i = 0; i < employees.size(); ++i) {
+            t.setValueAt(employees.get(i).getUserName(), i, 0);
+            t.setValueAt(employees.get(i).getName() + " " + employees.get(i).getSurname(), i, 1);
+            t.setValueAt(employees.get(i).getSector(), i, 2);
+            t.setValueAt(employees.get(i).getWorkPlace(), i, 3);
+        }
+
+        employeeTable.setModel(t);
+        this.pack();
     }
 }
