@@ -26,8 +26,12 @@ public class Worker extends Employee {
     }
 
     public static Worker getDataFromFile(String userName) {
+        return getDataFromFile(new File(FilePaths.WORKER_ACCOUNTS + userName));
+    }
+
+    public static Worker getDataFromFile(File file) {
         try {
-            FileInputStream stream = new FileInputStream(FilePaths.WORKER_ACCOUNTS + userName);
+            FileInputStream stream = new FileInputStream(file);
             BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
 
             String line = reader.readLine();

@@ -45,7 +45,7 @@ public class Admin extends Employee {
 
                 String[] data = line.split(",");
 
-                return new Admin(data[0], data[1], data[2], data[3], Integer.parseInt(data[4]));
+                return new Admin(data[0], data[1], data[3],data[4],Integer.parseInt(data[2]));
             }
 
         } catch (Exception exception) {

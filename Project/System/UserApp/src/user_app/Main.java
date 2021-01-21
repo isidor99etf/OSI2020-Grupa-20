@@ -6,7 +6,6 @@ import gui.MainScreenUser;
 public class Main {
 
     public static void main(String[] args) {
-
         new LoginScreenUser();
     }
 }
