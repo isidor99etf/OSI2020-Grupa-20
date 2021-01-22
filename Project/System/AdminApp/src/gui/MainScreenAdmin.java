@@ -93,7 +93,7 @@ public class MainScreenAdmin extends JFrame {
 
         String[] tableColumns = {"Username", "Name", "Surname", "User Type"};
         workerModel = new DefaultTableModel(null, tableColumns);
-        userTable.setModel( workerModel );
+        userTable.setModel(workerModel);
 
         contactInfo.addActionListener(e -> contactInfoAction());
         deleteButton.addActionListener(e -> deleteButtonAction());
@@ -169,7 +169,8 @@ public class MainScreenAdmin extends JFrame {
             String password = new String(userPasswordField.getPassword());
 
             File file = new File(FilePaths.HR_ACCOUNTS + userName);
-            if (!file.exists()) {
+            File workerFile = new File(FilePaths.WORKER_ACCOUNTS + userName);
+            if (!file.exists() && !workerFile.exists()) {
 
                 if (!Employee.DATE_PATTERN.matcher(dateOfBirth).find()) {
 
@@ -187,7 +188,8 @@ public class MainScreenAdmin extends JFrame {
                     return;
                 }
 
-                HumanResourceWorker worker = new HumanResourceWorker(name, surname, dateOfBirth, address, phone, email, workPlace, sector, userName, password);
+                HumanResourceWorker hrWorker = new HumanResourceWorker(name, surname, dateOfBirth, address, phone, email, workPlace, sector, userName, password);
+                Worker worker = new Worker(name, surname, dateOfBirth, address, phone, email, workPlace, sector, userName, password);
 
                 File register = new File(FilePaths.WORKER_REGISTER);
                 File[] files = register.listFiles();
@@ -205,6 +207,7 @@ public class MainScreenAdmin extends JFrame {
 
                 } while (!isPin);
 
+                hrWorker.setPIN(pin);
                 worker.setPIN(pin);
 
                 // create register file
@@ -215,7 +218,8 @@ public class MainScreenAdmin extends JFrame {
                     LOGGER.warning(exception.fillInStackTrace().toString());
                 }
 
-                HumanResourceWorker.updateFile(worker);
+                HumanResourceWorker.updateFile(hrWorker);
+                Worker.updateFile(worker);
                 flashUserTextFields();
 
                 Company company = Company.getDataFromFile();
@@ -332,111 +336,58 @@ public class MainScreenAdmin extends JFrame {
 
     private void deleteButtonAction() {
 
+        System.out.println(userTable.getSelectedRow());
+
         // Checking if Admin Wants to Delete User
         int tmp = JOptionPane.showConfirmDialog(this,"Are you sure");
         if (tmp == JOptionPane.YES_OPTION) {
 
-            String username = searchTextField.getText();
-            String path = FilePaths.WORKER_ACCOUNTS+username;
-            String hrPath = FilePaths.HR_ACCOUNTS+username;
-            Worker worker = null;
-            HumanResourceWorker humanResourceWorker = null;
+            // String username = searchTextField.getText();
+            String username = (String) workerModel.getValueAt(userTable.getSelectedRow(), 0);
+            String path = FilePaths.WORKER_ACCOUNTS + username;
+            String hrPath = FilePaths.HR_ACCOUNTS + username;
 
-            try {
-                FileInputStream stream = new FileInputStream(path);
-                BufferedReader inputStream = new BufferedReader(new InputStreamReader(stream));
-
-                String line = "", tempLine;
-
-                while ((tempLine = inputStream.readLine()) != null)
-                    line = tempLine;
-
-                inputStream.close();
-
-                String[] data = line.split(",");
-                worker = new Worker(data);
-
-                if (worker.isActive())
-                    worker.setActive(false); //Radnik vise nije aktivan, deaktiviran mu je korisnicki nalog
-
-            } catch (Exception exception) {
-                LOGGER.warning(exception.fillInStackTrace().toString());
+            Worker worker = Worker.getDataFromFile(path);
+            if (worker != null && worker.isActive()) {
+                worker.setActive(false);
+                Worker.updateFile(worker);
             }
 
-            try {
-                FileOutputStream stream = new FileOutputStream(path);
-                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stream));
-
-                writer.write(worker.toString()); //Nakon deaktiviranja vrsimo ponovni upis u fajl4
-                writer.close();
-
-            }
-            catch (Exception exception)
-            {
-                LOGGER.warning(exception.fillInStackTrace().toString());
-            }
-
-
-            //Za HR naloge
-
-            try {
-                FileInputStream stream = new FileInputStream(hrPath);
-                BufferedReader inputStream = new BufferedReader(new InputStreamReader(stream));
-
-                String line = "", tempLine;
-
-                while ((tempLine = inputStream.readLine()) != null)
-                    line = tempLine;
-
-                inputStream.close();
-
-                String[] data = line.split(",");
-
-                humanResourceWorker=new HumanResourceWorker(data);
-
-                boolean active = humanResourceWorker.isActive();
-
-                if(active)
-                {
-                    active = false;
-                    humanResourceWorker.setActive(false); //Radnik vise nije aktivan, deaktiviran mu je korisnicki nalog
-                }
-
-
-
-
-            } catch (Exception exception) {
-                LOGGER.warning(exception.fillInStackTrace().toString());
-            }
-
-            try{
-                FileOutputStream stream = new FileOutputStream(hrPath);
-                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stream));
-
-                writer.write(humanResourceWorker.toString()); //Nakon deaktiviranja vrsimo ponovni upis u fajl
-                writer.close();
-
-            }
-            catch (Exception exception)
-            {
-                LOGGER.warning(exception.fillInStackTrace().toString());
+            HumanResourceWorker hrWorker = HumanResourceWorker.getDataFromFile(hrPath);
+            if (hrWorker != null && hrWorker.isActive()) {
+                hrWorker.setActive(false);
+                HumanResourceWorker.updateFile(hrWorker);
             }
 
             searchTextField.setText("");
-            //delete the user
-
         }
 
     }
 
-    //searches for  user and show it in  userTable
+    // searches for  user and show it in  userTable
     private void searchButtonAction() {
 
+        workerModel.getDataVector().removeAllElements();
+
         String username = searchTextField.getText();
-        String path = FilePaths.WORKER_ACCOUNTS+username;
-        String hrPath = FilePaths.HR_ACCOUNTS + username;
-        Worker worker = null;
-        HumanResourceWorker humanResourceWorker = null;
+        File workerDir = new File(FilePaths.WORKER_ACCOUNTS);
+        File hrDir = new File(FilePaths.HR_ACCOUNTS);
+
+        if (workerDir.listFiles() != null)
+            for (File file : workerDir.listFiles())
+                if (file.getName().startsWith(username)) {
+                    Worker worker = Worker.getDataFromFile(file);
+                    addUserInTable(worker, "Worker");
+                }
+
+        if (hrDir.listFiles() != null)
+            for (File file : hrDir.listFiles())
+                if (file.getName().startsWith(username)) {
+                    HumanResourceWorker hrWorker = HumanResourceWorker.getDataFromFile(file);
+                    addUserInTable(hrWorker, "HR");
+                }
+
+        /*
         try {
             FileInputStream stream = new FileInputStream(path);
             BufferedReader inputStream = new BufferedReader(new InputStreamReader(stream));
@@ -482,7 +433,7 @@ public class MainScreenAdmin extends JFrame {
 
         } catch (Exception exception) {
             LOGGER.warning(exception.fillInStackTrace().toString());
-        }
+        }*/
     }
 
     private void contactInfoAction() {
@@ -518,9 +469,8 @@ public class MainScreenAdmin extends JFrame {
         }
     }
 
-    private void addUserInTable(Worker worker, String type) {
-        workerModel.getDataVector().removeAllElements();
-        workerModel.insertRow(0, new Object[] {worker.getUserName(),worker.getFirstName(),worker.getSurname(),type});
+    private void addUserInTable(Employee worker, String type) {
+        workerModel.addRow(new Object[] { worker.getUserName(), worker.getFirstName(), worker.getSurname(), type });
     }
 
     private boolean checkFields() {

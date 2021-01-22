@@ -26,8 +26,12 @@ public class HumanResourceWorker extends Employee {
     }
 
     public static HumanResourceWorker getDataFromFile(String userName) {
+        return getDataFromFile(new File(FilePaths.HR_ACCOUNTS + userName));
+    }
+
+    public static HumanResourceWorker getDataFromFile(File file) {
         try {
-            FileInputStream stream = new FileInputStream(FilePaths.HR_ACCOUNTS + userName);
+            FileInputStream stream = new FileInputStream(file);
             BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
 
             String line = reader.readLine();
