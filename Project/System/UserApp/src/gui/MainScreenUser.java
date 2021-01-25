@@ -2,11 +2,13 @@ package gui;
 
 import model.Admin;
 import model.Company;
+import model.Time;
 import model.Worker;
 import user_app.Main;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 public class MainScreenUser extends JFrame {
@@ -179,6 +181,9 @@ public class MainScreenUser extends JFrame {
 
     //Prints a report
     private void reportButtonAction() {
+        ArrayList<Time> allTimes = Time.getAllWorkTimeInfo(worker.getPIN());
+        for(Time t : allTimes)
+            System.out.println(t.getFormattedWorkTime());
     }
 
     // Show Contact Info

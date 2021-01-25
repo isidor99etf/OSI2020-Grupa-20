@@ -4,6 +4,7 @@ import constants.FilePaths;
 import constants.WorkTime;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 public class Time {
@@ -74,6 +75,39 @@ public class Time {
         }
 
         return null;
+    }
+
+    public static ArrayList<Time> getAllWorkTimeInfo(int pin)
+    {
+        ArrayList<Time> times = new ArrayList<>();
+        String path = FilePaths.WORKER_REGISTER + pin;
+
+        try {
+            FileInputStream stream = new FileInputStream(path);
+            BufferedReader inputStream = new BufferedReader(new InputStreamReader(stream));
+
+            String line , tempLine;
+
+            while ((tempLine = inputStream.readLine()) != null)
+            {
+                line = tempLine;
+
+            if (line != null) {
+                String[] data = line.split(",");
+
+                Date date = new Date(data[2], data[3], data[4]);
+                Time time = new Time(Integer.parseInt(data[0]),Integer.parseInt(data[1]),date,Integer.parseInt(data[5]));
+                times.add(time);
+            }
+
+            }
+            inputStream.close();
+
+        } catch (Exception exception) {
+            LOGGER.warning(exception.fillInStackTrace().toString());
+        }
+
+        return times;
     }
 
     public static void writeNewTime(Time time, int pin) {
