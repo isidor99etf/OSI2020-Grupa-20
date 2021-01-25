@@ -22,6 +22,8 @@ public class Date {
         return day + "." + month + "." + year + ".";
     }
 
+    public String getMonthYear() { return month + "." + year;}
+
     @Override
     public String toString() {
         return day + "," + month + "," + year;

@@ -1,13 +1,18 @@
 package gui;
 
+import constants.WorkTime;
 import model.*;
 import user_app.Main;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +35,6 @@ public class MainScreenUser extends JFrame {
 
     // For Work Time stuff
     private JComboBox sortWorkTimeBox;
-    private JList workTimeList;
     private JButton reportButton;
     private JButton workTimeButton;
 
@@ -56,13 +60,17 @@ public class MainScreenUser extends JFrame {
     private JLabel companyCityLabel;
     private JLabel companyCountryLabel;
     private JLabel pinLabel;
+    private JTable workTimeTable;
 
 
-    private final String[] sortList = {"Day","Monthly"};
+    private final String[] sortList = {"Daily","Monthly"};
     private final JMenuItem contactInfo = new JMenuItem("Contact Info");
     private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
 
     private final Worker worker;
+
+    DefaultTableModel tableModelDay;
+    DefaultTableModel tableModelMonth;
 
     public MainScreenUser(Worker worker) {
         super("User App");
@@ -81,13 +89,65 @@ public class MainScreenUser extends JFrame {
         menuBar.add(help);
         this.setJMenuBar(menuBar);
 
+        String[] tableColumnsDay = {"Time", "Date", "Status"};
+        String[] tableColumnsMonth = {"Month", "Time Worked"};
+
+        tableModelDay = new DefaultTableModel(null,tableColumnsDay);
+        tableModelMonth = new DefaultTableModel(null, tableColumnsMonth);
+
         contactInfo.addActionListener(e -> contactInfoAction());
         personalInfoButton.addActionListener(e -> personalInfoButtonAction());
         workTimeButton.addActionListener(e -> workTimeButtonAction());
         companyInfoButton.addActionListener(e -> companyInfoButtonAction());
         logoutButton.addActionListener(e -> logoutButtonAction());
         reportButton.addActionListener(e -> reportButtonAction());
+        sortWorkTimeBox.addItemListener(e -> sortWorkTimeAction());
+    }
 
+    private void sortWorkTimeAction(){
+        String item = (String) sortWorkTimeBox.getSelectedItem();
+
+        ArrayList<Time> allTimes = Time.getAllWorkTimeInfo(worker.getPIN());
+
+        if(item != null){
+
+            if(item.equals("Daily")){
+
+                tableModelDay.getDataVector().removeAllElements();
+
+                for(Time time : allTimes) {
+                    String[] data = time.getFormattedWorkTime().split(" ");
+                    tableModelDay.addRow(new Object[]{data[0], data[1], data[2]});
+                }
+                workTimeTable.setModel(tableModelDay);
+            }
+
+            if (item.equals("Monthly")){
+
+                tableModelMonth.getDataVector().removeAllElements();
+
+                Map<String, List<Time>> data = allTimes.stream().collect(Collectors.groupingBy(t -> t.getDate().getMonthYear()));
+
+                for (String month : data.keySet()) {
+                    float worked = 0.0F;
+                    for (Time time : data.get(month)) {
+                        if (WorkTime.resolveType(time.getType()).equals(WorkTime.TYPE_STRING_START))
+                            worked -= (time.getHour() + (float) time.getMinute() / 60.0);
+
+                        else if (WorkTime.resolveType(time.getType()).equals(WorkTime.TYPE_STRING_END))
+                            worked +=  (time.getHour() + (float) time.getMinute() / 60.0);
+                    }
+
+                    int hours = (int) worked;
+                    int minutes = (int) (worked * 60) % 60 ;
+                    String[] monthData = month.split("\\.");
+
+                    tableModelMonth.addRow(new Object[] {new DateFormatSymbols().getMonths()[Integer.parseInt(monthData[0])-1] + " " + monthData[1],
+                            hours + ":" + minutes});
+                }
+                workTimeTable.setModel(tableModelMonth);
+            }
+        }
     }
 
     // Show and sets Personal Info
@@ -166,8 +226,8 @@ public class MainScreenUser extends JFrame {
     }
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
         sortWorkTimeBox = new JComboBox(sortList);
+        sortWorkTimeBox.setSelectedIndex(-1);
     }
 
     // potrebno napraviti dugme na koje ce se ovo aktivirati
