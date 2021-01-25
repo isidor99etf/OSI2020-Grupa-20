@@ -26,4 +26,13 @@ public class Date {
     public String toString() {
         return day + "," + month + "," + year;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Date)) return false;
+
+        Date other = (Date) obj;
+
+        return other.day == day && other.month == month && other.year == year;
+    }
 }

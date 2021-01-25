@@ -1,15 +1,18 @@
 package gui;
 
-import model.Admin;
-import model.Company;
-import model.Time;
-import model.Worker;
+import model.*;
 import user_app.Main;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class MainScreenUser extends JFrame {
 
@@ -118,43 +121,6 @@ public class MainScreenUser extends JFrame {
     // Show and sets Company Info
     private void companyInfoButtonAction() {
 
-        // Setting the Labels
-
-        /*
-        String text;
-        String[] content;
-        String companyName = null;
-        String companyAdress = null;
-        String companyCity = null;
-        String companyCountry = null;
-        int numberOfEmails;
-        int numberOfPhones;
-        ArrayList<String> phones = new ArrayList<>();
-        ArrayList<String> emails = new ArrayList<>();
-
-        try {
-            FileInputStream fis = new FileInputStream(FilePaths.COMPANY_INFO_FILE);
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fis));
-            text = bufferedReader.readLine();
-            content = text.split(",");
-            companyName = content[0];
-            companyAdress = content[1];
-            companyCity = content[2];
-            companyCountry = content[3];
-
-            numberOfPhones = Integer.parseInt(content[4]);
-            phones.addAll(Arrays.asList(content).subList(5, numberOfPhones + 5));
-
-            numberOfEmails = Integer.parseInt(content[5 + numberOfPhones]);
-            emails.addAll(Arrays.asList(content).subList(6 + numberOfPhones, numberOfEmails + 6 + numberOfPhones));
-
-
-            bufferedReader.close();
-
-        } catch (Exception exception) {
-            LOGGER.warning(exception.fillInStackTrace().toString());
-        }*/
-
         Company company = Company.getDataFromFile();
 
         if (company != null) {
@@ -174,16 +140,18 @@ public class MainScreenUser extends JFrame {
 
     // go back to login
     private void logoutButtonAction() {
-
         this.dispose();
         new LoginScreenUser();
     }
 
-    //Prints a report
+    // Prints a report
     private void reportButtonAction() {
         ArrayList<Time> allTimes = Time.getAllWorkTimeInfo(worker.getPIN());
-        for(Time t : allTimes)
+        for (Time t : allTimes)
             System.out.println(t.getFormattedWorkTime());
+
+        // create csv file
+        downloadReport(allTimes);
     }
 
     // Show Contact Info
@@ -200,5 +168,38 @@ public class MainScreenUser extends JFrame {
     private void createUIComponents() {
         // TODO: place custom component creation code here
         sortWorkTimeBox = new JComboBox(sortList);
+    }
+
+    // potrebno napraviti dugme na koje ce se ovo aktivirati
+    private void downloadReport(ArrayList<Time> times) {
+
+        Map<String, List<Time>> data = times.stream().collect(Collectors.groupingBy(t -> t.getDate().getFormattedDate()));
+
+        System.out.println("Keys " + data.keySet().size());
+
+        JFileChooser chooser = new JFileChooser();
+        int retVal = chooser.showDialog(MainScreenUser.this, "Izaberi");
+        if (retVal == JFileChooser.APPROVE_OPTION) {
+
+            File file = chooser.getSelectedFile();
+
+            try {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+
+                for (String d : data.keySet()) {
+                    writer.write(d);
+                    writer.write("\n");
+                    for (Time t : data.get(d)) {
+                        writer.write(t.getFormattedTimeForFile());
+                        writer.write("\n");
+                    }
+                    writer.flush();
+                }
+
+                writer.close();
+            } catch (Exception ex) {
+                LOGGER.warning(ex.fillInStackTrace().toString());
+            }
+        }
     }
 }

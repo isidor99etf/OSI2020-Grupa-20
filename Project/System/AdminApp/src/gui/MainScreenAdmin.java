@@ -91,7 +91,7 @@ public class MainScreenAdmin extends JFrame {
         menuBar.add(help);
         this.setJMenuBar(menuBar);
 
-        String[] tableColumns = {"Username", "Name", "Surname", "User Type"};
+        String[] tableColumns = {"Username", "Name", "Surname", "User Type", "Status"};
         workerModel = new DefaultTableModel(null, tableColumns);
         userTable.setModel(workerModel);
 
@@ -344,22 +344,20 @@ public class MainScreenAdmin extends JFrame {
 
             // String username = searchTextField.getText();
             String username = (String) workerModel.getValueAt(userTable.getSelectedRow(), 0);
-            String path = FilePaths.WORKER_ACCOUNTS + username;
-            String hrPath = FilePaths.HR_ACCOUNTS + username;
 
-            Worker worker = Worker.getDataFromFile(path);
+            Worker worker = Worker.getDataFromFile(username);
             if (worker != null && worker.isActive()) {
                 worker.setActive(false);
                 Worker.updateFile(worker);
             }
 
-            HumanResourceWorker hrWorker = HumanResourceWorker.getDataFromFile(hrPath);
+            HumanResourceWorker hrWorker = HumanResourceWorker.getDataFromFile(username);
             if (hrWorker != null && hrWorker.isActive()) {
                 hrWorker.setActive(false);
                 HumanResourceWorker.updateFile(hrWorker);
             }
 
-            searchTextField.setText("");
+            searchButtonAction();
         }
 
     }
@@ -386,54 +384,6 @@ public class MainScreenAdmin extends JFrame {
                     HumanResourceWorker hrWorker = HumanResourceWorker.getDataFromFile(file);
                     addUserInTable(hrWorker, "HR");
                 }
-
-        /*
-        try {
-            FileInputStream stream = new FileInputStream(path);
-            BufferedReader inputStream = new BufferedReader(new InputStreamReader(stream));
-
-            String line = null, tempLine;
-
-            while ((tempLine = inputStream.readLine()) != null)
-                line = tempLine;
-
-            inputStream.close();
-
-            String datas[] = line.split(",");
-
-            worker=new Worker(datas);
-
-            if(worker!=null)
-            {
-                addUserInTable(worker,"Worker");
-            }
-
-        } catch (Exception exception) {
-            LOGGER.warning(exception.fillInStackTrace().toString());
-        }
-        try {
-            FileInputStream stream = new FileInputStream(hrPath);
-            BufferedReader inputStream = new BufferedReader(new InputStreamReader(stream));
-
-            String line = null, tempLine;
-
-            while ((tempLine = inputStream.readLine()) != null)
-                line = tempLine;
-
-            inputStream.close();
-
-            String datas[] = line.split(",");
-
-            humanResourceWorker=new HumanResourceWorker(datas);
-
-            if(worker!=null)
-            {
-                addUserInTable(worker,"HR");
-            }
-
-        } catch (Exception exception) {
-            LOGGER.warning(exception.fillInStackTrace().toString());
-        }*/
     }
 
     private void contactInfoAction() {
@@ -470,7 +420,7 @@ public class MainScreenAdmin extends JFrame {
     }
 
     private void addUserInTable(Employee worker, String type) {
-        workerModel.addRow(new Object[] { worker.getUserName(), worker.getFirstName(), worker.getSurname(), type });
+        workerModel.addRow(new Object[] { worker.getUserName(), worker.getFirstName(), worker.getSurname(), type, worker.isActive() ? "Aktivan" : "Neaktivan" });
     }
 
     private boolean checkFields() {
