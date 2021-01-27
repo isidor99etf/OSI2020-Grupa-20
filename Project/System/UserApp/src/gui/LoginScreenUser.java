@@ -3,6 +3,7 @@ package gui;
 import constants.Config;
 import constants.Texts;
 import model.Admin;
+import model.Employee;
 import model.Worker;
 
 import javax.swing.*;
@@ -57,9 +58,14 @@ public class LoginScreenUser extends JFrame {
 
     private void newPassword() {
 
+        /*
         String oldPassword = new String(oldPasswordField.getPassword());
         String newPassword = new String(newPasswordField.getPassword());
-        String confirmNewPassword = new String(confirmNewPasswordField.getPassword());
+        String confirmNewPassword = new String(confirmNewPasswordField.getPassword());*/
+        
+        String oldPassword = Employee.getPasswordSha(new String(oldPasswordField.getPassword()));
+        String newPassword = Employee.getPasswordSha(new String(newPasswordField.getPassword()));
+        String confirmNewPassword = Employee.getPasswordSha(new String(confirmNewPasswordField.getPassword()));
 
         Worker worker = Worker.getDataFromFile(userNameField.getText());
 
@@ -91,7 +97,9 @@ public class LoginScreenUser extends JFrame {
 
         // Check User Details
         String userName = userNameField.getText().trim();
-        String password = new String(loginPasswordField.getPassword());
+        // String password = new String(loginPasswordField.getPassword());
+
+        String password = Employee.getPasswordSha(new String(loginPasswordField.getPassword()));
 
         Worker worker = Worker.getDataFromFile(userName);
 

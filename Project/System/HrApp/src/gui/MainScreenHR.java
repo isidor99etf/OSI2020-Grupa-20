@@ -6,6 +6,7 @@ import constants.Texts;
 import model.*;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import java.awt.*;
 import java.io.File;
@@ -135,6 +136,10 @@ public class MainScreenHR extends JFrame {
                 // get work places
                 data = (ArrayList<String>) workers.stream().map(Employee::getWorkPlace).collect(Collectors.toList());
 
+            else if (item.equals("All"))
+                employeesButtonAction();
+
+
             if (data != null) {
                 for (String sub : data)
                     subSortBox.addItem(sub);
@@ -163,7 +168,9 @@ public class MainScreenHR extends JFrame {
             String workPlace = workPlaceTextField.getText();
             String sector = sectorTextField.getText();
             String userName = userNameTextField.getText();
-            String password = new String(userPasswordField.getPassword());
+            // String password = new String(userPasswordField.getPassword());
+
+            String password = Employee.getPasswordSha(new String(userPasswordField.getPassword()));
 
             File file = new File(FilePaths.WORKER_ACCOUNTS + userName);
             if (!file.exists()) {
@@ -293,6 +300,7 @@ public class MainScreenHR extends JFrame {
                 workers.add(worker);
             }
 
+            System.out.println(workers.size());
             arrayListToMatrix(workers);
         }
     }
@@ -358,10 +366,11 @@ public class MainScreenHR extends JFrame {
 
     private void arrayListToMatrix(ArrayList<Employee> employees) {
 
-        TableModel t = employeeTable.getModel();
+        // TableModel t = employeeTable.getModel();
+        TableModel t = new DefaultTableModel(tableColumns, employees.size());
         for (int i = 0; i < employees.size(); ++i) {
             t.setValueAt(employees.get(i).getUserName(), i, 0);
-            t.setValueAt(employees.get(i).getName() + " " + employees.get(i).getSurname(), i, 1);
+            t.setValueAt(employees.get(i).getName(), i, 1);
             t.setValueAt(employees.get(i).getSector(), i, 2);
             t.setValueAt(employees.get(i).getWorkPlace(), i, 3);
         }

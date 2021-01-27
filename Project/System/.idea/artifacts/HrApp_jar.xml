@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="HrApp:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/HrApp_jar</output-path>
+    <root id="archive" name="HrApp.jar">
+      <element id="module-output" name="HrApp" />
+      <element id="module-output" name="Model" />
+    </root>
+  </artifact>
+</component>

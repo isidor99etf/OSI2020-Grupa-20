@@ -235,7 +235,7 @@ public class MainScreenUser extends JFrame {
 
         Map<String, List<Time>> data = times.stream().collect(Collectors.groupingBy(t -> t.getDate().getFormattedDate()));
 
-        System.out.println("Keys " + data.keySet().size());
+        // System.out.println("Keys " + data.keySet().size());
 
         JFileChooser chooser = new JFileChooser();
         int retVal = chooser.showDialog(MainScreenUser.this, "Izaberi");

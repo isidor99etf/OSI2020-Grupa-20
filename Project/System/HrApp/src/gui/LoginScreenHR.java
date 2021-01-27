@@ -3,6 +3,7 @@ package gui;
 import constants.Config;
 import constants.Texts;
 import model.Admin;
+import model.Employee;
 import model.HumanResourceWorker;
 
 import javax.swing.*;
@@ -60,9 +61,13 @@ public class LoginScreenHR extends JFrame {
 
         showErrorMsgNewPassword("",false);
 
-        String oldPassword = new String(oldPasswordField.getPassword());
+        /*String oldPassword = new String(oldPasswordField.getPassword());
         String newPassword = new String(newPasswordField.getPassword());
-        String confirmNewPassword = new String(confirmNewPasswordField.getPassword());
+        String confirmNewPassword = new String(confirmNewPasswordField.getPassword());*/
+
+        String oldPassword = Employee.getPasswordSha(new String(oldPasswordField.getPassword()));
+        String newPassword = Employee.getPasswordSha(new String(newPasswordField.getPassword()));
+        String confirmNewPassword = Employee.getPasswordSha(new String(confirmNewPasswordField.getPassword()));
 
         HumanResourceWorker hrWorker = HumanResourceWorker.getDataFromFile(userNameField.getText());
 
@@ -93,7 +98,9 @@ public class LoginScreenHR extends JFrame {
 
         // Check User Details
         String userName = userNameField.getText();
-        String password = new String(loginPasswordField.getPassword());
+        // String password = new String(loginPasswordField.getPassword());
+
+        String password = Employee.getPasswordSha(new String(loginPasswordField.getPassword()));
 
         HumanResourceWorker hrWorker = HumanResourceWorker.getDataFromFile(userName);
 

@@ -166,7 +166,9 @@ public class MainScreenAdmin extends JFrame {
             String workPlace = workPlaceTextField.getText();
             String sector = sectorTextField.getText();
             String userName = userNameTextField.getText();
-            String password = new String(userPasswordField.getPassword());
+            // String password = new String(userPasswordField.getPassword());
+
+            String password = Employee.getPasswordSha(new String(userPasswordField.getPassword()));
 
             File file = new File(FilePaths.HR_ACCOUNTS + userName);
             File workerFile = new File(FilePaths.WORKER_ACCOUNTS + userName);

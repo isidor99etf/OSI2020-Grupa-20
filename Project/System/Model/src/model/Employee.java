@@ -1,6 +1,9 @@
 package model;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 public abstract class Employee {
@@ -128,6 +131,7 @@ public abstract class Employee {
 
     @Override
     public String toString() {
+
         return
                 String.format("%06d", PIN) + "," +
                         name + "," + surname + "," +
@@ -140,5 +144,20 @@ public abstract class Employee {
     @Override
     public int hashCode() {
         return userName.hashCode() + getName().hashCode();
+    }
+
+    public static String getPasswordSha(String password) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] data = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+            StringBuilder builder = new StringBuilder();
+            for (byte b : data)
+                builder.append(String.format("%x", b));
+            return builder.toString();
+        } catch (Exception ex) {
+            System.out.println(ex.fillInStackTrace().toString());
+        }
+
+        return "";
     }
 }
