@@ -241,7 +241,7 @@
                         </constraints>
                         <properties>
                           <font name="Arial" size="20"/>
-                          <text value="Add HR User"/>
+                          <text value="Add User"/>
                         </properties>
                       </component>
                       <vspacer id="5c1fa">
