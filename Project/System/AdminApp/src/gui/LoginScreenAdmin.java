@@ -3,6 +3,7 @@ package gui;
 import constants.Config;
 import constants.Texts;
 import model.Admin;
+import model.Company;
 
 import javax.swing.*;
 import java.awt.*;
@@ -116,13 +117,7 @@ public class LoginScreenAdmin extends JFrame {
     }
 
     private void contactInfoAction() {
-        Admin admin = Admin.getDataFromFile();
-        String contactInfoMessage = "";
-        if (admin != null)
-            contactInfoMessage =
-                    String.format("Contact Info:\nAdmin email: %s\nAdmin phone: %s", admin.getEmail(), admin.getPhone());
-
-        JOptionPane.showMessageDialog(contactInfo,contactInfoMessage);
+        JOptionPane.showMessageDialog(contactInfo, Company.getContactInfo());
     }
 
     private void showMainScreen() {

@@ -216,13 +216,7 @@ public class MainScreenUser extends JFrame {
 
     // Show Contact Info
     private void contactInfoAction() {
-        Admin admin = Admin.getDataFromFile();
-        String contactInfoMessage = "";
-        if (admin != null)
-            contactInfoMessage =
-                    String.format("Contact Info:\nAdmin email: %s\nAdmin phone: %s", admin.getEmail(), admin.getPhone());
-
-        JOptionPane.showMessageDialog(contactInfo,contactInfoMessage);
+        JOptionPane.showMessageDialog(contactInfo, Company.getContactInfo());
     }
 
     private void createUIComponents() {

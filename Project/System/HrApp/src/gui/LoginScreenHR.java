@@ -3,6 +3,7 @@ package gui;
 import constants.Config;
 import constants.Texts;
 import model.Admin;
+import model.Company;
 import model.Employee;
 import model.HumanResourceWorker;
 
@@ -106,33 +107,26 @@ public class LoginScreenHR extends JFrame {
 
         // First login or need new password
         if (hrWorker != null && hrWorker.getPassword().equals(password))
-            if (hrWorker.getNumberOfLogins() == 0) {
+            if (hrWorker.isActive())
+                if (hrWorker.getNumberOfLogins() == 0) {
 
-                CardLayout card = (CardLayout) (loginPanel.getLayout());
-                card.show(loginPanel, "newPasswordCard");
+                    CardLayout card = (CardLayout) (loginPanel.getLayout());
+                    card.show(loginPanel, "newPasswordCard");
 
-            } else {
+                } else {
 
-                hrWorker.setNumberOfLogins(hrWorker.getNumberOfLogins() - 1);
-                HumanResourceWorker.updateFile(hrWorker);
-                showMainScreen(hrWorker);
-            }
-        else {
-            // show message
-            // MESSAGE_WRONG_USER_NAME_OR_PASSWORD
+                    hrWorker.setNumberOfLogins(hrWorker.getNumberOfLogins() - 1);
+                    HumanResourceWorker.updateFile(hrWorker);
+                    showMainScreen(hrWorker);
+                }
+            else
+                showErrorMsgLogin(Texts.MESSAGE_DEACTIVATED_ACCOUNT, true);
+        else
             showErrorMsgLogin(Texts.MESSAGE_WRONG_USER_NAME_OR_PASSWORD,true);
-        }
-
     }
 
     private void contactInfoAction() {
-        Admin admin = Admin.getDataFromFile();
-        String contactInfoMessage = "";
-        if (admin != null)
-            contactInfoMessage =
-                    String.format("Contact Info:\nAdmin email: %s\nAdmin phone: %s", admin.getEmail(), admin.getPhone());
-
-        JOptionPane.showMessageDialog(contactInfo,contactInfoMessage);
+        JOptionPane.showMessageDialog(contactInfo, Company.getContactInfo());
     }
 
     private void showMainScreen(HumanResourceWorker hrWorker) {

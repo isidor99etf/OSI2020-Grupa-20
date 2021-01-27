@@ -2,6 +2,7 @@ package model;
 
 import constants.FilePaths;
 
+import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -155,6 +156,28 @@ public class Company {
         } catch (Exception exception) {
             LOGGER.warning(exception.fillInStackTrace().toString());
         }
+    }
+
+    public static String getContactInfo() {
+        Admin admin = Admin.getDataFromFile();
+        Company company = Company.getDataFromFile();
+        String contactInfoMessage = "";
+        if (admin != null && company != null) {
+
+            StringBuilder emailsBuilder = new StringBuilder();
+            StringBuilder phonesBuilder = new StringBuilder();
+            for (String email : company.getEmails())
+                emailsBuilder.append("\t").append(email).append("\n");
+
+            for (String phone : company.getPhones())
+                phonesBuilder.append("\t").append(phone).append("\n");
+
+            contactInfoMessage =
+                    String.format("Contact Info:\nAdmin email: %s\nAdmin phone: %s\n\nEmails: \n%s\nPhones: \n%s", admin.getEmail(), admin.getPhone(), emailsBuilder.toString(), phonesBuilder.toString());
+        }
+
+        // JOptionPane.showMessageDialog(contactInfo,contactInfoMessage);
+        return contactInfoMessage;
     }
 
     private String getPhonesString() {

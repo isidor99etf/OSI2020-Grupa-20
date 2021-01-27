@@ -3,6 +3,7 @@ package gui;
 import constants.Config;
 import constants.Texts;
 import model.Admin;
+import model.Company;
 import model.Employee;
 import model.Worker;
 
@@ -73,22 +74,25 @@ public class LoginScreenUser extends JFrame {
         showErrorMsgNewPassword("",false);
 
         if (worker != null && worker.getPassword().equals(oldPassword))
-            if (!oldPassword.equals(newPassword))
-                if (newPassword.equals(confirmNewPassword)) {
+            if (worker.isActive())
+                if (!oldPassword.equals(newPassword))
+                    if (newPassword.equals(confirmNewPassword)) {
 
-                    Config config = Config.readConfigFile();
+                        Config config = Config.readConfigFile();
 
-                    worker.setPassword(newPassword);
-                    worker.setNumberOfLogins(config != null ? config.getNumberOfLogins() : 10);
+                        worker.setPassword(newPassword);
+                        worker.setNumberOfLogins(config != null ? config.getNumberOfLogins() : 10);
 
-                    Worker.updateFile(worker);
+                        Worker.updateFile(worker);
 
-                    showMainScreen(worker);
-                }
+                        showMainScreen(worker);
+                    }
+                    else
+                        showErrorMsgNewPassword(Texts.MESSAGE_NEW_PASSWORD_NOT_MATCH,true);
                 else
-                    showErrorMsgNewPassword(Texts.MESSAGE_NEW_PASSWORD_NOT_MATCH,true);
+                    showErrorMsgNewPassword(Texts.MESSAGE_SAME_NEW_OLD_PASSWORD,true);
             else
-                showErrorMsgNewPassword(Texts.MESSAGE_SAME_NEW_OLD_PASSWORD,true);
+                showErrorMsgNewPassword(Texts.MESSAGE_DEACTIVATED_ACCOUNT, true);
         else
             showErrorMsgNewPassword(Texts.MESSAGE_WRONG_OLD_PASSWORD,true);
     }
@@ -108,30 +112,25 @@ public class LoginScreenUser extends JFrame {
 
         // First login or need new password
         if (worker != null && worker.getPassword().equals(password))
-            if (worker.getNumberOfLogins() == 0) {
+            if (worker.isActive())
+                if (worker.getNumberOfLogins() == 0) {
 
-                CardLayout card = (CardLayout) (loginPanel.getLayout());
-                card.show(loginPanel, "newPasswordCard");
+                    CardLayout card = (CardLayout) (loginPanel.getLayout());
+                    card.show(loginPanel, "newPasswordCard");
 
-            } else {
-                worker.setNumberOfLogins(worker.getNumberOfLogins() - 1);
-                Worker.updateFile(worker);
-                showMainScreen(worker);
-            }
-        else {
-
+                } else {
+                    worker.setNumberOfLogins(worker.getNumberOfLogins() - 1);
+                    Worker.updateFile(worker);
+                    showMainScreen(worker);
+                }
+            else
+                showErrorMsgLogin(Texts.MESSAGE_DEACTIVATED_ACCOUNT, true);
+        else
             showErrorMsgLogin(Texts.MESSAGE_WRONG_USER_NAME_OR_PASSWORD,true);
-        }
     }
 
     private void contactInfoAction() {
-        Admin admin = Admin.getDataFromFile();
-        String contactInfoMessage = "";
-        if (admin != null)
-            contactInfoMessage =
-                    String.format("Contact Info:\nAdmin email: %s\nAdmin phone: %s", admin.getEmail(), admin.getPhone());
-
-        JOptionPane.showMessageDialog(contactInfo,contactInfoMessage);
+        JOptionPane.showMessageDialog(contactInfo, Company.getContactInfo());
     }
 
     private void showMainScreen(Worker worker) {

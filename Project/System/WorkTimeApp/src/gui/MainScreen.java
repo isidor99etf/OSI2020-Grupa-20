@@ -4,6 +4,7 @@ import constants.FilePaths;
 import constants.Texts;
 import constants.WorkTime;
 import model.Admin;
+import model.Company;
 import model.Date;
 import model.Time;
 import work_time_app.Main;
@@ -97,13 +98,7 @@ public class MainScreen extends JFrame {
     }
 
     private void contactInfoAction() {
-        Admin admin = Admin.getDataFromFile();
-        String contactInfoMessage = "";
-        if (admin != null)
-            contactInfoMessage =
-                    String.format("Contact Info:\nAdmin email: %s\nAdmin phone: %s", admin.getEmail(), admin.getPhone());
-
-        JOptionPane.showMessageDialog(contactInfo,contactInfoMessage);
+        JOptionPane.showMessageDialog(contactInfo, Company.getContactInfo());
     }
 
     private static boolean checkWorker(int pin) {

@@ -35,6 +35,7 @@ public class MainScreenAdmin extends JFrame {
     private JButton searchButton;
     private JTable userTable;
     private JButton deleteButton;
+    private JButton activateButton;
     private JButton deleteUserButtonPanel;
     private JTextField searchTextField;
 
@@ -74,6 +75,8 @@ public class MainScreenAdmin extends JFrame {
     private final DefaultTableModel workerModel;
 
     private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
+    private static final String TYPE_WORKER = "Worker";
+    private static final String TYPE_HR = "HR";
 
     public MainScreenAdmin() {
         super("Admin App");
@@ -97,6 +100,7 @@ public class MainScreenAdmin extends JFrame {
 
         contactInfo.addActionListener(e -> contactInfoAction());
         deleteButton.addActionListener(e -> deleteButtonAction());
+        activateButton.addActionListener(e -> activateButtonAction());
         searchButton.addActionListener(e -> searchButtonAction());
         logoutButton.addActionListener(e -> logoutButtonAction());
         activateButtonPanel.addActionListener(e -> activateButtonPanelAction());
@@ -338,30 +342,59 @@ public class MainScreenAdmin extends JFrame {
 
     private void deleteButtonAction() {
 
-        System.out.println(userTable.getSelectedRow());
-
         // Checking if Admin Wants to Delete User
         int tmp = JOptionPane.showConfirmDialog(this,"Are you sure");
         if (tmp == JOptionPane.YES_OPTION) {
 
             // String username = searchTextField.getText();
             String username = (String) workerModel.getValueAt(userTable.getSelectedRow(), 0);
+            String type = (String) workerModel.getValueAt(userTable.getSelectedRow(), 3);
 
-            Worker worker = Worker.getDataFromFile(username);
-            if (worker != null && worker.isActive()) {
-                worker.setActive(false);
-                Worker.updateFile(worker);
-            }
+            if (type.equals(TYPE_WORKER)) {
+                Worker worker = Worker.getDataFromFile(username);
+                if (worker != null && worker.isActive()) {
+                    worker.setActive(false);
+                    Worker.updateFile(worker);
+                }
 
-            HumanResourceWorker hrWorker = HumanResourceWorker.getDataFromFile(username);
-            if (hrWorker != null && hrWorker.isActive()) {
-                hrWorker.setActive(false);
-                HumanResourceWorker.updateFile(hrWorker);
+            } else if (type.equals(TYPE_HR)) {
+                HumanResourceWorker hrWorker = HumanResourceWorker.getDataFromFile(username);
+                if (hrWorker != null && hrWorker.isActive()) {
+                    hrWorker.setActive(false);
+                    HumanResourceWorker.updateFile(hrWorker);
+                }
             }
 
             searchButtonAction();
         }
+    }
 
+    private void activateButtonAction() {
+
+        // Checking if Admin Wants to Activate User
+        int tmp = JOptionPane.showConfirmDialog(this,"Are you sure");
+        if (tmp == JOptionPane.YES_OPTION) {
+
+            // String username = searchTextField.getText();
+            String username = (String) workerModel.getValueAt(userTable.getSelectedRow(), 0);
+            String type = (String) workerModel.getValueAt(userTable.getSelectedRow(), 3);
+
+            if (type.equals(TYPE_WORKER)) {
+                Worker worker = Worker.getDataFromFile(username);
+                if (worker != null && !worker.isActive()) {
+                    worker.setActive(true);
+                    Worker.updateFile(worker);
+                }
+            } else if (type.equals(TYPE_HR)) {
+                HumanResourceWorker hrWorker = HumanResourceWorker.getDataFromFile(username);
+                if (hrWorker != null && !hrWorker.isActive()) {
+                    hrWorker.setActive(true);
+                    HumanResourceWorker.updateFile(hrWorker);
+                }
+            }
+
+            searchButtonAction();
+        }
     }
 
     // searches for  user and show it in  userTable
@@ -377,25 +410,19 @@ public class MainScreenAdmin extends JFrame {
             for (File file : workerDir.listFiles())
                 if (file.getName().startsWith(username)) {
                     Worker worker = Worker.getDataFromFile(file);
-                    addUserInTable(worker, "Worker");
+                    addUserInTable(worker, TYPE_WORKER);
                 }
 
         if (hrDir.listFiles() != null)
             for (File file : hrDir.listFiles())
                 if (file.getName().startsWith(username)) {
                     HumanResourceWorker hrWorker = HumanResourceWorker.getDataFromFile(file);
-                    addUserInTable(hrWorker, "HR");
+                    addUserInTable(hrWorker, TYPE_HR);
                 }
     }
 
     private void contactInfoAction() {
-        Admin admin = Admin.getDataFromFile();
-        String contactInfoMessage = "";
-        if (admin != null)
-            contactInfoMessage =
-                String.format("Contact Info:\nAdmin email: %s\nAdmin phone: %s", admin.getEmail(), admin.getPhone());
-
-        JOptionPane.showMessageDialog(contactInfo,contactInfoMessage);
+        JOptionPane.showMessageDialog(contactInfo, Company.getContactInfo());
     }
 
     private void flashUserTextFields() {

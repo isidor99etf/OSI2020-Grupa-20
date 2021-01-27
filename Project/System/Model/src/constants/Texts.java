@@ -18,4 +18,5 @@ public interface Texts {
     String MESSAGE_EMAIL_FORMAT = "Pogresan format email-a";
     String MESSAGE_MAX_NUMBER_OF_WORKERS = "Vasa kompanija nema licencu. Maksimalan broj zaposlenih je dokucen.";
     String MESSAGE_ALL_FIELDS_REQUIRED = "Morate popuniti sva polja";
+    String MESSAGE_DEACTIVATED_ACCOUNT = "Vas nalog je deaktiviran";
 }
