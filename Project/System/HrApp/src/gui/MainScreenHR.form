@@ -40,7 +40,7 @@
                   <focusable value="false"/>
                   <font name="Arial" size="16"/>
                   <foreground color="-1"/>
-                  <text value="Add New User"/>
+                  <text value="Add New Worker"/>
                 </properties>
               </component>
               <component id="af45a" class="javax.swing.JButton" binding="employeesButton" default-binding="true">
@@ -241,7 +241,7 @@
                         </constraints>
                         <properties>
                           <font name="Arial" size="20"/>
-                          <text value="Add HR User"/>
+                          <text value="Add Worker"/>
                         </properties>
                       </component>
                       <vspacer id="5c1fa">
