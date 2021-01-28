@@ -37,5 +37,7 @@ public class UserDetails extends JFrame{
         userNameLabel.setText( worker.getUserName() );
 
         this.pack();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setResizable(false);
     }
 }

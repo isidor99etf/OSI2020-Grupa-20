@@ -65,13 +65,12 @@ public class MainScreenHR extends JFrame {
 
     private boolean isPasswordHidden = true;
 
-    private ArrayList<Employee> workers;
+    private final ArrayList<Employee> workers;
 
     public MainScreenHR(HumanResourceWorker hrWorker) {
         super("HR App");
         this.setContentPane(backPanel);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.pack();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
 
@@ -93,6 +92,10 @@ public class MainScreenHR extends JFrame {
         subSortBox.addItemListener(e -> subSortBoxAction());
 
         workers = new ArrayList<>();
+
+        this.pack();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setResizable(false);
     }
 
     // For sorting and displaying users in employeeTable
@@ -178,14 +181,12 @@ public class MainScreenHR extends JFrame {
                 if (!Employee.DATE_PATTERN.matcher(dateOfBirth).find()) {
                     showErrorMsg(Texts.MESSAGE_DATE_FORMAT, true);
                     System.out.println(Texts.MESSAGE_DATE_FORMAT);
-                    this.pack();
                     return;
                 }
 
                 if (!Employee.EMAIL_PATTERN.matcher(email).find()) {
                     showErrorMsg(Texts.MESSAGE_EMAIL_FORMAT, true);
                     System.out.println(Texts.MESSAGE_EMAIL_FORMAT);
-                    this.pack();
                     return;
                 }
 
@@ -236,8 +237,6 @@ public class MainScreenHR extends JFrame {
             showErrorMsg(Texts.MESSAGE_ALL_FIELDS_REQUIRED, true);
             System.out.println(Texts.MESSAGE_ALL_FIELDS_REQUIRED);
         }
-
-        this.pack();
     }
 
 
@@ -379,6 +378,5 @@ public class MainScreenHR extends JFrame {
         }
 
         employeeTable.setModel(t);
-        this.pack();
     }
 }

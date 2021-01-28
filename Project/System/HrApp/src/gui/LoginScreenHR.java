@@ -2,7 +2,6 @@ package gui;
 
 import constants.Config;
 import constants.Texts;
-import model.Admin;
 import model.Company;
 import model.Employee;
 import model.HumanResourceWorker;
@@ -32,6 +31,7 @@ public class LoginScreenHR extends JFrame {
     private JButton loginButton;
     private JLabel errorLabelNewPassword;
     private JLabel errorLabelLogin;
+    private JLabel companyNameLabel;
 
     private final JMenuItem contactInfo = new JMenuItem("Contact Info");
 
@@ -41,10 +41,8 @@ public class LoginScreenHR extends JFrame {
         super("HR App - Login");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(backPanel);
-        this.pack();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-
 
         //Add Menu Bar
         JMenu help = new JMenu("help");
@@ -56,6 +54,14 @@ public class LoginScreenHR extends JFrame {
         contactInfo.addActionListener(e -> contactInfoAction());
         okConfirmPassButton.addActionListener(e -> newPassword());
         loginButton.addActionListener(e -> login());
+
+        Company company = Company.getDataFromFile();
+        if (company != null)
+            companyNameLabel.setText(company.getName());
+
+        this.pack();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setResizable(false);
     }
 
     private void newPassword() {
@@ -140,20 +146,18 @@ public class LoginScreenHR extends JFrame {
         errorLabelLogin.setText(error);
         errorLabelLogin.setVisible(visible);
 
-        if(visible) {
+        if (visible)
             flashTextFieldLogin();
-        }
-        this.pack();
+
     }
 
     private void showErrorMsgNewPassword(String error, boolean visible) {
         errorLabelNewPassword.setText(error);
         errorLabelNewPassword.setVisible(visible);
 
-        if( visible)
+        if (visible)
             flashTextFieldNew();
 
-        this.pack();
     }
 
     private void flashTextFieldLogin() {

@@ -30,6 +30,7 @@ public class LoginScreenAdmin extends JFrame {
     private JButton okConfirmPassButton;
     private JLabel errorLabelNewPassword;
     private JLabel errorLabelLogin;
+    private JLabel companyNameLabel;
 
     private final JMenuItem contactInfo = new JMenuItem("Contact Info");
 
@@ -39,7 +40,6 @@ public class LoginScreenAdmin extends JFrame {
         super("Admin App - Login");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(backPanel);
-        this.pack();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
 
@@ -54,6 +54,14 @@ public class LoginScreenAdmin extends JFrame {
         contactInfo.addActionListener(e -> contactInfoAction());
         okConfirmPassButton.addActionListener(e -> newPassword());
         loginButton.addActionListener(e -> login());
+
+        Company company = Company.getDataFromFile();
+        if (company != null)
+            companyNameLabel.setText(company.getName());
+
+        this.pack();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setResizable(false);
     }
 
     private void newPassword() {
@@ -133,8 +141,6 @@ public class LoginScreenAdmin extends JFrame {
 
         if (visible)
             flashTextFieldLogin();
-
-        this.pack();
     }
 
     private void showErrorMsgNewPassword(String error, boolean visible) {
@@ -143,8 +149,6 @@ public class LoginScreenAdmin extends JFrame {
 
         if (visible)
             flashTextFieldNew();
-
-        this.pack();
     }
 
     private void flashTextFieldLogin() {

@@ -3,7 +3,6 @@ package gui;
 import constants.FilePaths;
 import constants.Texts;
 import constants.WorkTime;
-import model.Admin;
 import model.Company;
 import model.Date;
 import model.Time;
@@ -30,6 +29,7 @@ public class MainScreen extends JFrame {
     private JPasswordField pinField;
     private JComboBox statusBox;
     private JLabel messageLabel;
+    private JLabel companyNameLabel;
 
 
     public MainScreen() {
@@ -38,11 +38,10 @@ public class MainScreen extends JFrame {
         super("Work Time App");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(backPanel);
-        this.pack();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
 
-        for(String fill : WorkTime.getStatusTypes())
+        for (String fill : WorkTime.getStatusTypes())
             statusBox.addItem(fill);
 
         // default choice is blank
@@ -59,6 +58,14 @@ public class MainScreen extends JFrame {
 
         contactInfo.addActionListener(e -> contactInfoAction());
         okButton.addActionListener(e -> okButtonAction());
+
+        Company company = Company.getDataFromFile();
+        if (company != null)
+            companyNameLabel.setText(company.getName());
+
+        this.pack();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setResizable(false);
     }
 
     // action performed when OK button pressed
@@ -120,7 +127,6 @@ public class MainScreen extends JFrame {
     private void labelMessage(String message, boolean visibility) {
         messageLabel.setText(message);
         messageLabel.setVisible(visibility);
-        this.pack();
     }
 
     private void writeTime(Time time, int pin) {

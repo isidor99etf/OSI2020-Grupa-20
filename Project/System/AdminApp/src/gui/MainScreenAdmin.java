@@ -83,7 +83,6 @@ public class MainScreenAdmin extends JFrame {
         super("Admin App");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(backPanel);
-        this.pack();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
 
@@ -114,6 +113,10 @@ public class MainScreenAdmin extends JFrame {
         addNewEmailButton.addActionListener(e -> addNewEmailButtonAction());
         addEmailButtonPanel.addActionListener(e -> addEmailButtonPanelAction());
         addPhoneButtonPanel.addActionListener(e -> addPhoneButtonPanelAction());
+
+        this.pack();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setResizable(false);
     }
 
     // For adding a new email address
@@ -183,7 +186,6 @@ public class MainScreenAdmin extends JFrame {
 
                     showErrorMsg(Texts.MESSAGE_DATE_FORMAT, true);
                     System.out.println(Texts.MESSAGE_DATE_FORMAT);
-                    this.pack();
                     return;
                 }
 
@@ -191,7 +193,6 @@ public class MainScreenAdmin extends JFrame {
 
                     showErrorMsg(Texts.MESSAGE_EMAIL_FORMAT, true);
                     System.out.println(Texts.MESSAGE_EMAIL_FORMAT);
-                    this.pack();
                     return;
                 }
 
@@ -246,8 +247,6 @@ public class MainScreenAdmin extends JFrame {
             showErrorMsg(Texts.MESSAGE_ALL_FIELDS_REQUIRED, true);
             System.out.println(Texts.MESSAGE_ALL_FIELDS_REQUIRED);
         }
-
-        this.pack();
     }
 
     // For checking the Licence Key
@@ -274,7 +273,6 @@ public class MainScreenAdmin extends JFrame {
             showErrorMsgKey(Texts.MESSAGE_WRONG_LICENCE, true);
             System.out.println(Texts.MESSAGE_WRONG_LICENCE);
         }
-        this.pack();
     }
 
     private void showErrorMsgKey(String msg, boolean visible){
@@ -318,8 +316,6 @@ public class MainScreenAdmin extends JFrame {
             licenceErrorLabel.setText("");
             licenceErrorLabel.setVisible(false);
         }
-
-        this.pack();
     }
 
     //Showing Delete User Panel on Screen

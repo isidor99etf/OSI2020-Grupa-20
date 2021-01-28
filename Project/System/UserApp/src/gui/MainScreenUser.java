@@ -7,8 +7,6 @@ import user_app.Main;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -76,7 +74,6 @@ public class MainScreenUser extends JFrame {
         super("User App");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(backPanel);
-        this.pack();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
 
@@ -102,6 +99,10 @@ public class MainScreenUser extends JFrame {
         logoutButton.addActionListener(e -> logoutButtonAction());
         reportButton.addActionListener(e -> reportButtonAction());
         sortWorkTimeBox.addItemListener(e -> sortWorkTimeAction());
+
+        this.pack();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setResizable(false);
     }
 
     private void sortWorkTimeAction(){
@@ -167,8 +168,6 @@ public class MainScreenUser extends JFrame {
 
         CardLayout card = (CardLayout)(mainPanel.getLayout());
         card.show(mainPanel,"personalInfoPanel");
-
-        this.pack();
     }
 
     //Show Work Time Panel
@@ -194,8 +193,6 @@ public class MainScreenUser extends JFrame {
 
         CardLayout card = (CardLayout)(mainPanel.getLayout());
         card.show(mainPanel,"companyInfoPanel");
-
-        this.pack();
     }
 
     // go back to login
