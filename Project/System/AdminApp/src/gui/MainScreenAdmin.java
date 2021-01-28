@@ -67,6 +67,7 @@ public class MainScreenAdmin extends JFrame {
     private JButton addEmailButtonPanel;
     private JLabel errorMsgLabel;
     private JLabel errorMsgKeyLabel;
+    private JLabel licenceErrorLabel;
 
     private boolean isPasswordHidden = true;
 
@@ -234,6 +235,8 @@ public class MainScreenAdmin extends JFrame {
                     Company.writeData(company);
                 }
 
+                addHrButtonPanelAction();
+
             } else {
 
                 showErrorMsg(Texts.MESSAGE_WORKER_EXISTS,true);
@@ -256,8 +259,6 @@ public class MainScreenAdmin extends JFrame {
 
         if (config != null && key.equals(config.getLicencesKey()) && !config.isHaveLicence()) {
             config.setHaveLicence(true);
-            config.setNumberOfWorkerAccounts(10);
-            config.setNumberOfHrAccounts(5);
 
             // Looking the input and showing a msg
             keyTextField.setText("");
@@ -303,13 +304,22 @@ public class MainScreenAdmin extends JFrame {
         Config config = Config.readConfigFile();
         Company company = Company.getDataFromFile();
 
-        if (company != null && config != null && !config.isHaveLicence())
+        if (company != null && config != null && !config.isHaveLicence()) {
             if (company.getNumberOfHrWorkers() >= config.getNumberOfHrAccounts()) {
                 addUserButton.setEnabled(false);
 
-                showErrorMsg(Texts.MESSAGE_MAX_NUMBER_OF_WORKERS,true);
+                // showErrorMsg(Texts.MESSAGE_MAX_NUMBER_OF_WORKERS,true);
+                licenceErrorLabel.setText(Texts.MESSAGE_MAX_NUMBER_OF_WORKERS);
+                licenceErrorLabel.setVisible(true);
                 System.out.println(Texts.MESSAGE_MAX_NUMBER_OF_WORKERS);
             }
+        } else {
+            addUserButton.setEnabled(true);
+            licenceErrorLabel.setText("");
+            licenceErrorLabel.setVisible(false);
+        }
+
+        this.pack();
     }
 
     //Showing Delete User Panel on Screen

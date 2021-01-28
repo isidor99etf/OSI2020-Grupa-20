@@ -55,6 +55,7 @@ public class MainScreenHR extends JFrame {
     private JComboBox subSortBox;
     private JPanel homePanel;
     private JLabel errorMsgLabel;
+    private JLabel licenceErrorLabel;
 
     private static final Logger LOGGER = Logger.getLogger(MainScreenHR.class.getName());
 
@@ -112,9 +113,8 @@ public class MainScreenHR extends JFrame {
                         .filter(w -> w.getWorkPlace().equals(item))
                         .collect(Collectors.toList());
 
-            if (targetData != null) {
-
-            }
+            if (targetData != null) 
+                arrayListToMatrix(targetData);
         }
     }
 
@@ -226,6 +226,8 @@ public class MainScreenHR extends JFrame {
                     Company.writeData(company);
                 }
 
+                newUserCardButtonAction();
+
             } else {
                 showErrorMsg(Texts.MESSAGE_WORKER_EXISTS, true);
                 System.out.println(Texts.MESSAGE_WORKER_EXISTS);
@@ -274,13 +276,20 @@ public class MainScreenHR extends JFrame {
         Config config = Config.readConfigFile();
         Company company = Company.getDataFromFile();
 
-        if (company != null && config != null && !config.isHaveLicence())
+        if (company != null && config != null && !config.isHaveLicence()) {
             if (company.getNumberOfWorkers() >= config.getNumberOfWorkerAccounts()) {
                 addUserButton.setEnabled(false);
 
-                showErrorMsg(Texts.MESSAGE_MAX_NUMBER_OF_WORKERS, true);
+                // showErrorMsg(Texts.MESSAGE_MAX_NUMBER_OF_WORKERS, true);
+                licenceErrorLabel.setText(Texts.MESSAGE_MAX_NUMBER_OF_WORKERS);
+                licenceErrorLabel.setVisible(true);
                 System.out.println(Texts.MESSAGE_MAX_NUMBER_OF_WORKERS);
             }
+        } else {
+            addUserButton.setEnabled(true);
+            licenceErrorLabel.setText("");
+            licenceErrorLabel.setVisible(false);
+        }
     }
 
     // Showing employeeCard   on mainPanel
