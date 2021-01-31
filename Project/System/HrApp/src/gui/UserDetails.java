@@ -52,15 +52,15 @@ public class UserDetails extends JFrame{
         this.worker = worker;
 
         // Setting the labels
-        nameLabel.setText( worker.getFirstName() );
-        surnameLabel.setText( worker.getSurname() );
-        dateOfBirthLabel.setText( worker.getDateOfBirth() );
-        addressLabel.setText( worker.getAddress() );
-        phoneLabel.setText( worker.getPhone() );
-        emailLabel.setText( worker.getEmail() );
-        workPlaceLabel.setText( worker.getWorkPlace() );
-        sectorLabel.setText( worker.getSector() );
-        userNameLabel.setText( worker.getUserName() );
+        nameLabel.setText(worker.getFirstName());
+        surnameLabel.setText(worker.getSurname());
+        dateOfBirthLabel.setText(worker.getDateOfBirth());
+        addressLabel.setText(worker.getAddress());
+        phoneLabel.setText(worker.getPhone());
+        emailLabel.setText(worker.getEmail());
+        workPlaceLabel.setText(worker.getWorkPlace());
+        sectorLabel.setText(worker.getSector());
+        userNameLabel.setText(worker.getUserName());
 
         String[] tableColumnsDay = {"Time", "Date", "Status"};
         String[] tableColumnsMonth = {"Month", "Time Worked"};
@@ -82,20 +82,20 @@ public class UserDetails extends JFrame{
 
         ArrayList<Time> allTimes = Time.getAllWorkTimeInfo(worker.getPIN());
 
-        if(item != null){
+        if (item != null) {
 
-            if(item.equals("Daily")){
+            if (item.equals("Daily")) {
 
                 tableModelDay.getDataVector().removeAllElements();
 
-                for(Time time : allTimes) {
-                    String[] data = time.getFormattedWorkTime().split(" ");
-                    tableModelDay.addRow(new Object[]{data[0], data[1], data[2]});
+                for (Time time : allTimes) {
+                    String[] data = time.getFormattedWorkTimeComa().split(",");
+                    tableModelDay.addRow(new Object[] { data[0], data[1], data[2] });
                 }
                 workTimeTable.setModel(tableModelDay);
             }
 
-            if (item.equals("Monthly")){
+            if (item.equals("Monthly")) {
 
                 tableModelMonth.getDataVector().removeAllElements();
 
@@ -115,9 +115,10 @@ public class UserDetails extends JFrame{
                     int minutes = (int) (worked * 60) % 60 ;
                     String[] monthData = month.split("\\.");
 
-                    tableModelMonth.addRow(new Object[] {new DateFormatSymbols().getMonths()[Integer.parseInt(monthData[0])-1] + " " + monthData[1],
-                            hours + ":" + minutes});
+                    if (hours >= 0 && minutes >= 0)
+                        tableModelMonth.addRow(new Object[] { new DateFormatSymbols().getMonths()[Integer.parseInt(monthData[0]) - 1] + " " + monthData[1], hours + ":" + minutes });
                 }
+
                 workTimeTable.setModel(tableModelMonth);
             }
         }
@@ -134,7 +135,6 @@ public class UserDetails extends JFrame{
     }
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
         sortWorkTimeBox = new JComboBox(sortList);
         sortWorkTimeBox.setSelectedIndex(-1);
     }

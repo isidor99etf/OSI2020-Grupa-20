@@ -406,7 +406,9 @@ public class MainScreenAdmin extends JFrame {
     // searches for  user and show it in  userTable
     private void searchButtonAction() {
 
-        workerModel.getDataVector().removeAllElements();
+        int size = workerModel.getRowCount();
+        for (int i = 0; i < size; ++i)
+            workerModel.removeRow(0);
 
         String username = searchTextField.getText();
         File workerDir = new File(FilePaths.WORKER_ACCOUNTS);
@@ -414,14 +416,14 @@ public class MainScreenAdmin extends JFrame {
 
         if (workerDir.listFiles() != null)
             for (File file : workerDir.listFiles())
-                if (file.getName().startsWith(username)) {
+                if (file.getName().toLowerCase().contains(username.toLowerCase())) {
                     Worker worker = Worker.getDataFromFile(file);
                     addUserInTable(worker, TYPE_WORKER);
                 }
 
         if (hrDir.listFiles() != null)
             for (File file : hrDir.listFiles())
-                if (file.getName().startsWith(username)) {
+                if (file.getName().toLowerCase().contains(username.toLowerCase())) {
                     HumanResourceWorker hrWorker = HumanResourceWorker.getDataFromFile(file);
                     addUserInTable(hrWorker, TYPE_HR);
                 }

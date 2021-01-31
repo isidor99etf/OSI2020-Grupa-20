@@ -126,7 +126,7 @@ public class MainScreenHR extends JFrame {
         // Need to show All user in   employeeTable
         String item =  (String) sortBox.getSelectedItem();
 
-        if (item != null && !item.equals("All")) {
+        if (item != null) {
 
             subSortBox.removeAllItems();
             ArrayList<String> data = null;
@@ -139,8 +139,11 @@ public class MainScreenHR extends JFrame {
                 // get work places
                 data = (ArrayList<String>) workers.stream().map(Employee::getWorkPlace).collect(Collectors.toList());
 
-            else if (item.equals("All"))
+            else if (item.equals("All")) {
+                subSortBox.removeAllItems();
+                subSortBox.setEnabled(false);
                 employeesButtonAction();
+            }
 
 
             if (data != null) {
@@ -149,9 +152,6 @@ public class MainScreenHR extends JFrame {
                 subSortBox.setSelectedIndex(0);
                 subSortBox.setEnabled(true);
             }
-        } else {
-            subSortBox.removeAllItems();
-            subSortBox.setEnabled(false);
         }
     }
 
@@ -242,7 +242,14 @@ public class MainScreenHR extends JFrame {
 
     //For searching Users and showing them in   employeeTable
     private void searchButtonAction() {
-        //Name in searchTextField
+        // Name in searchTextField
+        String text = searchTextField.getText();
+
+        if (!text.isEmpty()) {
+            ArrayList<Employee> filtered = (ArrayList<Employee>) workers.stream().filter(w -> w.getName().toLowerCase().contains(text.toLowerCase())).collect(Collectors.toList());
+            arrayListToMatrix(filtered);
+        } else
+            arrayListToMatrix(workers);
 
     }
 
@@ -303,12 +310,11 @@ public class MainScreenHR extends JFrame {
         if (workersFolder.exists()) {
             File[] files = workersFolder.listFiles();
             if (files != null)
-            for (File file : files) {
-                Worker worker = Worker.getDataFromFile(file);
-                workers.add(worker);
-            }
+                for (File file : files) {
+                    Worker worker = Worker.getDataFromFile(file);
+                    workers.add(worker);
+                }
 
-            System.out.println(workers.size());
             arrayListToMatrix(workers);
         }
     }

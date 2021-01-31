@@ -40,6 +40,10 @@ public class Time {
         return hour + ":" + minute + " " + date.getFormattedDate() + " " + WorkTime.resolveType(type);
     }
 
+    public String getFormattedWorkTimeComa() {
+        return hour + ":" + minute + "," + date.getFormattedDate() + "," + WorkTime.resolveType(type);
+    }
+
     public String getFormattedTimeForFile() {
         return hour + ":" + minute + " " + WorkTime.resolveType(type);
     }

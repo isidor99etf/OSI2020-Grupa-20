@@ -8,7 +8,7 @@ public class WorkTime {
     public static final String TYPE_STRING_PAUSE_END = "Dolazak sa pauze";
 
     public static final int TYPE_START = 0x4534;
-    public static final int TYPE_END =0xab45;
+    public static final int TYPE_END = 0xab45;
     public static final int TYPE_PAUSE_START = 0x9043;
     public static final int TYPE_PAUSE_END = 0x41bb;
 
@@ -29,6 +29,7 @@ public class WorkTime {
     }
 
     public static int resolveTypeFromString(String type) {
+
         switch (type) {
             case TYPE_STRING_START:
                 return TYPE_START;

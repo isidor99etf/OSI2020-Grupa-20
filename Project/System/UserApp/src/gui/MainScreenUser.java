@@ -105,19 +105,19 @@ public class MainScreenUser extends JFrame {
         this.setResizable(false);
     }
 
-    private void sortWorkTimeAction(){
+    private void sortWorkTimeAction() {
         String item = (String) sortWorkTimeBox.getSelectedItem();
 
         ArrayList<Time> allTimes = Time.getAllWorkTimeInfo(worker.getPIN());
 
-        if(item != null){
+        if (item != null){
 
-            if(item.equals("Daily")){
+            if (item.equals("Daily") ){
 
                 tableModelDay.getDataVector().removeAllElements();
 
-                for(Time time : allTimes) {
-                    String[] data = time.getFormattedWorkTime().split(" ");
+                for (Time time : allTimes) {
+                    String[] data = time.getFormattedWorkTimeComa().split(",");
                     tableModelDay.addRow(new Object[]{data[0], data[1], data[2]});
                 }
                 workTimeTable.setModel(tableModelDay);
