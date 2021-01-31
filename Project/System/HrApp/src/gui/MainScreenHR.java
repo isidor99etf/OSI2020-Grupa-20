@@ -12,6 +12,7 @@ import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Set;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -129,15 +130,15 @@ public class MainScreenHR extends JFrame {
         if (item != null) {
 
             subSortBox.removeAllItems();
-            ArrayList<String> data = null;
+            Set<String> data = null;
 
             if (item.equals("Sector"))
                 // get sectors
-                data = (ArrayList<String>) workers.stream().map(Employee::getSector).collect(Collectors.toList());
+                data = workers.stream().map(Employee::getSector).collect(Collectors.toSet());
 
             else if (item.equals("Work Place"))
                 // get work places
-                data = (ArrayList<String>) workers.stream().map(Employee::getWorkPlace).collect(Collectors.toList());
+                data = workers.stream().map(Employee::getWorkPlace).collect(Collectors.toSet());
 
             else if (item.equals("All")) {
                 subSortBox.removeAllItems();
